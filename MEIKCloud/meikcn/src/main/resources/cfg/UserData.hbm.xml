@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nuvomed.dto" default-lazy="false">
+	<class name="TuserData" table="nuvo_user_data">
+		<id name="dataId" type="java.lang.Integer">
+			<column name="data_id" length="11" />
+			<generator class="native"></generator>
+		</id>
+		<property name="userId" type="java.lang.Integer">
+			<column name="user_id" length="11" not-null="true"/>							
+		</property>
+		<property name="fileName" type="java.lang.String">
+			<column name="filename" length="500" not-null="true" default="">
+			</column>
+		</property>
+		<property name="stream" type="binary">
+            <column name="stream" />
+        </property>		
+        <!-- 数据文件类型：1 screening数据；2 医生report数据; 3 系统医生report数据; 4 pdf报告 -->
+		<property name="dataType" type="java.lang.Integer">
+			<column name="data_type" length="6" not-null="true"/>							
+		</property>
+		
+	</class>
+</hibernate-mapping>

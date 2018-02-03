@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+              http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+              http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+			  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
+    default-lazy-init="false">
+ 
+<!--======================== property configure本配置文件负责加载变量信息必须在在spring配置文件的最前面加载（第一个加载） ======================== -->
+<!--载入properties配置文件，以${key}的方式引用 -->
+<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations">
+		<list>
+			<value>/WEB-INF/SystemConfig.properties</value>
+		</list>
+	</property>
+</bean>
+ 
+<!--========================   dataconfigure   ==========================-->
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<property name="driverClassName" value="${db.sql.driver}"/>
+	<property name="url" value="${db.sql.url}"/>		
+	<property name="username" value="${db.sql.user}"/>		
+	<property name="password" value="${db.sql.password}"/>			
+</bean>
+ 
+ 
+<!--配置hibernate 上下文 -->
+<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<property name="dataSource" ref="dataSource" />	
+	<!-- 采用xml映射方式配置数据实体 ORM	-->
+	<property name="mappingResources">
+	  <list>		
+	      <value>cfg/hql.xml</value>	      
+	      <value>cfg/AdminUser.hbm.xml</value>
+	      <value>cfg/AdminRole.hbm.xml</value>
+	      <value>cfg/AdminInfo.hbm.xml</value>	      
+	      <value>cfg/AdminRoleRights.hbm.xml</value>
+	      <value>cfg/AdminNodes.hbm.xml</value>	      
+	      <value>cfg/Setting.hbm.xml</value>	      
+	      <value>cfg/Language.hbm.xml</value>	      
+	      <value>cfg/LocalizedField.hbm.xml</value>
+	      <value>cfg/AdminLog.hbm.xml</value>
+	      <value>cfg/User.hbm.xml</value>          
+	      <value>cfg/UserData.hbm.xml</value>
+	      <value>cfg/UserInfo.hbm.xml</value>
+	      <value>cfg/AdminJob.hbm.xml</value>
+	      <value>cfg/License.hbm.xml</value>	      
+	      <value>cfg/Records.hbm.xml</value>
+	      <value>cfg/Group.hbm.xml</value>
+	      <value>cfg/GroupUser.hbm.xml</value>
+	  </list>
+	</property>
+	 
+	 <!-- 自动扫描实体对象 tdxy.bean的包结构中存放实体类      
+	<property name="packagesToScan" value="com.nuvomed.dto" />-->
+	<property name="hibernateProperties">
+		<props>
+		<prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</prop>
+		<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+		<prop key="hibernate.dialect">${db.sql.dialect}</prop>
+		<prop key="hibernate.cache.use_query_cache">false</prop>
+		<prop key="hibernate.show_sql">false</prop>
+	    <!--自动更新数据库表结构，create 创建，update 修改
+	    <prop key="hibernate.hbm2ddl.auto">update</prop> --> 
+		<prop key="hibernate.cache.use_second_level_cache">false</prop>
+		<prop key="hibernate.max_fetch_depth">2</prop>
+		<prop key="hibernate.jdbc.fetch_size">50</prop>
+		<prop key="hibernate.jdbc.batch_size">50</prop>
+		<prop key="hibernate.use_outer_join">false</prop>
+		<prop key="hibernate.format_sql">true</prop>
+		</props>
+	</property>
+</bean>
+
+<!-- 配置jdbc事务  -->
+<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+	<property name="sessionFactory" ref="sessionFactory"/>		
+</bean>   
+<aop:config>
+	<aop:pointcut expression="execution(* com.nuvomed.service.*Service.*(..))" id="serviceMethod"/>
+	<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
+</aop:config>  
+
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:attributes>
+		<tx:method name="get*" read-only="true"/>
+		<tx:method name="update*" rollback-for="Exception" propagation="REQUIRED"/>
+		<tx:method name="create*" rollback-for="Exception" propagation="REQUIRED"/>
+		<tx:method name="delete*" rollback-for="Exception" propagation="REQUIRED"/>
+		<tx:method name="load*" rollback-for="Exception" propagation="REQUIRED"/>
+		<tx:method name="activate*" rollback-for="Exception" propagation="REQUIRED"/>
+		<tx:method name="deactivate*" rollback-for="Exception" propagation="REQUIRED"/>
+		<tx:method name="*"  read-only="false"/>
+	</tx:attributes>
+</tx:advice>
+
+<!-- 对Service层抛出的异常进行统一处理 -->
+<bean id="exceptionManagerAdvice" class="com.nuvomed.core.ExceptionManagerAdvice"/>
+<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+    <property name="beanNames">
+      <value>*Service</value>
+    </property>
+    <property name="interceptorNames">
+      <list>
+        <value>exceptionManagerAdvice</value>
+      </list>
+    </property>
+  </bean>
+
+</beans>

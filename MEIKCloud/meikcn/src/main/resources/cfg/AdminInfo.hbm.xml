@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 29, 2014 11:20:20 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nuvomed.dto.TadminInfo" table="nuvo_admin_info">
+        <id name="adminId" type="string">
+            <column name="admin_id" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="20" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="20" />
+        </property>
+        <property name="gender" type="java.lang.Boolean">
+            <column name="gender" />
+        </property>
+        <property name="birthday" type="string">
+            <column name="birthday" length="10" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="20" />
+        </property>
+        <property name="position" type="string">
+            <column name="position" length="50" />
+        </property>
+        <property name="about" type="string">
+            <column name="about" length="2000" />
+        </property>
+        <property name="avatarSmall" type="binary">
+            <column name="avatar_small" />
+        </property>
+        <property name="avatar" type="binary">
+            <column name="avatar" />
+        </property>
+        <property name="notify" type="java.lang.Boolean">
+            <column name="notify" />
+        </property>
+    </class>
+</hibernate-mapping>

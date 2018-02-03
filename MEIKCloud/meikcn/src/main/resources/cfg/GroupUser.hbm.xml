@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nuvomed.dto" default-lazy="false">
+	<class name="TgroupUser" table="nuvo_group_user">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" length="11" />
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="createdTime" type="java.lang.Long">
+            <column name="created_time" length="20" not-null="true"/>              
+        </property>		
+        		
+		<many-to-one name="group" column="group_id" class="com.nuvomed.dto.Tgroup"  unique="true" not-null="true"/>
+		<many-to-one name="adminUser" column="admin_id" class="com.nuvomed.dto.TadminUser"  unique="true" not-null="true"/>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nuvomed.dto" default-lazy="false">
+	<class name="TadminRole" table="nuvo_admin_role">
+		<id name="roleId" type="java.lang.Integer">
+			<column name="role_id" length="11" />
+			<generator class="native"></generator>
+		</id>
+		<property name="roleName" type="java.lang.String">
+			<column name="role_name" length="50" not-null="true">
+				<comment>role: 1 Superuser</comment>
+			</column>
+		</property>
+		<property name="pid" type="java.lang.Integer">
+			<column name="pid" length="11" not-null="true" default="0">
+			</column>
+		</property>
+		<property name="status" type="java.lang.Boolean">
+			<column name="status" not-null="true" default="0"/>
+		</property>
+		
+		<one-to-one name="adminRoleRights" class="com.nuvomed.dto.TadminRoleRights" />
+	</class>
+</hibernate-mapping>

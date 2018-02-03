@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>  
+    <!-- 數據庫原始SQL語句查詢 -->
+  <sql-query name="findUserData">
+  	<return alias="userData" class="com.nuvomed.dto.TuserData"/>   		  	
+  	<![CDATA[select ud.data_id AS {userData.dataId},ud.user_id AS {userData.userId},ud.filename AS {userData.fileName},ud.data_type AS {userData.dataType} from nuvo_user_data ud where ud.user_id= ? and ud.data_type=?]]>
+  </sql-query>  
+  
+  <sql-query name="findAllUserData">
+  	<return alias="userData" class="com.nuvomed.dto.TuserData"/>  	  
+  	<![CDATA[select ud.data_id AS {userData.dataId},ud.user_id AS {userData.userId},ud.filename AS {userData.fileName},ud.data_type AS {userData.dataType} from nuvo_user_data ud where ud.user_id= ?]]>
+  </sql-query> 
+  <!-- 
+  <sql-query name="updateUserInfo">  	
+  	<![CDATA[update user_points set points=:POINTS where userid=:ID]]>
+  </sql-query>
+   -->
+</hibernate-mapping>

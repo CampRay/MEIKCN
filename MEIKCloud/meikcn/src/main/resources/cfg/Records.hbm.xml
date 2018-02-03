@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="com.nuvomed.dto.Trecords" table="nuvo_records">
+		<id name="id" type="java.lang.Integer">
+			<column name="id" length="11" />
+			<generator class="native"></generator>
+		</id>
+		<property name="code" type="java.lang.String">
+            <column name="code" length="50" not-null="true"/>
+        </property>		
+		<property name="clientName" type="java.lang.String">
+            <column name="client_name" length="100" not-null="true"/>
+        </property>		
+        <property name="deviceId" type="java.lang.String">
+            <column name="device_id" length="50" not-null="true"/>
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="description" length="2000" not-null="false"/>
+        </property>	
+        <property name="license" type="java.lang.String">
+            <column name="license" length="100" not-null="false"/>
+        </property>	
+        <property name="screenTime" type="java.lang.Long">
+            <column name="screen_time" length="20" not-null="true"/>
+        </property>
+        <property name="uploadTime" type="java.lang.Long">
+            <column name="upload_time" length="20" not-null="true"/>
+        </property>                       
+	</class>
+</hibernate-mapping>

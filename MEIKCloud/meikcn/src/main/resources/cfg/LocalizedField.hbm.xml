@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-12-19 10:47:42 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.nuvomed.dto.TlocalizedField" table="nuvo_localized_field" lazy="false">
+        <id name="localeId" type="java.lang.Integer">
+            <column name="locale_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="language" class="com.nuvomed.dto.Tlanguage" fetch="select">
+            <column name="language_id" not-null="true" />
+        </many-to-one>
+        <property name="entityId" type="java.lang.Integer">
+            <column name="entity_id" not-null="true" />
+        </property>
+        <property name="tableName" type="java.lang.String">
+            <column name="table_name" length="50" not-null="true" />
+        </property>
+        <property name="tableField" type="java.lang.String">
+            <column name="table_field" length="50" not-null="true" />
+        </property>
+        <property name="localeValue" type="java.lang.String">
+            <column name="locale_value" not-null="true" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

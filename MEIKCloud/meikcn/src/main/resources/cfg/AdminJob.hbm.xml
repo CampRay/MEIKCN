@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nuvomed.dto" default-lazy="false">
+	<class name="TadminJob" table="nuvo_admin_job">
+		<id name="jobId" type="java.lang.Integer">
+			<column name="job_id" length="11" />
+			<generator class="identity"></generator>
+		</id>
+		
+		<property name="type" type="java.lang.Integer">
+			<column name="type" length="2" not-null="true" default="0">
+			    <comment>1 接收检测数据任务,  2 编写报表任务, 3 接收报表任务</comment>			    
+			</column>
+		</property>		
+		<property name="status" type="java.lang.Boolean">
+			<column name="status" not-null="true" default="0"/>
+		</property>
+		<property name="createdBy" type="java.lang.String">
+			<column name="created_by" length="100" not-null="true">				
+			</column>
+		</property>
+		<property name="createdTime" type="java.lang.Long">
+            <column name="created_time" length="20" not-null="false"/>              
+        </property>
+        <property name="assignTime" type="java.lang.Long">
+            <column name="assign_time" length="20" not-null="false"/>              
+        </property>
+        <property name="reportTime" type="java.lang.Long">
+            <column name="report_time" length="20" not-null="false"/>              
+        </property>
+        <property name="doneTime" type="java.lang.Long">
+            <column name="done_time" length="20" not-null="false"/>              
+        </property>
+        <property name="closeTime" type="java.lang.Long">
+            <column name="close_time" length="20" not-null="false"/>              
+        </property>
+        <property name="downloadTime" type="java.lang.Long">
+            <column name="download_time" length="20" not-null="false"/>              
+        </property>
+		
+		<many-to-one name="user" column="user_id" class="com.nuvomed.dto.Tuser" not-null="true" lazy="false"/>
+		<many-to-one name="adminUser" column="admin_id" class="com.nuvomed.dto.TadminUser"  lazy="false"/>
+	</class>
+</hibernate-mapping>

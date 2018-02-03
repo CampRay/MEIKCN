@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 29, 2014 11:20:20 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.nuvomed.dto.Tuser" table="nuvo_user">
+        <id name="userId" type="java.lang.Integer">
+            <column name="user_id" length="11" />
+            <generator class="identity" />
+        </id>
+        <property name="code" type="string">
+            <column name="code" length="20" not-null="true"/>
+        </property>
+        <property name="createdBy" type="string">
+            <column name="created_by" length="100" not-null="true"/>
+        </property>
+        <property name="firstName" type="string">
+            <column name="first_name" length="100" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="100" />
+        </property>
+        <property name="otherName" type="string">
+            <column name="other_name" length="100" />
+        </property>
+        <!-- <property name="cid" type="string">
+            <column name="cid" length="100" />
+        </property> -->
+        <many-to-one name="adminUser" column="cid" class="com.nuvomed.dto.TadminUser"  unique="false" not-null="false"/>
+        <property name="gender" type="java.lang.Boolean">
+            <column name="gender" />
+        </property>
+        <property name="birthday" type="string">
+            <column name="birthday" length="50" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="100" />
+        </property> 
+        <property name="email" type="string">
+            <column name="email" length="100" />
+        </property>  
+        <property name="free" type="java.lang.Boolean">
+            <column name="free" />
+        </property>    
+        <property name="location" type="string">
+            <column name="screen_location" length="3000" />
+        </property>  
+        <property name="result" type="java.lang.Integer">
+            <column name="screen_result" />
+        </property>
+        <property name="missingData" type="java.lang.Boolean">
+            <column name="missing_data" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	  http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+	<context:annotation-config />	
+	<context:component-scan base-package="com.nuvomed.action,com.nuvomed.api,com.nuvomed.dao,com.nuvomed.service" />
+	
+	<bean class="com.nuvomed.commons.MyApplicationContextUtil" lazy-init="false"></bean>
+	
+	<!-- 资源文件绑定器 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="i18n.messageResource" /><!-- 设置资源文件路径及名称-->
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+		
+	<bean id="localizedFieldService" class="com.nuvomed.service.impl.LocalizedFieldServiceImpl" autowire="byName"/>	 
+		 	 
+	<bean id="adminUserService" class="com.nuvomed.service.impl.AdminUserServiceImpl" autowire="byName"/>
+		
+	<bean id="adminRoleService" class="com.nuvomed.service.impl.AdminRoleServiceImpl" autowire="byName"/>
+	
+	<bean id="adminRoleRightsService" class="com.nuvomed.service.impl.AdminRoleRightsServiceImpl" autowire="byName"/>
+	
+	<bean id="adminNodesService" class="com.nuvomed.service.impl.AdminNodesServiceImpl" autowire="byName"/>
+	
+	<bean id="adminInfoService" class="com.nuvomed.service.impl.AdminInfoServiceImpl" autowire="byName"/>				
+	
+	<bean id="systemSettingService" class="com.nuvomed.service.impl.SystemSettingServiceImpl" autowire="byName"/>				
+	
+	<bean id="languageService" class="com.nuvomed.service.impl.LanguageServiceImpl" autowire="byName"/>
+	
+	<bean id="userService" class="com.nuvomed.service.impl.UserServiceImpl" autowire="byName"/>
+	
+	<bean id="userDataService" class="com.nuvomed.service.impl.UserDataServiceImpl" autowire="byName"/>
+	
+	<bean id="userInfoService" class="com.nuvomed.service.impl.UserInfoServiceImpl" autowire="byName"/>		
+	
+	<bean id="adminJobService" class="com.nuvomed.service.impl.AdminJobServiceImpl" autowire="byName"/>
+	
+	<bean id="licenseService" class="com.nuvomed.service.impl.LicenseServiceImpl" autowire="byName"/>
+	
+	<bean id="versionService" class="com.nuvomed.service.impl.VersionServiceImpl" autowire="byName"/>
+	
+	<bean id="recordsService" class="com.nuvomed.service.impl.RecordsServiceImpl" autowire="byName"/>
+	
+	<bean id="groupService" class="com.nuvomed.service.impl.GroupServiceImpl" autowire="byName"/>
+	
+	<bean id="groupUserService" class="com.nuvomed.service.impl.GroupUserServiceImpl" autowire="byName"/>
+	
+	 
+	<!-- 缓存系统常用数据 -->
+	<bean class="com.nuvomed.core.CachedDataProcessor"/>
+	
+	
+	<!-- Spring线程池 -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!-- 线程池维护线程的最少数量 -->
+        <property name="corePoolSize" value="5" />
+        <!-- 允许的空闲时间，如果某个线程空闲时间超过此设置值，那么此线程将被终止-->
+        <property name="keepAliveSeconds" value="300" />
+        <!-- 线程池维护线程的最大数量 -->
+        <property name="maxPoolSize" value="10" />
+        <!-- 缓存队列 -->
+        <property name="queueCapacity" value="100" />
+        <!-- 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者 -->
+        <property name="rejectedExecutionHandler">
+            <!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+        </property>
+    </bean>
+	
+</beans>

@@ -1,0 +1,506 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.nuvomed.dto" default-lazy="false">
+	<class name="TuserInfo" table="nuvo_user_info">
+		<id name="infoId" type="java.lang.Integer">
+			<column name="info_id" length="11" />
+			<generator class="native"></generator>
+		</id>
+		<many-to-one name="adminUser" column="cid" class="com.nuvomed.dto.TadminUser"  unique="false" not-null="false"/>
+		
+		<property name="createdTime" type="java.lang.Long">
+            <column name="created_time" length="20" not-null="true"/>              
+        </property>
+        <property name="createdBy" type="java.lang.String">
+			<column name="created_by" length="100" not-null="false">				
+			</column>
+		</property>
+		<property name="language" type="java.lang.String">
+			<column name="language" length="20" not-null="false">				
+			</column>
+		</property>
+		<!-- <property name="userId" type="java.lang.Integer">
+			<column name="user_id" length="11" not-null="false"/>							
+		</property> -->
+		<many-to-one name="user" column="user_id" class="com.nuvomed.dto.Tuser" not-null="false"/>
+		
+		<property name="firstName" type="java.lang.String">
+			<column name="first_name" length="100" not-null="true">
+			</column>
+		</property>
+		<property name="lastName" type="java.lang.String">
+			<column name="last_name" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="otherName" type="java.lang.String">
+			<column name="other_name" length="100" not-null="false">
+			</column>
+		</property>	
+		<property name="birthday" type="java.lang.String">
+			<column name="birthday" length="100" not-null="true">
+			</column>
+		</property>
+		<property name="mobile" type="java.lang.String">
+			<column name="mobile" length="100" not-null="true">
+			</column>
+		</property>
+		<property name="email" type="java.lang.String">
+			<column name="email" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="height" type="java.lang.String">
+			<column name="height" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="weight" type="java.lang.String">
+			<column name="weight" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="address" type="java.lang.String">
+			<column name="address" length="500" not-null="false">
+			</column>
+		</property>
+		<property name="address2" type="java.lang.String">
+			<column name="address2" length="500" not-null="false">
+			</column>
+		</property>
+		<property name="city" type="java.lang.String">
+			<column name="city" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="province" type="java.lang.String">
+			<column name="province" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="zipcode" type="java.lang.String">
+			<column name="zipcode" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="country" type="java.lang.String">
+			<column name="country" length="100" not-null="false">
+			</column>
+		</property>
+		
+		<property name="familyBreastCancer1" type="java.lang.Boolean">
+			<column name="family_breast_cancer1" not-null="false"/>
+		</property>
+		<property name="familyBreastCancer2" type="java.lang.Boolean">
+			<column name="family_breast_cancer2" not-null="false"/>
+		</property>
+		<property name="familyBreastCancer3" type="java.lang.Boolean">
+			<column name="family_breast_cancer3" not-null="false"/>
+		</property>
+		<property name="familyBreastCancerDesc" type="java.lang.String">
+			<column name="family_breast_cancer_desc" not-null="false"/>			
+		</property>
+		
+		<property name="familyUterineCancer1" type="java.lang.Boolean">
+			<column name="family_uterine_cancer1" not-null="false"/>
+		</property>
+		<property name="familyUterineCancer2" type="java.lang.Boolean">
+			<column name="family_uterine_cancer2" not-null="false"/>
+		</property>
+		<property name="familyUterineCancer3" type="java.lang.Boolean">
+			<column name="family_uterine_cancer3" not-null="false"/>
+		</property>
+		<property name="familyUterineCancerDesc" type="java.lang.String">
+			<column name="family_uterine_cancer_desc" not-null="false"/>			
+		</property>
+		
+		<property name="familyCervicalCancer1" type="java.lang.Boolean">
+			<column name="family_cervical_cancer1" not-null="false"/>
+		</property>
+		<property name="familyCervicalCancer2" type="java.lang.Boolean">
+			<column name="family_cervical_cancer2" not-null="false"/>
+		</property>
+		<property name="familyCervicalCancer3" type="java.lang.Boolean">
+			<column name="family_cervical_cancer3" not-null="false"/>
+		</property>
+		<property name="familyCervicalCancerDesc" type="java.lang.String">
+			<column name="family_cervical_cancer_desc" not-null="false"/>			
+		</property>
+		
+		<property name="familyOvarianCancer1" type="java.lang.Boolean">
+			<column name="family_ovarian_cancer1" not-null="false"/>
+		</property>
+		<property name="familyOvarianCancer2" type="java.lang.Boolean">
+			<column name="family_ovarian_cancer2" not-null="false"/>
+		</property>
+		<property name="familyOvarianCancer3" type="java.lang.Boolean">
+			<column name="family_ovarian_cancer3" not-null="false"/>
+		</property>
+		<property name="familyOvarianCancerDesc" type="java.lang.String">
+			<column name="family_ovarian_cancer_desc" not-null="false"/>			
+		</property>
+		
+		<property name="familyCancerDesc" type="java.lang.String">
+			<column name="family_cancer_desc" not-null="false"/>			
+		</property>
+				
+		<property name="complaintsPalpableLumps" type="java.lang.Boolean">
+			<column name="complaints_palpable_lumps" not-null="false"/>
+		</property>
+		<property name="complaintsPain" type="java.lang.Boolean">
+			<column name="complaints_pain" not-null="false"/>
+		</property>
+		<property name="complaintsDegree" type="java.lang.Integer">
+			<column name="complaints_degree" not-null="false"/>			    
+		</property>	
+		<property name="complaintsColostrum" type="java.lang.Boolean">
+			<column name="complaints_colostrum" not-null="false"/>
+		</property>
+		<property name="complaintsSerous" type="java.lang.Boolean">
+			<column name="complaints_serous" not-null="false"/>
+		</property>
+		<property name="complaintsBlood" type="java.lang.Boolean">
+			<column name="complaints_blood" not-null="false"/>
+		</property>
+		<property name="complaintsLumpsLeftPosition" type="java.lang.Integer">
+			<column name="complaints_lumps_left_position" not-null="false"/>			    
+		</property>
+		<property name="complaintsLumpsRightPosition" type="java.lang.Integer">
+			<column name="complaints_lumps_right_position" not-null="false"/>			    
+		</property>
+		<property name="complaintsPregnancy" type="java.lang.Boolean">
+			<column name="complaints_pregnancy" not-null="false"/>
+		</property>
+		<property name="complaintsPregnancyTerm" type="java.lang.String">
+			<column name="complaints_pregnancy_term" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="complaintsLactation" type="java.lang.Boolean">
+			<column name="complaints_lactation" not-null="false"/>
+		</property>
+		<property name="complaintsLactationTerm" type="java.lang.String">
+			<column name="complaints_lactation_term" length="100" not-null="false">
+			</column>
+		</property>
+		<property name="complaintsBreastImplants" type="java.lang.Boolean">
+			<column name="complaints_breast_implants" not-null="false"/>
+		</property>
+		<property name="complaintsBreastImplantsLeft" type="java.lang.Boolean">
+			<column name="complaints_breast_implants_left" not-null="false"/>
+		</property>
+		<property name="complaintsBreastImplantsLeftYear" type="java.lang.String">
+			<column name="complaints_breast_implants_left_year" length="50" not-null="false">
+			</column>
+		</property>
+		<property name="complaintsBreastImplantsRight" type="java.lang.Boolean">
+			<column name="complaints_breast_implants_right" not-null="false"/>
+		</property>			
+		<property name="complaintsBreastImplantsRightYear" type="java.lang.String">
+			<column name="complaints_breast_implants_right_year" length="50" not-null="false"/>			
+		</property>
+		<property name="complaintsBreastImplantsGel" type="java.lang.Boolean">
+			<column name="complaints_breast_implants_gel" not-null="false"/>
+		</property>
+		<property name="complaintsBreastImplantsFat" type="java.lang.Boolean">
+			<column name="complaints_breast_implants_fat" not-null="false"/>
+		</property>
+		<property name="complaintsBreastImplantsOthers" type="java.lang.Boolean">
+			<column name="complaints_breast_implants_others" not-null="false"/>
+		</property>
+		<property name="complaintsOtherDesc" type="java.lang.String">
+			<column name="complaints_other_desc" not-null="false"/>			
+		</property>
+		
+		<property name="mensesLastMenstruation" type="java.lang.String">
+			<column name="menses_last_menstruation" length="50" not-null="false"/>			
+		</property>
+		<property name="mensesCycleDisorder" type="java.lang.Boolean">
+			<column name="menses_cycle_disorder" not-null="false"/>
+		</property>
+		<property name="mensesCycleDisorderDesc" type="java.lang.String">
+			<column name="menses_cycle_disorder_desc" not-null="false"/>			
+		</property>
+		<property name="mensesPostmenopause" type="java.lang.Boolean">
+			<column name="menses_postmenopause" not-null="false"/>
+		</property>
+		<property name="mensesPostmenopauseYear" type="java.lang.String">
+			<column name="menses_postmenopause_year" length="50" not-null="false"/>			
+		</property>
+		<property name="mensesHormonalContraceptives" type="java.lang.Boolean">
+			<column name="menses_hormonal_contraceptives" not-null="false"/>
+		</property>
+		<property name="mensesHormonalContraceptivesName" type="java.lang.String">
+			<column name="menses_hormonal_contraceptives_name" length="100" not-null="false"/>			
+		</property>
+		<property name="mensesHormonalContraceptivesPeriod" type="java.lang.String">
+			<column name="menses_hormonal_contraceptives_period" length="50" not-null="false"/>			
+		</property>
+		<property name="mensesDesc" type="java.lang.String">
+			<column name="menses_desc" not-null="false"/>			
+		</property>
+		
+		<property name="obstetricInfertility" type="java.lang.Boolean">
+			<column name="obstetric_infertility" not-null="false"/>
+		</property>
+		<property name="obstetricAbortions" type="java.lang.Boolean">
+			<column name="obstetric_abortions" not-null="false"/>
+		</property>
+		<property name="obstetricAbortionsTimes" type="java.lang.String">
+			<column name="obstetric_abortions_times" length="50" not-null="false"/>			
+		</property>
+		<property name="obstetricBirths" type="java.lang.Boolean">
+			<column name="obstetric_births" not-null="false"/>
+		</property>
+		<property name="obstetricBirthsTimes" type="java.lang.String">
+			<column name="obstetric_births_times" length="50" not-null="false"/>			
+		</property>
+		<property name="obstetricLactationUnderMonth" type="java.lang.Boolean">
+			<column name="obstetric_lactation_under_month" not-null="false"/>
+		</property>
+		<property name="obstetricLactationUnderYear" type="java.lang.Boolean">
+			<column name="obstetric_lactation_under_year" not-null="false"/>
+		</property>
+		<property name="obstetricLactationOverYear" type="java.lang.Boolean">
+			<column name="obstetric_lactation_over_year" not-null="false"/>
+		</property>
+		<property name="obstetricDesc" type="java.lang.String">
+			<column name="obstetric_desc" not-null="false"/>			
+		</property>
+		
+		<property name="anamnesisBreastDiseasesTrauma" type="java.lang.Boolean">
+			<column name="anamnesis_breast_diseases_trauma" not-null="false"/>
+		</property>
+		<property name="anamnesisBreastDiseasesMastitis" type="java.lang.Boolean">
+			<column name="anamnesis_breast_diseases_mastitis" not-null="false"/>
+		</property>
+		<property name="anamnesisBreastDiseasesFibrous" type="java.lang.Boolean">
+			<column name="anamnesis_breast_diseases_fibrous" not-null="false"/>
+		</property>
+		<property name="anamnesisBreastDiseasesCysts" type="java.lang.Boolean">
+			<column name="anamnesis_breast_diseases_cysts" not-null="false"/>
+		</property>
+		<property name="anamnesisBreastDiseasesCancer" type="java.lang.Boolean">
+			<column name="anamnesis_breast_diseases_cancer" not-null="false"/>
+		</property>
+		<property name="anamnesisBreastDiseasesDesc" type="java.lang.String">
+			<column name="anamnesis_breast_diseases_desc" not-null="false"/>			
+		</property>
+		<property name="anamnesisOvaryDiseasesInflammation" type="java.lang.Boolean">
+			<column name="anamnesis_ovary_diseases_inflammation" not-null="false"/>
+		</property>
+		<property name="anamnesisOvaryDiseasesCyst" type="java.lang.Boolean">
+			<column name="anamnesis_ovary_diseases_cyst" not-null="false"/>
+		</property>
+		<property name="anamnesisOvaryDiseasesCancer" type="java.lang.Boolean">
+			<column name="anamnesis_ovary_diseases_cancer" not-null="false"/>
+		</property>
+		<property name="anamnesisOvaryDiseasesEndometriosis" type="java.lang.Boolean">
+			<column name="anamnesis_ovary_diseases_endometriosis" not-null="false"/>
+		</property>
+		<property name="anamnesisOvaryDiseasesDesc" type="java.lang.String">
+			<column name="anamnesis_ovary_diseases_desc" not-null="false"/>			
+		</property>
+		<property name="anamnesisUterusDiseasesInflammation" type="java.lang.Boolean">
+			<column name="anamnesis_uterus_diseases_inflammation" not-null="false"/>
+		</property>
+		<property name="anamnesisUterusDiseasesMyoma" type="java.lang.Boolean">
+			<column name="anamnesis_uterus_diseases_myoma" not-null="false"/>
+		</property>
+		<property name="anamnesisUterusDiseasesCancer" type="java.lang.Boolean">
+			<column name="anamnesis_uterus_diseases_cancer" not-null="false"/>
+		</property>
+		<property name="anamnesisUterusDiseasesEndometriosis" type="java.lang.Boolean">
+			<column name="anamnesis_uterus_diseases_endometriosis" not-null="false"/>
+		</property>
+		<property name="anamnesisUterusDiseasesDesc" type="java.lang.String">
+			<column name="anamnesis_uterus_diseases_desc" not-null="false"/>			
+		</property>
+		<property name="anamnesisSomaticDiseasesAdiposity" type="java.lang.Boolean">
+			<column name="anamnesis_somatic_diseases_adiposity" not-null="false"/>
+		</property>
+		<property name="anamnesisSomaticDiseasesHypertension" type="java.lang.Boolean">
+			<column name="anamnesis_somatic_diseases_hypertension" not-null="false"/>
+		</property>
+		<property name="anamnesisSomaticDiseasesDiabetes" type="java.lang.Boolean">
+			<column name="anamnesis_somatic_diseases_diabetes" not-null="false"/>
+		</property>
+		<property name="anamnesisSomaticDiseasesThyroid" type="java.lang.Boolean">
+			<column name="anamnesis_somatic_diseases_thyroid" not-null="false"/>
+		</property>
+		<property name="anamnesisSomaticDiseasesDesc" type="java.lang.String">
+			<column name="anamnesis_somatic_diseases_desc" not-null="false"/>			
+		</property>
+		<property name="anamnesisDesc" type="java.lang.String">
+			<column name="anamnesis_desc" not-null="false"/>			
+		</property>
+		
+		<property name="examinationsPalpation" type="java.lang.Boolean">
+			<column name="examinations_palpation" not-null="false"/>
+		</property>
+		<property name="examinationsPalpationYear" type="java.lang.String">
+			<column name="examinations_palpation_year" length="50" not-null="false"/>			
+		</property>
+		<property name="examinationsPalpationNormal" type="java.lang.Boolean">
+			<column name="examinations_palpation_normal" not-null="false"/>
+		</property>
+		<property name="examinationsPalpationAbnormal" type="java.lang.Boolean">
+			<column name="examinations_palpation_abnormal" not-null="false"/>
+		</property>
+		<property name="examinationsPalpationDiffuse" type="java.lang.Boolean">
+			<column name="examinations_palpation_diffuse" not-null="false"/>
+		</property>
+		<property name="examinationsPalpationFocal" type="java.lang.Boolean">
+			<column name="examinations_palpation_focal" not-null="false"/>
+		</property>
+		<property name="examinationsPalpationDesc" type="java.lang.String">
+			<column name="examinations_palpation_desc" not-null="false"/>			
+		</property>
+		<property name="examinationsUltrasound" type="java.lang.Boolean">
+			<column name="examinations_ultrasound" not-null="false"/>
+		</property>
+		<property name="examinationsUltrasoundYear" type="java.lang.String">
+			<column name="examinations_ultrasound_year" length="50" not-null="false"/>			
+		</property>
+		<property name="examinationsUltrasoundNormal" type="java.lang.Boolean">
+			<column name="examinations_ultrasound_normal" not-null="false"/>
+		</property>
+		<property name="examinationsUltrasoundAbnormal" type="java.lang.Boolean">
+			<column name="examinations_ultrasound_abnormal" not-null="false"/>
+		</property>
+		<property name="examinationsUltrasoundDiffuse" type="java.lang.Boolean">
+			<column name="examinations_ultrasound_diffuse" not-null="false"/>
+		</property>
+		<property name="examinationsUltrasoundFocal" type="java.lang.Boolean">
+			<column name="examinations_ultrasound_focal" not-null="false"/>
+		</property>
+		<property name="examinationsUltrasoundDesc" type="java.lang.String">
+			<column name="examinations_ultrasound_desc" not-null="false"/>			
+		</property>
+		<property name="examinationsMammography" type="java.lang.Boolean">
+			<column name="examinations_mammography" not-null="false"/>
+		</property>
+		<property name="examinationsMammographyYear" type="java.lang.String">
+			<column name="examinations_mammography_year" length="50" not-null="false"/>			
+		</property>
+		<property name="examinationsMammographyNormal" type="java.lang.Boolean">
+			<column name="examinations_mammography_normal" not-null="false"/>
+		</property>
+		<property name="examinationsMammographyAbnormal" type="java.lang.Boolean">
+			<column name="examinations_mammography_abnormal" not-null="false"/>
+		</property>
+		<property name="examinationsMammographyDiffuse" type="java.lang.Boolean">
+			<column name="examinations_mammography_diffuse" not-null="false"/>
+		</property>
+		<property name="examinationsMammographyFocal" type="java.lang.Boolean">
+			<column name="examinations_mammography_focal" not-null="false"/>
+		</property>
+		<property name="examinationsMammographyDesc" type="java.lang.String">
+			<column name="examinations_mammography_desc" not-null="false"/>			
+		</property>
+		<property name="examinationsBiopsy" type="java.lang.Boolean">
+			<column name="examinations_biopsy" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyYear" type="java.lang.String">
+			<column name="examinations_biopsy_year" length="50" not-null="false"/>			
+		</property>
+		<property name="examinationsBiopsyNormal" type="java.lang.Boolean">
+			<column name="examinations_biopsy_normal" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyAbnormal" type="java.lang.Boolean">
+			<column name="examinations_biopsy_abnormal" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyCancer" type="java.lang.Boolean">
+			<column name="examinations_biopsy_cancer" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyProliferation" type="java.lang.Boolean">
+			<column name="examinations_biopsy_proliferation" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyDysplasia" type="java.lang.Boolean">
+			<column name="examinations_biopsy_dysplasia" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyPapilloma" type="java.lang.Boolean">
+			<column name="examinations_biopsy_papilloma" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyFibroadenoma" type="java.lang.Boolean">
+			<column name="examinations_biopsy_fibroadenoma" not-null="false"/>
+		</property>
+		<property name="examinationsBiopsyDesc" type="java.lang.String">
+			<column name="examinations_biopsy_desc" not-null="false"/>			
+		</property>
+		<property name="examinationsMeik" type="java.lang.Boolean">
+			<column name="examinations_meik" not-null="false"/>
+		</property>
+		<property name="examinationsMeikYear" type="java.lang.String">
+			<column name="examinations_meik_year" length="50" not-null="false"/>			
+		</property>
+		<property name="examinationsMeikPoint" type="java.lang.String">
+			<column name="examinations_meik_point" length="50" not-null="false"/>			
+		</property>
+		<property name="examinationsMeikDesc" type="java.lang.String">
+			<column name="examinations_meik_desc" not-null="false"/>			
+		</property>
+		<property name="examinationsDesc" type="java.lang.String">
+			<column name="examinations_desc" not-null="false"/>			
+		</property>
+		
+		<property name="visualSwollen" type="java.lang.Boolean">
+			<column name="visual_swollen" not-null="false"/>
+		</property>
+		<property name="visualSwollenLeft" type="java.lang.Integer">
+			<column name="visual_swollen_left" not-null="false"/>			    
+		</property>
+		<property name="visualSwollenRight" type="java.lang.Integer">
+			<column name="visual_swollen_right" not-null="false"/>			    
+		</property>
+		<property name="visualSwollenDesc" type="java.lang.String">
+			<column name="visual_swollen_desc" not-null="false"/>			
+		</property>
+		<property name="visualPalpable" type="java.lang.Boolean">
+			<column name="visual_palpable" not-null="false"/>
+		</property>
+		<property name="visualPalpableLeft" type="java.lang.Integer">
+			<column name="visual_palpable_left" not-null="false"/>			    
+		</property>
+		<property name="visualPalpableRight" type="java.lang.Integer">
+			<column name="visual_palpable_right" not-null="false"/>			    
+		</property>
+		<property name="visualPalpableDesc" type="java.lang.String">
+			<column name="visual_palpable_desc" not-null="false"/>			
+		</property>
+		<property name="visualSerous" type="java.lang.Boolean">
+			<column name="visual_serous" not-null="false"/>
+		</property>
+		<property name="visualSerousLeft" type="java.lang.Integer">
+			<column name="visual_serous_left" not-null="false"/>			    
+		</property>
+		<property name="visualSerousRight" type="java.lang.Integer">
+			<column name="visual_serous_right" not-null="false"/>			    
+		</property>
+		<property name="visualSerousDesc" type="java.lang.String">
+			<column name="visual_serous_desc" not-null="false"/>			
+		</property>
+		<property name="visualWounds" type="java.lang.Boolean">
+			<column name="visual_wounds" not-null="false"/>
+		</property>
+		<property name="visualWoundsLeft" type="java.lang.Integer">
+			<column name="visual_wounds_left" not-null="false"/>			    
+		</property>
+		<property name="visualWoundsRight" type="java.lang.Integer">
+			<column name="visual_wounds_right" not-null="false"/>			    
+		</property>
+		<property name="visualWoundsDesc" type="java.lang.String">
+			<column name="visual_wounds_desc" not-null="false"/>			
+		</property>
+		<property name="visualScars" type="java.lang.Boolean">
+			<column name="visual_scars" not-null="false"/>
+		</property>
+		<property name="visualScarsLeft" type="java.lang.Integer">
+			<column name="visual_scars_left" not-null="false"/>			    
+		</property>
+		<property name="visualScarsRight" type="java.lang.Integer">
+			<column name="visual_scars_right" not-null="false"/>			    
+		</property>
+		<property name="visualScarsDesc" type="java.lang.String">
+			<column name="visual_scars_desc" not-null="false"/>			
+		</property>
+		<property name="visualDesc" type="java.lang.String">
+			<column name="visual_desc" not-null="false"/>			
+		</property>
+				
+	</class>
+</hibernate-mapping>

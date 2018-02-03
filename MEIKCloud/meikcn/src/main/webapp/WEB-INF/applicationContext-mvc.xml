@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd 
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+             
+	<context:annotation-config />
+	 		 
+	<!--
+	-The controllers are autodetected POJOs labeled with the @Controller annotation.
+	Springmvc将在该路径下寻找Controller(有Controller注释的类)
+	-->
+	<context:component-scan base-package="com.nuvomed.action,com.nuvomed.api,com.nuvomed.dao" />	 		 	
+	
+	<!-- 国际化操作 拦截器 必需配置,可以和其它国际化方式通用 只要请求的url中有?locale=zh_CN就会触发此拦截器-->
+	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor" />
+	<!-- 国际化处理器，可使用的处理器有： CookieLocaleResolver或 SessionLocaleResolver或AcceptHeaderLocaleResolver-->
+	<!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="cookieName" value="locale"></property>
+        <property name="cookieMaxAge" value="86400"></property>
+        <property name="defaultLocale" value="en_US"></property>
+        <property name="cookieDomain" value="www.campray.com"></property>
+        <property name="cookiePath" value="/"></property>
+	</bean> 
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver"></bean>-->	
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"> 
+		<property name="defaultLocale" value="zh_CN"></property>
+	</bean>
+	
+	<!-- 这是默认的URL处理器，默认会引入id为localeChangeInterceptor的拦截器,可以不声明,Spring默认的会实例化
+	<bean id="defaultUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping">
+		<property name="interceptors" ref="localeChangeInterceptor" />
+		<property name="order">
+			<value>1</value>
+		</property>
+	</bean>
+	 -->
+	
+	<!--开启请求URL映射的自动注解 
+	<mvc:annotation-driven/>
+	-->
+	<!-- 手动引入请求URL映射注解支持类 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="interceptors" ref="localeChangeInterceptor" />
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">    
+        <list>  
+           <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+           		<property name="writeAcceptCharset" value="false"/>
+           		<constructor-arg value="UTF-8"/> 
+            </bean>  
+        </list>  
+       </property>
+	</bean>
+	 
+	
+	
+	<!--使用依赖控制器类名字的惯例，将URI映射到控制器(开启注解的另一种方式) 	
+	<bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>	
+	-->				
+	<mvc:view-controller path="/" view-name="forward:/login" />
+	<!--静态资源访问 -->
+	<mvc:resources location="/static/" mapping="/static/**"/> 	
+	<mvc:resources location="/assets/" mapping="/assets/**" cache-period="72000000"/>
+	<mvc:resources location="/upload/" mapping="/upload/**" /> 
+    <!--定义Spring MVC 的模板文件 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!--支持JSTL -->
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<!--模板的路径 -->
+		<property name="prefix" value="/" />
+		<!--模板文件后缀 -->
+		<property name="suffix" value=".jsp" />
+	</bean>	
+	
+	<!--拦截器-->
+	<mvc:interceptors>
+		<!-- 拦截指定请求 -->
+		<mvc:interceptor>
+			<mvc:mapping path="/*/*"/>
+			<mvc:exclude-mapping path="/api/*"/> 			
+			<mvc:exclude-mapping path="/login"/>
+			<mvc:exclude-mapping path="/reg"/> 			
+			<mvc:exclude-mapping path="/logout"/>
+			<mvc:exclude-mapping path="/home/*"/>
+			<mvc:exclude-mapping path="/common/*"/> 
+			<mvc:exclude-mapping path="/viewreg/*"/>			
+			<mvc:exclude-mapping path="/chageAvatar"/>
+			<mvc:exclude-mapping path="/settings/locale"/>				
+			<bean class="com.nuvomed.core.PermissionInteceptor"></bean>			
+		</mvc:interceptor>
+		<mvc:interceptor>
+		    <mvc:mapping path="/reg"/>
+		    <bean class="com.nuvomed.core.SameUrlDataInterceptor"/> 
+		</mvc:interceptor>	    
+	</mvc:interceptors>
+	 
+	 <!-- 全局异常处理 
+	 <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+	 	<property name="defaultErrorView" value="/error/errpage"/>
+	 	<property name="defaultStatusCode" value="500"/>
+	 	<property name="warnLogCategory" value="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"/>
+	 </bean>
+	 -->
+	 
+	 
+    <!-- Spring MVC 文件上传配置 -->
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" p:defaultEncoding="utf-8">  
+	    <property name="maxUploadSize">
+			<value>52428800</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>40960</value>
+		</property>
+		<property name="uploadTempDir">
+			<value>upload/temp/</value>	
+	   </property>
+	</bean>		
+ 	
+</beans>
