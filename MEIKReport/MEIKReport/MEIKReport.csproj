@@ -314,6 +314,15 @@
     <None Include="Config.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="MEIK\Language.CHN">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MEIK\MEIK.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MEIK\MEIK.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -338,6 +347,21 @@
     <Resource Include="Images\sort_asc.png" />
     <Resource Include="Images\sort_desc.png" />
     <Resource Include="Images\sort_normal.png" />
+    <None Include="MEIK\DELZIP179.DLL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MEIK\ftd2xx.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MEIK\MEIK.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MEIK\mingwm10.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="MEIK\reit.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Xceed.Wpf.Toolkit.dll" />
     <Resource Include="Images\A4-bg.png" />
     <Resource Include="Images\App_Icon.png" />

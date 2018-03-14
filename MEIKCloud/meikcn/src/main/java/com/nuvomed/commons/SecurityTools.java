@@ -6,6 +6,7 @@
  */ 
 package com.nuvomed.commons;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
@@ -18,6 +19,9 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 
 /** 
@@ -175,24 +179,41 @@ public class SecurityTools {
     /**
      * BASE64解密
      * 
-     * @param key
+     * @param str
      * @return
      * @throws Exception
      */
-    public static String decryptBASE64(String key) {
- 
-        return "";
+    public static String decryptBASE64(String str) {
+    	BASE64Decoder decoder = new BASE64Decoder();
+    	byte[] bytes;
+    	String result=null;
+		try {
+			bytes = decoder.decodeBuffer(str);
+			result=new String(bytes, "utf-8");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}          
+        return result;
     }
  
     /**
      * BASE64加密
      * 
-     * @param key
+     * @param str
      * @return
      * @throws Exception
      */
-    public static String encryptBASE64(String key) {
- 
-        return "";
+    public static String encryptBASE64(String str) {
+    	byte[] bytes = null;  
+        String result = null;  
+        try {  
+        	bytes = str.getBytes("utf-8");  
+        } catch (UnsupportedEncodingException e) {  
+            e.printStackTrace();  
+        }  
+        if (bytes != null) {  
+        	result = new BASE64Encoder().encode(bytes);  
+        }  
+        return result; 
     }
 }
