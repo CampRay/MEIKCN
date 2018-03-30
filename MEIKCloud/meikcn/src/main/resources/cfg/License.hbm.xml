@@ -25,6 +25,9 @@
         </property>    
         <property name="createdTime" type="java.lang.Long">
             <column name="created_time" length="20" not-null="false"/>
-        </property>                       
+        </property>  
+        <property name="type" type="int">
+            <column name="type" not-null="true" />
+        </property>                     
 	</class>
 </hibernate-mapping>

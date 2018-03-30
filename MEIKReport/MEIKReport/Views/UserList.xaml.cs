@@ -1,6 +1,7 @@
 ﻿using MEIKReport.Common;
 using MEIKReport.Model;
 using MEIKReport.Views;
+using MEIKReport.Common;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,7 @@ namespace MEIKReport
         //private string meikFolder = OperateIniFile.ReadIniData("Base", "MEIK base", "C:\\Program Files (x86)\\MEIK 5.6", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");        
         protected MouseHook mouseHook = new MouseHook();
         private string dataFolder = AppDomain.CurrentDomain.BaseDirectory + "Data";
+        private bool isChecked = false;  
         private ShortFormReport shortFormReportModel = new ShortFormReport();
 
         private ObservableCollection<User> tempDoctorNames = new ObservableCollection<User>();                
@@ -107,6 +109,7 @@ namespace MEIKReport
                     App.reportSettingModel = new ReportSettingModel();
                     App.reportSettingModel.DataBaseFolder = OperateIniFile.ReadIniData("Base", "Data base", "C:\\MEIKData", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
                     App.reportSettingModel.Version = OperateIniFile.ReadIniData("Base", "Version", "1.0.0", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
+                    App.reportSettingModel.License = OperateIniFile.ReadIniData("Base", "License", "", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
 
                     App.reportSettingModel.UseDefaultSignature = Convert.ToBoolean(OperateIniFile.ReadIniData("Report", "Use Default Signature", "false", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini"));
                     string doctorNames = OperateIniFile.ReadIniData("Report", "Doctor Names List", "", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
@@ -184,9 +187,67 @@ namespace MEIKReport
         }
 		
 		private void Window_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
+            //加载license
+            string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "license.dat";
+            if (File.Exists(filePath))
+            {
+                string licenseStr = SecurityTools.DecryptTextFromFile(filePath);
+                if (!string.IsNullOrEmpty(licenseStr))
+                {
+                    if (licenseStr.Equals(App.reportSettingModel.License + ComputerInfoTools.GetCPUId()))
+                    {
+                        return;
+                    }
+                }
+            }
+            LicensePage licensePage = new LicensePage();
+            var dialogRes = licensePage.ShowDialog();
+            if (!dialogRes.HasValue || !dialogRes.Value)
+            {
+                this.Close();
+            }
             updateVersion();            
         }
+
+        private bool validateLicense()
+        {
+            try
+            {
+                NameValueCollection nvlist = new NameValueCollection();
+                nvlist.Add("license", App.reportSettingModel.License);
+                nvlist.Add("cpuid", ComputerInfoTools.GetCPUId());
+                var res = HttpWebTools.Post(App.reportSettingModel.CloudPath + "/api/checkReport", nvlist);
+                var jsonObj = JObject.Parse(res);
+                bool status = (bool)jsonObj["status"];
+                if (status)
+                {
+                    isChecked = true;
+                    return true;
+                }
+                else
+                {
+                    try
+                    {
+                        string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "license.dat";
+                        if (File.Exists(filePath))
+                        {
+                            File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "license.dat");
+                        }
+                        string info = (string)jsonObj["info"];
+                        MessageBox.Show(this, App.Current.FindResource(info).ToString());
+                    }
+                    catch { }
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
 
         private void exitReport_Click(object sender, RoutedEventArgs e)
         {
@@ -785,8 +846,15 @@ namespace MEIKReport
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SendReportButton_Click(object sender, RoutedEventArgs e)
-        {            
-                        
+        {
+            if (!isChecked)
+            {
+                if (!validateLicense())
+                {
+                    return;
+                }
+            } 
+            
             var selectedUserList = this.CodeListBox.SelectedItems;
             if (selectedUserList == null || selectedUserList.Count == 0)
             {

@@ -112,8 +112,12 @@ public class GroupController extends BaseController {
 		JSONObject respJson = new JSONObject();		
 		try{	
 			Tgroup temp=groupService.loadGroupByName(group.getGroupName());
+			//如果修改后的组名已经存在，则不能修改
 			if(temp==null||temp.getId()==group.getId()){
-				groupService.updateGroup(group);
+				temp=groupService.getGroupById(group.getId());
+				temp.setGroupName(group.getGroupName());
+				temp.setGroupInfo(group.getGroupInfo());
+				groupService.updateGroup(temp);
 				respJson.put("status", true);
 			}
 			else{				

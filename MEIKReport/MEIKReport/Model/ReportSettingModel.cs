@@ -15,7 +15,14 @@ namespace MEIKReport.Model
         {
             get { return version; }
             set { version = value; OnPropertyChanged("Version"); }
-        }        
+        }
+
+        private string license = null;
+        public string License
+        {
+            get { return license; }
+            set { license = value; }
+        } 
 
         private string dataBaseFolder = null;
         public string DataBaseFolder

@@ -153,12 +153,13 @@ String adminId=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).get
 										<div id="column_toggler" class="dropdown-menu hold-on-click dropdown-checkboxes pull-right">
 											<label><input type="checkbox" checked data-column="0">Checkbox</label>
 											<label><input type="checkbox" checked data-column="1"><s:message code="license.key"/></label>
-											<label><input type="checkbox" checked data-column="2"><s:message code="license.username"/></label>
-											<label><input type="checkbox" checked data-column="3"><s:message code="license.deadline"/></label>
-											<label><input type="checkbox" checked data-column="4"><s:message code="license.cpu"/></label>
-											<label><input type="checkbox" checked data-column="5"><s:message code="license.created.time"/></label>
-											<label><input type="checkbox" checked data-column="5"><s:message code="license.active.time"/></label>											
-											<label><input type="checkbox" checked data-column="6"><s:message code="license.status"/></label>											
+											<label><input type="checkbox" checked data-column="2"><s:message code="license.type"/></label>
+											<label><input type="checkbox" checked data-column="3"><s:message code="license.username"/></label>
+											<label><input type="checkbox" checked data-column="4"><s:message code="license.deadline"/></label>
+											<label><input type="checkbox" checked data-column="5"><s:message code="license.cpu"/></label>
+											<label><input type="checkbox" checked data-column="6"><s:message code="license.created.time"/></label>
+											<label><input type="checkbox" checked data-column="7"><s:message code="license.active.time"/></label>											
+											<label><input type="checkbox" checked data-column="8"><s:message code="license.status"/></label>											
 										</div>
 									</div>								    																
 								</div>
@@ -171,6 +172,7 @@ String adminId=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).get
 												<input type="checkbox" class="group-checkable" data-set="#licenses_table .checkboxes"/>
 											</th>
 											<th><s:message code="license.key"/></th>
+											<th><s:message code="license.type"/></th>
 											<th><s:message code="license.username"/></th>
 											<th><s:message code="license.deadline"/></th>
 											<th><s:message code="license.cpu"/></th>
@@ -201,7 +203,16 @@ String adminId=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).get
 								<div class="alert alert-danger display-hide">
 									<button class="close" data-close="alert"></button>
 									<s:message code="system.management.license.addlicense.message"/>
-								</div>								
+								</div>	
+								<div class="form-group">
+									<label class="control-label col-md-3"><s:message code="license.type"/></label>
+									<div class="col-md-9">
+										<select name="type" class="form-control">											
+											<option value="0" selected="selected"><s:message code="license.type.screen"/></option>														
+											<option value="1"><s:message code="license.type.report"/></option>
+										</select>										
+									</div>
+								</div>							
 								<div class="form-group">
 									<label class="control-label col-md-3"><s:message code="license.username"/></label>
 									<div class="col-md-9">										
@@ -261,13 +272,23 @@ String adminId=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).get
 									<div class="col-md-9">										
 										<input name="license" class="form-control" readonly="true"/>										
 									</div>
-								</div>							
+								</div>														
 								<div class="form-group">
 									<label class="control-label col-md-3"><s:message code="license.username"/></label>
 									<div class="col-md-9">										
 										<input name="deviceId" class="form-control"/>										
 									</div>
 								</div>
+								<%if("campray".equals(adminId)){ %>	
+								<div class="form-group">
+									<label class="control-label col-md-3"><s:message code="license.type"/></label>
+									<div class="col-md-9">
+										<select name="type" class="form-control">											
+											<option value="0"><s:message code="license.type.screen"/></option>														
+											<option value="1"><s:message code="license.type.report"/></option>
+										</select>										
+									</div>
+								</div>			
 								<div class="form-group">
 									<label class="control-label col-md-3"><s:message code="license.deadline"/></label>
 									<div class="col-md-5">
@@ -279,7 +300,8 @@ String adminId=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).get
 											</span>
 										</div>
 									</div>
-								</div>								
+								</div>					
+								<%} %>			
 							</div>
 							<div class="form-actions" style="border-top:0;">
 								<div class="row">

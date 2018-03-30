@@ -37,7 +37,7 @@
     <sys:String x:Key="CommonStatusReceived">數據已接收</sys:String>
     <sys:String x:Key="CommonStatusReportSent">報告送出</sys:String>
     <sys:String x:Key="CommonStatusReportDone">報告完成</sys:String>
-    <sys:String x:Key="CommonLicenseLab">授權編號</sys:String>
+    <sys:String x:Key="CommonLicenseLab">授權密鑰</sys:String>
     <sys:String x:Key="CommonPreviewSelect">預覽報告</sys:String>
     <sys:String x:Key="CommonPreviewLF">Long Form Report</sys:String>
     <sys:String x:Key="CommonPreviewSFI">Short Form Report</sys:String>

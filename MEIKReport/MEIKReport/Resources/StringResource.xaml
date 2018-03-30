@@ -39,6 +39,7 @@
     <sys:String x:Key="CommonPreviewLF">Long Form Report</sys:String>
     <sys:String x:Key="CommonPreviewSFI">Short Form Report</sys:String>
     <sys:String x:Key="CommonMRN">Medical Record No.(MRN)</sys:String>
+    <sys:String x:Key="CommonLicenseLab">License Key</sys:String>
 
 
     <sys:String x:Key="RecordsWin1" xml:space="preserve">Client Count: </sys:String>

@@ -32,22 +32,30 @@ var LicensesTable = function () {
             "columns": [
                {"orderable": false },
 	           {data: "license"  },
+	           {'render':function(data,status,row){                   
+	   			   var str = 'MEIK Screen';
+	   			   if(row.type=="1"){
+	   					str ="MEIK Report";
+	   			   }
+	   			   return str;
+	   			}
+	           },	  
 	           {data: "deviceId",defaultContent:""},
 	           {data: "deadlineStr",defaultContent:""},
 	           {data: "cpuId",defaultContent:"" },
 	           {data: "createdTimeStr",defaultContent:"" },
 	           {data: "activeTimeStr",defaultContent:"" },	           
 	           {'render':function(data,status,row){
-	                                var tem = row.status;
-			        				var str = '';
-			        				if(tem==1){
-			        					str = loadProperties("dataTable.page.enable",local,rootURI);
-			        				}else if(tem==0){
-			        					str = loadProperties("dataTable.page.disable",local,rootURI);
-			        				}
-			        				return str;
-			        			}
-			           },	           
+                    var tem = row.status;
+    				var str = '';
+    				if(tem==1){
+    					str = loadProperties("dataTable.page.enable",local,rootURI);
+    				}else if(tem==0){
+    					str = loadProperties("dataTable.page.disable",local,rootURI);
+    				}
+    				return str;
+    			}
+	           },	           
 	          
 	        ],
 	        "serverSide": true,

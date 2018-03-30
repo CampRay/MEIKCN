@@ -36,7 +36,7 @@
     <sys:String x:Key="CommonStatusNew">新的用户</sys:String>
     <sys:String x:Key="CommonStatusDataSent">数据送出</sys:String>
     <sys:String x:Key="CommonStatusReport">已收报告</sys:String>
-    <sys:String x:Key="CommonLicenseLab">授权编号</sys:String>
+    <sys:String x:Key="CommonLicenseLab">授权密钥</sys:String>
     <sys:String x:Key="CommonStatusReceived">数据已接收</sys:String>
     <sys:String x:Key="CommonStatusReportSent">报告送出</sys:String>
     <sys:String x:Key="CommonStatusReportDone">报告完成</sys:String>

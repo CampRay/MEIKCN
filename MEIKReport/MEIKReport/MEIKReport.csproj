@@ -104,6 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\ComputerInfoTools.cs" />
     <Compile Include="Common\DelegateHelper.cs" />
     <Compile Include="Common\EmailHelper.cs" />
     <Compile Include="Common\EnumBooleanConverter.cs" />
@@ -142,6 +143,9 @@
     </Compile>
     <Compile Include="Views\ExaminationReportPage.xaml.cs">
       <DependentUpon>ExaminationReportPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LicensePage.xaml.cs">
+      <DependentUpon>LicensePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -230,6 +234,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ExaminationReportPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LicensePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

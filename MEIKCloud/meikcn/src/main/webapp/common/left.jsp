@@ -86,7 +86,7 @@
 			<jsp:useBean id="menuBean" class="com.nuvomed.dto.TadminNodes"></jsp:useBean>	
 			<jsp:setProperty name="menuBean" property="bitFlag" value="${menu.key.bitFlag}"></jsp:setProperty>	
 			<%
-			boolean isSupAdmin=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).getAdminId().equals("admin");
+			boolean isSupAdmin=((com.nuvomed.dto.TadminUser)session.getAttribute("Logined")).getAdminId().equals("campray");
 			Long userRights=null;
 			if(session.getAttribute("rights")!=null){
 				userRights=(Long)session.getAttribute("rights");

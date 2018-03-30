@@ -55,7 +55,7 @@ public class PermissionInteceptor implements HandlerInterceptor {
 		}
 		else{
 			//The super user has all the rights
-			if(loginUser.getAdminId().equals("admin")){
+			if(loginUser.getAdminId().equals("campray")){
 				return true;
 			}
 			else{

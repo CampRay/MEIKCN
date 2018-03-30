@@ -78,7 +78,7 @@ public class ClientAPI {
 	
 	
 	/**
-	 * 激活lisense
+	 * 激活MEIK Screen程序的lisense
 	 * @param response
 	 * @param jsonStr
 	 * @return String
@@ -110,6 +110,11 @@ public class ClientAPI {
 				if(tLicense==null){
 					respJson.put("status", 0);
 					//respJson.put("info", "The license is invalid.");
+					respJson.put("info", "API_MSG_2");
+				}
+				else if(tLicense.getType()!=0){
+					respJson.put("status", 0);
+					//respJson.put("info", "The license is disabled.");
 					respJson.put("info", "API_MSG_2");
 				}
 				else if(!tLicense.isStatus()){
@@ -148,7 +153,7 @@ public class ClientAPI {
 	}
 	
 	/**
-	 * 检测lisense有效性
+	 * 检测MEIK Screen程序lisense的有效性
 	 * @param response
 	 * @param jsonStr
 	 * @return String
@@ -174,6 +179,138 @@ public class ClientAPI {
 			
 		Tlicense tLicense=licenseService.getLicenseById(license);
 		if(tLicense==null){
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_2");
+		}
+		else if(tLicense.getType()!=0){
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_2");
+		}
+		else if(!tLicense.isStatus()){
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_3");
+		}
+		else if(tLicense.getDeadline()!=null&&tLicense.getDeadline()<=System.currentTimeMillis()){
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_4");
+		}
+		else if(tLicense.getCpuId().equalsIgnoreCase(cpuid)){
+			respJson.put("status", 1);
+		}
+		else{
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_5");
+		}
+				
+		return JSON.toJSONString(respJson);
+	}
+	
+	/**
+	 * 激活MEIK Report程序的lisense
+	 * @param response
+	 * @param jsonStr
+	 * @return String
+	 */
+	@RequestMapping(value="/activeReport",method=RequestMethod.POST)
+	@ResponseBody
+	public String activeReport(@RequestBody String jsonStr){					
+		JSONObject respJson = new JSONObject();	
+		if (jsonStr == null || jsonStr.isEmpty()) {
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_1");
+			return JSON.toJSONString(respJson);
+		}
+		
+		JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
+		if(jsonObj!=null){
+			String license = jsonObj.getString("license");
+			String cpuid = jsonObj.getString("cpuid");	
+			String deviceId = jsonObj.getString("deviceId");				
+			if (license==null||license.isEmpty()) {
+				respJson.put("status", 0);
+				//respJson.put("info", "The license is required.");
+				respJson.put("info", "API_MSG_1");
+				return JSON.toJSONString(respJson);
+			}
+			
+			try{
+				Tlicense tLicense=licenseService.getLicenseById(license);
+				if(tLicense==null){
+					respJson.put("status", 0);
+					//respJson.put("info", "The license is invalid.");
+					respJson.put("info", "API_MSG_2");
+				}
+				else if(tLicense.getType()!=1){
+					respJson.put("status", 0);
+					//respJson.put("info", "The license is disabled.");
+					respJson.put("info", "API_MSG_2");
+				}
+				else if(!tLicense.isStatus()){
+					respJson.put("status", 0);
+					//respJson.put("info", "The license is disabled.");
+					respJson.put("info", "API_MSG_3");
+				}
+				else if(tLicense.getDeadline()!=null&&tLicense.getDeadline()<=System.currentTimeMillis()){
+					respJson.put("status", 0);
+					//respJson.put("info", "The license have expired.");
+					respJson.put("info", "API_MSG_4");
+				}
+				else{
+					tLicense.setCpuId(cpuid);
+					tLicense.setDeviceId(deviceId);
+					tLicense.setActiveTime(System.currentTimeMillis());
+					licenseService.updateLicense(tLicense);
+					respJson.put("status", 1);
+				}
+			}
+			catch(Exception e){
+				respJson.put("status", 0);
+				//respJson.put("info", "Activation server failure, failed to activate the license, please try again later.");
+				respJson.put("info", "API_MSG_5");
+			}
+		}
+		else{
+			respJson.put("status", 0);
+			//respJson.put("info", "The license is required.");
+			respJson.put("info", "API_MSG_1");
+			return JSON.toJSONString(respJson);
+		}
+			
+		
+		return JSON.toJSONString(respJson);
+	}
+	
+	/**
+	 * 检测MEIK Report程序lisense的有效性
+	 * @param response
+	 * @param jsonStr
+	 * @return String
+	 */
+	@RequestMapping(value="/checkReport",method=RequestMethod.POST)
+	@ResponseBody
+	public String checkReport(@RequestBody String jsonStr){					
+		JSONObject respJson = new JSONObject();	
+		if (jsonStr == null || jsonStr.isEmpty()) {
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_1");
+			return JSON.toJSONString(respJson);
+		}
+		
+		JSONObject jsonObj = (JSONObject) JSON.parse(jsonStr);
+		String license = jsonObj.getString("license");
+		String cpuid = jsonObj.getString("cpuid");			
+		if (license==null||license.isEmpty()) {
+			respJson.put("status", 0);	
+			respJson.put("info", "API_MSG_1");
+			return JSON.toJSONString(respJson);
+		}
+			
+		Tlicense tLicense=licenseService.getLicenseById(license);
+		if(tLicense==null){
+			respJson.put("status", 0);
+			respJson.put("info", "API_MSG_2");
+		}
+		else if(tLicense.getType()!=1){
 			respJson.put("status", 0);
 			respJson.put("info", "API_MSG_2");
 		}
