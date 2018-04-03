@@ -2672,7 +2672,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>2052</td><td>MEIKAsia</td><td>0</td><td/><td>296092043</td></row>
+		<row><td>COMPANY_NAME</td><td>2052</td><td>MEIKAsia</td><td>0</td><td/><td>438711562</td></row>
 		<row><td>DN_AlwaysInstall</td><td>2052</td><td>始终安装</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>2052</td><td>系统颜色设置不足以运行 [ProductName]。</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION40CLIENT</td><td>2052</td><td>Microsoft .NET Framework 4.0 Client Package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>824616015</td></row>
@@ -3824,7 +3824,7 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>2052</td><td>对于运行 [ProductName] 处理器不足。</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>2052</td><td>对于运行 [ProductName] 内存量不足。</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>2052</td><td>对于运行 [ProductName] 屏幕分辨率不足。</td><td>0</td><td/><td>824616015</td></row>
-		<row><td>ID_STRING1</td><td>2052</td><td>http://www.MEIKAsia.com</td><td>0</td><td/><td>296092043</td></row>
+		<row><td>ID_STRING1</td><td>2052</td><td>http://www.MEIKAsia.com</td><td>0</td><td/><td>438711562</td></row>
 		<row><td>ID_STRING10</td><td>2052</td><td>MEIKScreen</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>ID_STRING11</td><td>2052</td><td>MEIKScreen.exe</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>ID_STRING12</td><td>2052</td><td>MEIKScreen.exe</td><td>0</td><td/><td>824616015</td></row>
@@ -3836,10 +3836,10 @@
 		<row><td>ID_STRING16</td><td>2052</td><td>MEIKScreen</td><td>0</td><td/><td>824633458</td></row>
 		<row><td>ID_STRING17</td><td>1033</td><td>MEIKScreen2.1</td><td>0</td><td/><td>296109738</td></row>
 		<row><td>ID_STRING17</td><td>2052</td><td>MEIKScreen2.1</td><td>0</td><td/><td>296109738</td></row>
-		<row><td>ID_STRING2</td><td>2052</td><td>MEIKAsia</td><td>0</td><td/><td>296092043</td></row>
+		<row><td>ID_STRING2</td><td>2052</td><td>MEIKAsia</td><td>0</td><td/><td>438711562</td></row>
 		<row><td>ID_STRING3</td><td>2052</td><td>Contact:  admin@campray.com</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>ID_STRING4</td><td>2052</td><td>admin@campray.com</td><td>0</td><td/><td>824616015</td></row>
-		<row><td>ID_STRING5</td><td>2052</td><td>http://www.MEIKAsia.com</td><td>0</td><td/><td>296092043</td></row>
+		<row><td>ID_STRING5</td><td>2052</td><td>http://www.MEIKAsia.com</td><td>0</td><td/><td>438711562</td></row>
 		<row><td>ID_STRING6</td><td>2052</td><td>http://www.meikasia.com</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>ID_STRING7</td><td>2052</td><td>Standalone MEIK Screen program</td><td>0</td><td/><td>824616015</td></row>
 		<row><td>ID_STRING8</td><td>2052</td><td>MEIKScreen</td><td>0</td><td/><td>824616015</td></row>

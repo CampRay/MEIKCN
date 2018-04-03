@@ -217,7 +217,7 @@ namespace MEIKReport
                 NameValueCollection nvlist = new NameValueCollection();
                 nvlist.Add("license", App.reportSettingModel.License);
                 nvlist.Add("cpuid", ComputerInfoTools.GetCPUId());
-                var res = HttpWebTools.Post(App.reportSettingModel.CloudPath + "/api/checkReport", nvlist);
+                var res = HttpWebTools.Post("http://cloud.meikasia.com/api/checkReport", nvlist);
                 var jsonObj = JObject.Parse(res);
                 bool status = (bool)jsonObj["status"];
                 if (status)
@@ -989,7 +989,6 @@ namespace MEIKReport
                                 bool res = (bool)json["status"];
                                 if (res)
                                 {
-
                                     resStr = HttpWebTools.UploadFile(App.reportSettingModel.CloudPath + "/api/sendReport", zipFile, nvlist, App.reportSettingModel.CloudToken);
                                     var jsonObj = JObject.Parse(resStr);
                                     bool status = (bool)jsonObj["status"];
