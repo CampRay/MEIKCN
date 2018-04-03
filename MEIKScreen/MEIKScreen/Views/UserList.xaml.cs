@@ -205,7 +205,7 @@ namespace MEIKScreen
                 NameValueCollection nvlist = new NameValueCollection();
                 nvlist.Add("license", App.reportSettingModel.License);
                 nvlist.Add("cpuid", ComputerInfoTools.GetCPUId());
-                var res = HttpWebTools.Post(App.reportSettingModel.CloudPath + "/api/check", nvlist);
+                var res = HttpWebTools.Post("http://cloud.meikasia.com/api/check", nvlist);
                 var jsonObj = JObject.Parse(res);
                 bool status = (bool)jsonObj["status"];
                 if (status)

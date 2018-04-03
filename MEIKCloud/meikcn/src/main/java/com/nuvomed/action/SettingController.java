@@ -73,24 +73,22 @@ public class SettingController extends BaseController {
 	@ResponseBody
 	public String editSettings(HttpServletRequest request,String name,String value){
 		JSONObject resp = new JSONObject();
-		
+		resp.put("status", false);
 		try{
 			Tsetting tsetting = systemSettingService.getSystemSettingByName(name);
 			if(tsetting != null){				
 				tsetting.setValue(value.getBytes("UTF-8"));
 	            systemSettingService.updateSystemsetting(tsetting);
 	            systemSettingService.cachedSystemSettingData();
+	            resp.put("status", true);
 			}			
 		}catch(MyException m){
 			resp.put("status", false);
 		} catch (UnsupportedEncodingException e) {
-			resp.put("status", false);
-			e.printStackTrace();
+			resp.put("status", false);			
 		} catch (IOException e) {
-			resp.put("status", false);
-			e.printStackTrace();
-		}
-		resp.put("status", true);
+			resp.put("status", false);			
+		}		
 		return JSON.toJSONString(resp);
 	}
 		 

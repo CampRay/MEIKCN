@@ -127,7 +127,7 @@
 										</tr>
 										<tr>
 											<td style="width: 50%"><s:message code="system.setting.service.url" /></td>
-											<td style="width: 50%"><a href="#" id="system_doctor" data-type="text" data-pk="1" data-original-title="输入当前系统的网址">${system_setting['Service_URL']} </a></td>											
+											<td style="width: 50%"><a href="#" id="service_url" data-type="text" data-pk="1" data-original-title="输入当前系统的网址">${system_setting['Service_URL']} </a></td>											
 										</tr>										
 									</tbody>
 								</table>

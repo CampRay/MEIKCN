@@ -108,20 +108,12 @@ var SettingTable = function () {
 			}
 		});
 		
-		$('#create_account').editable({
+		$('#service_url').editable({
 			url : rootURI + "settings/editsetting?rand=" + Math.random(),
-			type : 'select',
+			type : 'text',
 			pk : 1,
 			disabled:true,   
-			name : 'Create_Account',			                             
-            source: [{
-                    value: 'false',
-                    text: 'false'
-                }, {
-                    value: 'true',
-                    text: 'true'
-                }
-            ],            
+			name : 'Service_URL',			                                             
             success : function(data) {
 				handleAlerts("Update the setting successfully.","success","");
 			}
