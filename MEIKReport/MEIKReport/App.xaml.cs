@@ -23,7 +23,9 @@ namespace MEIKReport
         public static string dataFolder = null;
         public static ReportSettingModel reportSettingModel = null;
         //原始MIEK程序的根目录
-        public static string meikFolder = OperateIniFile.ReadIniData("Base", "MEIK base", "C:\\Program Files (x86)\\MEIK 5.6", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini"); 
+        //public static string meikFolder = OperateIniFile.ReadIniData("Base", "MEIK base", "C:\\Program Files (x86)\\MEIK 5.6", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini"); 
+        public static string meikFolder = System.AppDomain.CurrentDomain.BaseDirectory + System.IO.Path.DirectorySeparatorChar + "MEIK";
+        public static string meikIniFilePath = App.meikFolder + System.IO.Path.DirectorySeparatorChar + "MEIK.ini";
         //统计扫描次数的字典
         public static SortedDictionary<string, List<long>> countDictionary = new SortedDictionary<string, List<long>>();
 

@@ -117,27 +117,10 @@ namespace MEIKReport
 
         private void StartMeik()
         {            
-            string meikPath = App.meikFolder + "\\MEIK.exe";
-            string newMeikPath = App.meikFolder + "\\App.dll";
-            bool meikExists = File.Exists(meikPath);
-            bool newMeikExists = File.Exists(newMeikPath);
-            if (meikExists || newMeikExists)
+            string meikPath = App.meikFolder + System.IO.Path.DirectorySeparatorChar + "MEIK.exe";            
+            bool meikExists = File.Exists(meikPath);            
+            if (meikExists)
             {
-                //if (meikExists)
-                //{
-                //    File.SetAttributes(meikPath, FileAttributes.Hidden);
-                //}
-                if (!meikExists && newMeikExists)
-                {
-                    try
-                    {
-                        FileInfo fi = new FileInfo(newMeikPath);
-                        fi.MoveTo(meikPath);
-                    }
-                    catch (Exception)
-                    {
-                    }
-                }
                 try
                 {
                     //启动外部程序
@@ -173,22 +156,7 @@ namespace MEIKReport
                 catch (Exception ex)
                 {
                     MessageBox.Show(App.Current.FindResource("Message_1").ToString() +" "+ ex.Message);
-                }
-                finally
-                {
-                    //try
-                    //{
-                    //    if (File.Exists(newMeikPath))
-                    //    {
-                    //        File.Delete(newMeikPath);
-                    //    }
-                    //    FileInfo fi = new FileInfo(meikPath);
-                    //    fi.MoveTo(newMeikPath);
-                    //}
-                    //catch (Exception)
-                    //{                        
-                    //}
-                }
+                }                
             }
             else
             {

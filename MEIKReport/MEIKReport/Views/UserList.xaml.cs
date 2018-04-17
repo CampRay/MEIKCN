@@ -4113,6 +4113,10 @@ namespace MEIKReport
         {
             try
             {
+                var person = this.CodeListBox.SelectedItem as Person;
+                //再修改原始MEIK程序中的患者档案目录，让原始MEIK程序运行后直接打开此患者档案
+                OperateIniFile.WriteIniData("Base", "Patients base", person.ArchiveFolder, App.meikIniFilePath);
+                OperateIniFile.WriteIniData("Base", "Norm base", person.ArchiveFolder, App.meikIniFilePath);
                 App.opendWin = this;
                 IntPtr mainWinHwnd = Win32Api.FindWindowEx(IntPtr.Zero, IntPtr.Zero, "TfmMain", null);
                 //如果主窗体不存在
