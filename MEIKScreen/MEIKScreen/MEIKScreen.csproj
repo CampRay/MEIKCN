@@ -295,9 +295,6 @@
     <None Include="Config.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MEIKMA\Language.RUS">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="MEIKMA\MEIKMA.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
