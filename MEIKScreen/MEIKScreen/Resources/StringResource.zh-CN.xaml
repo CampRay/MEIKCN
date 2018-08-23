@@ -252,7 +252,7 @@
     <sys:String x:Key="UserDataPersona27">报告使用语言:</sys:String>
     <sys:String x:Key="UserDataPersona28">中文</sys:String>
     <sys:String x:Key="UserDataPersona29">英文</sys:String>
-    <sys:String x:Key="UserDataPersona30">客戶號碼:</sys:String>
+    <sys:String x:Key="UserDataPersona30">客戶号码:</sys:String>
     <sys:String x:Key="UserDataPersona31">地址2:</sys:String>
     <sys:String x:Key="UserDataPersona32">城市:</sys:String>
     <sys:String x:Key="UserDataPersona33">州/省:</sys:String>
@@ -260,12 +260,12 @@
     <sys:String x:Key="UserDataPersona35">国家:</sys:String>
     <sys:String x:Key="UserDataPersona36">免費/演示</sys:String>
 
-    <sys:String x:Key="UserDataFamilyTab">家族病歷</sys:String>
+    <sys:String x:Key="UserDataFamilyTab">家族病历</sys:String>
     <sys:String x:Key="UserDataFamily1">乳癌:</sys:String>
-    <sys:String x:Key="UserDataFamily2">子宮癌:</sys:String>
-    <sys:String x:Key="UserDataFamily3">子宮頸癌:</sys:String>
+    <sys:String x:Key="UserDataFamily2">子宫癌:</sys:String>
+    <sys:String x:Key="UserDataFamily3">子宫颈癌:</sys:String>
     <sys:String x:Key="UserDataFamily4">卵巢癌:</sys:String>
-    <sys:String x:Key="UserDataFamily5">母親/姐妹</sys:String>
+    <sys:String x:Key="UserDataFamily5">母亲/姐妹</sys:String>
     <sys:String x:Key="UserDataFamily6">姑姨母/堂表姐妹</sys:String>
     <sys:String x:Key="UserDataFamily7">祖母/姑姨婆</sys:String>
 
@@ -289,13 +289,13 @@
     <sys:String x:Key="UserDataComplaints17">其他</sys:String>
     <sys:String x:Key="UserDataComplaints18">哺乳時間（周）</sys:String>
     <sys:String x:Key="UserDataComplaints19">明显肿块</sys:String>
-    <sys:String x:Key="UserDataComplaints20">如有，在图中點擊相應位置</sys:String>
+    <sys:String x:Key="UserDataComplaints20">如有，在图中点击相应位置</sys:String>
     <sys:String x:Key="UserDataComplaints21">程度:</sys:String>
     <sys:String x:Key="UserDataComplaints22">[最弱]</sys:String>
     <sys:String x:Key="UserDataComplaints23">[最強]</sys:String>
 
     <sys:String x:Key="UserDataMenstrualTab">月经状况</sys:String>
-    <sys:String x:Key="UserDataMenstrual1">最近一次月經開始日期 (日/月):</sys:String>
+    <sys:String x:Key="UserDataMenstrual1">最近一次月经开始日期 (日/月):</sys:String>
     <sys:String x:Key="UserDataMenstrual2">(月)</sys:String>
 
     <sys:String x:Key="UserDataAnamnesisTab">病史</sys:String>
@@ -358,8 +358,8 @@
     <sys:String x:Key="UserDataExaminations15">其他（说明）</sys:String>
     <sys:String x:Key="UserDataExaminations16">年数</sys:String>
     <sys:String x:Key="UserDataExaminations17">正常</sys:String>
-    <sys:String x:Key="UserDataExaminations18">異常:</sys:String>
-    <sys:String x:Key="UserDataExaminations19">結果:</sys:String>
+    <sys:String x:Key="UserDataExaminations18">异常:</sys:String>
+    <sys:String x:Key="UserDataExaminations19">结果:</sys:String>
     <sys:String x:Key="UserDataExaminations20">诊断:</sys:String>
     <sys:String x:Key="UserDataExaminations21">EIM分数:</sys:String>
     <sys:String x:Key="UserDataExaminations22">MEIK检测</sys:String>
@@ -631,13 +631,5 @@
     <sys:String x:Key="API_MSG_10">数据已经上传过，不能重复上传</sys:String>
     <sys:String x:Key="API_MSG_11">上传数据失败</sys:String>
     <sys:String x:Key="API_MSG_12">报告已经被上传过，不能重复上传</sys:String>
-    <sys:String x:Key="API_MSG_13">aa</sys:String>
-    <sys:String x:Key="API_MSG_14">aa</sys:String>
-    <sys:String x:Key="API_MSG_15">aa</sys:String>
-    <sys:String x:Key="API_MSG_16">aa</sys:String>
-    <sys:String x:Key="API_MSG_17">aa</sys:String>
-    <sys:String x:Key="API_MSG_18">aa</sys:String>
-    <sys:String x:Key="API_MSG_19">aa</sys:String>
-    <sys:String x:Key="API_MSG_20">aa</sys:String>
-    <sys:String x:Key="API_MSG_21">aa</sys:String>
+    
 </ResourceDictionary>

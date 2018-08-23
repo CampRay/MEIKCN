@@ -634,15 +634,6 @@
     <sys:String x:Key="API_MSG_9">Please sign in first.</sys:String>
     <sys:String x:Key="API_MSG_10">The MEIK screen data already is uploaded, couldn't repeat upload the data.</sys:String>
     <sys:String x:Key="API_MSG_11">Failed to upload data.</sys:String>
-    <sys:String x:Key="API_MSG_12">Report already uploaded.</sys:String>
-    <sys:String x:Key="API_MSG_13">aa</sys:String>
-    <sys:String x:Key="API_MSG_14">aa</sys:String>
-    <sys:String x:Key="API_MSG_15">aa</sys:String>
-    <sys:String x:Key="API_MSG_16">aa</sys:String>
-    <sys:String x:Key="API_MSG_17">aa</sys:String>
-    <sys:String x:Key="API_MSG_18">aa</sys:String>
-    <sys:String x:Key="API_MSG_19">aa</sys:String>
-    <sys:String x:Key="API_MSG_20">aa</sys:String>
-    <sys:String x:Key="API_MSG_21">aa</sys:String>
+    <sys:String x:Key="API_MSG_12">Report already uploaded.</sys:String>    
 
 </ResourceDictionary>

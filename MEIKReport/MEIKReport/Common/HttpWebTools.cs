@@ -60,6 +60,7 @@ namespace MEIKReport.Common
         {            
             HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
             request.Method = "GET";
+            request.Timeout = 600000;
             if (!string.IsNullOrEmpty(token))
             {
                 request.Headers.Add("Authorization", token);
@@ -143,11 +144,11 @@ namespace MEIKReport.Common
 
             // 写入结束边界 
             requestStream.Write(endBoundaryBytes, 0, endBoundaryBytes.Length);
-
+            fileStream.Close();
             WebResponse responce = webrequest.GetResponse();
             Stream s = responce.GetResponseStream();
             StreamReader sr = new StreamReader(s);
-
+                         
             return sr.ReadToEnd();
         }
 
