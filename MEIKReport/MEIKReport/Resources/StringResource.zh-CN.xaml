@@ -85,7 +85,7 @@
     <sys:String x:Key="Message_14">保存配置参数成功!</sys:String>
     <sys:String x:Key="Message_15">您没有在程序的配置页面配置邮箱帐户或者配置的邮箱帐户无效。</sys:String>
     <sys:String x:Key="Message_16">还没有创建当前客户的检查报告，请先填写并保存报告。</sys:String>
-    <sys:String x:Key="Message_17">您确定要把所选客户的数据上传到数据中心?</sys:String>
+    <sys:String x:Key="Message_17">您确定要发送所选客户的检测数据?</sys:String>
     <sys:String x:Key="Message_18">发送数据成功!</sys:String>
     <sys:String x:Key="Message_19">发送邮件失败，错误原因:</sys:String>
     <sys:String x:Key="Message_20">加载报告配置参数失败. 异常信息:</sys:String>

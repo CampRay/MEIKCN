@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cvt="clr-namespace:MEIKReport.Common"
         xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        Title="MEIK Report Application" Height="768" Width="1084"
+        Title="MEIK Report Application V2.2.2" Height="768" Width="1084"
         Icon="/MEIKReport;component/Images/App_Icon.png"
         ShowInTaskbar="True" ResizeMode="CanResize"  Closed="Window_Closed" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">    
     <!--<Window.TaskbarItemInfo>

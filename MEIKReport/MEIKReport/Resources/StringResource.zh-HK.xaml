@@ -82,7 +82,7 @@
     <sys:String x:Key="Message_14">保存配置參數成功!</sys:String>
     <sys:String x:Key="Message_15">您沒有在程序的配置頁面中配置郵件帳戶或者配置的郵件帳戶不正確。</sys:String>
     <sys:String x:Key="Message_16">還沒有創建當前客戶的檢查報告，請先填寫並保存報告。</sys:String>
-    <sys:String x:Key="Message_17">您確定要把所選客戶的數據發送給數據中心？</sys:String>
+    <sys:String x:Key="Message_17">您確定要送出所選客戶的檢測數據嗎？</sys:String>
     <sys:String x:Key="Message_18">發送數據成功!</sys:String>
     <sys:String x:Key="Message_19">發送郵件失敗，錯誤原因:</sys:String>
     <sys:String x:Key="Message_20">加載報告配置參數失敗，異常信息:</sys:String>

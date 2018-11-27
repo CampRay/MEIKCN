@@ -1,7 +1,5 @@
 ﻿using MEIKReport.Common;
 using MEIKReport.Model;
-using MEIKReport.Views;
-using MEIKReport.Common;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -14,7 +12,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,7 +19,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
@@ -1026,7 +1022,7 @@ namespace MEIKReport
                                 bool isSsl = App.reportSettingModel.MailSsl;
 
                                 string toMailAddress = App.reportSettingModel.ToMailAddress;
-                                string subjectInfo = App.reportSettingModel.MailSubject + " (" + selectedUser.Code + "-" + selectedUser.SurName + ")";
+                                string subjectInfo = App.reportSettingModel.MailSubject + " (" + selectedUser.Code+ ")";
                                 string bodyInfo = App.reportSettingModel.MailBody;                                
                                 string attachPath = zipFile;
 
@@ -1614,14 +1610,14 @@ namespace MEIKReport
         /// <param name="e"></param>
         private void btnSetup_Click(object sender, RoutedEventArgs e)
         {
-            PasswordPage passwordPage = new PasswordPage();
-            var dialogResult=passwordPage.ShowDialog();
-            if (dialogResult.HasValue && dialogResult.Value)
-            {
+            //PasswordPage passwordPage = new PasswordPage();
+            //var dialogResult=passwordPage.ShowDialog();
+            //if (dialogResult.HasValue && dialogResult.Value)
+            //{
                 ReportSettingPage reportSettingPage = new ReportSettingPage();
                 reportSettingPage.Owner = this;
                 reportSettingPage.ShowDialog();
-            }
+            //}
         }
 
         /// <summary>
@@ -4349,127 +4345,127 @@ namespace MEIKReport
             PDFTools.SavePDFFile(xpsFile, pdfFile);
         }
 
-        /// <summary>
-        ///导出Long Form到Excel文件 
-        /// </summary>
-        /// <param name="reportTempl"></param>
-        /// <param name="pdfFile"></param>
-        /// <param name="reportModel"></param>
-        private void ExportExcel(string excelFile, ShortFormReport reportModel)
-        {                      
-            try
-            {
-                if (File.Exists(excelFile))
-                {
-                    File.Delete(excelFile);
-                }
-                NameValueCollection nvc = new NameValueCollection();
-                nvc.Add(App.Current.FindResource("ReportContext_202").ToString(), reportModel.DataClientNum);
-                nvc.Add(App.Current.FindResource("ReportContext_9").ToString(), reportModel.DataUserCode);
-                nvc.Add(App.Current.FindResource("ReportContext_2").ToString(), reportModel.DataScreenDate);
-                nvc.Add(App.Current.FindResource("ReportContext_1").ToString(), reportModel.DataName);
-                nvc.Add(App.Current.FindResource("ReportContext_10").ToString(), reportModel.DataAge);
-                nvc.Add(App.Current.FindResource("ReportContext_203").ToString(), reportModel.DataHeight);
-                nvc.Add(App.Current.FindResource("ReportContext_11").ToString(), reportModel.DataWeight+" Kgs");
-                nvc.Add(App.Current.FindResource("ReportContext_204").ToString(), reportModel.DataMobile);
-                nvc.Add(App.Current.FindResource("ReportContext_205").ToString(), reportModel.DataEmail);
-                nvc.Add(App.Current.FindResource("ReportContext_6").ToString(), reportModel.DataScreenLocation);
-                nvc.Add(App.Current.FindResource("ReportContext_149").ToString(), reportModel.DataMeikTech);
-                nvc.Add(App.Current.FindResource("ReportContext_14").ToString(), reportModel.DataMenstrualCycle);
-                nvc.Add(App.Current.FindResource("ReportContext_23").ToString(), reportModel.DataSkinAffections);
-                nvc.Add(App.Current.FindResource("ReportContext_22").ToString(), reportModel.DataHormones);
-                nvc.Add(App.Current.FindResource("ReportContext_40").ToString() +"("+ App.Current.FindResource("ReportContext_44").ToString()+")", reportModel.DataLeftBreast);
-                nvc.Add(App.Current.FindResource("ReportContext_40").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightBreast);
-                nvc.Add(App.Current.FindResource("ReportContext_47").ToString() +"("+ App.Current.FindResource("ReportContext_44").ToString()+")", reportModel.DataLeftChangesOfElectricalConductivity);
-                nvc.Add(App.Current.FindResource("ReportContext_47").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightChangesOfElectricalConductivity);
-                nvc.Add(App.Current.FindResource("ReportContext_51").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMammaryStruct);
-                nvc.Add(App.Current.FindResource("ReportContext_51").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMammaryStruct);
-                nvc.Add(App.Current.FindResource("ReportContext_54").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftLactiferousSinusZone);
-                nvc.Add(App.Current.FindResource("ReportContext_54").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightLactiferousSinusZone);
-                nvc.Add(App.Current.FindResource("ReportContext_59").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMammaryContour);
-                nvc.Add(App.Current.FindResource("ReportContext_59").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMammaryContour);
-                nvc.Add(App.Current.FindResource("ReportContext_65").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftNumber);
-                nvc.Add(App.Current.FindResource("ReportContext_65").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightNumber);
-                nvc.Add(App.Current.FindResource("ReportContext_64").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftLocation);
-                nvc.Add(App.Current.FindResource("ReportContext_64").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightLocation);
-                nvc.Add(App.Current.FindResource("ReportContext_66").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", string.IsNullOrEmpty(reportModel.DataLeftSize) ? "" : reportModel.DataLeftSize + " mm");
-                nvc.Add(App.Current.FindResource("ReportContext_66").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", string.IsNullOrEmpty(reportModel.DataRightSize) ? "" : reportModel.DataLeftSize + " mm");
-                nvc.Add(App.Current.FindResource("ReportContext_67").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftShape);
-                nvc.Add(App.Current.FindResource("ReportContext_67").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightShape);
-                nvc.Add(App.Current.FindResource("ReportContext_72").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftContourAroundFocus);
-                nvc.Add(App.Current.FindResource("ReportContext_72").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightContourAroundFocus);
-                nvc.Add(App.Current.FindResource("ReportContext_76").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftInternalElectricalStructure);
-                nvc.Add(App.Current.FindResource("ReportContext_76").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightInternalElectricalStructure);
-                nvc.Add(App.Current.FindResource("ReportContext_81").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftSurroundingTissues);
-                nvc.Add(App.Current.FindResource("ReportContext_81").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightSurroundingTissues);
+        ///// <summary>
+        /////导出Long Form到Excel文件 
+        ///// </summary>
+        ///// <param name="reportTempl"></param>
+        ///// <param name="pdfFile"></param>
+        ///// <param name="reportModel"></param>
+        //private void ExportExcel(string excelFile, ShortFormReport reportModel)
+        //{                      
+        //    try
+        //    {
+        //        if (File.Exists(excelFile))
+        //        {
+        //            File.Delete(excelFile);
+        //        }
+        //        NameValueCollection nvc = new NameValueCollection();
+        //        nvc.Add(App.Current.FindResource("ReportContext_202").ToString(), reportModel.DataClientNum);
+        //        nvc.Add(App.Current.FindResource("ReportContext_9").ToString(), reportModel.DataUserCode);
+        //        nvc.Add(App.Current.FindResource("ReportContext_2").ToString(), reportModel.DataScreenDate);
+        //        nvc.Add(App.Current.FindResource("ReportContext_1").ToString(), reportModel.DataName);
+        //        nvc.Add(App.Current.FindResource("ReportContext_10").ToString(), reportModel.DataAge);
+        //        nvc.Add(App.Current.FindResource("ReportContext_203").ToString(), reportModel.DataHeight);
+        //        nvc.Add(App.Current.FindResource("ReportContext_11").ToString(), reportModel.DataWeight+" Kgs");
+        //        nvc.Add(App.Current.FindResource("ReportContext_204").ToString(), reportModel.DataMobile);
+        //        nvc.Add(App.Current.FindResource("ReportContext_205").ToString(), reportModel.DataEmail);
+        //        nvc.Add(App.Current.FindResource("ReportContext_6").ToString(), reportModel.DataScreenLocation);
+        //        nvc.Add(App.Current.FindResource("ReportContext_149").ToString(), reportModel.DataMeikTech);
+        //        nvc.Add(App.Current.FindResource("ReportContext_14").ToString(), reportModel.DataMenstrualCycle);
+        //        nvc.Add(App.Current.FindResource("ReportContext_23").ToString(), reportModel.DataSkinAffections);
+        //        nvc.Add(App.Current.FindResource("ReportContext_22").ToString(), reportModel.DataHormones);
+        //        nvc.Add(App.Current.FindResource("ReportContext_40").ToString() +"("+ App.Current.FindResource("ReportContext_44").ToString()+")", reportModel.DataLeftBreast);
+        //        nvc.Add(App.Current.FindResource("ReportContext_40").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightBreast);
+        //        nvc.Add(App.Current.FindResource("ReportContext_47").ToString() +"("+ App.Current.FindResource("ReportContext_44").ToString()+")", reportModel.DataLeftChangesOfElectricalConductivity);
+        //        nvc.Add(App.Current.FindResource("ReportContext_47").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightChangesOfElectricalConductivity);
+        //        nvc.Add(App.Current.FindResource("ReportContext_51").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMammaryStruct);
+        //        nvc.Add(App.Current.FindResource("ReportContext_51").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMammaryStruct);
+        //        nvc.Add(App.Current.FindResource("ReportContext_54").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftLactiferousSinusZone);
+        //        nvc.Add(App.Current.FindResource("ReportContext_54").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightLactiferousSinusZone);
+        //        nvc.Add(App.Current.FindResource("ReportContext_59").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMammaryContour);
+        //        nvc.Add(App.Current.FindResource("ReportContext_59").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMammaryContour);
+        //        nvc.Add(App.Current.FindResource("ReportContext_65").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftNumber);
+        //        nvc.Add(App.Current.FindResource("ReportContext_65").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightNumber);
+        //        nvc.Add(App.Current.FindResource("ReportContext_64").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftLocation);
+        //        nvc.Add(App.Current.FindResource("ReportContext_64").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightLocation);
+        //        nvc.Add(App.Current.FindResource("ReportContext_66").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", string.IsNullOrEmpty(reportModel.DataLeftSize) ? "" : reportModel.DataLeftSize + " mm");
+        //        nvc.Add(App.Current.FindResource("ReportContext_66").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", string.IsNullOrEmpty(reportModel.DataRightSize) ? "" : reportModel.DataLeftSize + " mm");
+        //        nvc.Add(App.Current.FindResource("ReportContext_67").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftShape);
+        //        nvc.Add(App.Current.FindResource("ReportContext_67").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightShape);
+        //        nvc.Add(App.Current.FindResource("ReportContext_72").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftContourAroundFocus);
+        //        nvc.Add(App.Current.FindResource("ReportContext_72").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightContourAroundFocus);
+        //        nvc.Add(App.Current.FindResource("ReportContext_76").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftInternalElectricalStructure);
+        //        nvc.Add(App.Current.FindResource("ReportContext_76").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightInternalElectricalStructure);
+        //        nvc.Add(App.Current.FindResource("ReportContext_81").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftSurroundingTissues);
+        //        nvc.Add(App.Current.FindResource("ReportContext_81").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightSurroundingTissues);
 
-                nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMeanElectricalConductivity1);
-                nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMeanElectricalConductivity1);
-                nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMeanElectricalConductivity2);
-                nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMeanElectricalConductivity2);
-                nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + reportModel.DataMeanElectricalConductivity3 + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMeanElectricalConductivity3);
-                nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + reportModel.DataMeanElectricalConductivity3 + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMeanElectricalConductivity3);
-                nvc.Add(App.Current.FindResource("ReportContext_106").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString() , reportModel.DataLeftComparativeElectricalConductivity1);                
-                nvc.Add(App.Current.FindResource("ReportContext_106").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString(), reportModel.DataLeftComparativeElectricalConductivity2);               
-                nvc.Add(App.Current.FindResource("ReportContext_106").ToString() + " - " + reportModel.DataComparativeElectricalConductivity3 , reportModel.DataLeftComparativeElectricalConductivity3);
-                nvc.Add(App.Current.FindResource("ReportContext_107").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString(), reportModel.DataLeftDivergenceBetweenHistograms1);
-                nvc.Add(App.Current.FindResource("ReportContext_107").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString(), reportModel.DataLeftDivergenceBetweenHistograms2);
-                nvc.Add(App.Current.FindResource("ReportContext_107").ToString() + " - " + reportModel.DataDivergenceBetweenHistograms3, reportModel.DataLeftDivergenceBetweenHistograms3);
-                nvc.Add(App.Current.FindResource("ReportContext_109").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftPhaseElectricalConductivity);
-                nvc.Add(App.Current.FindResource("ReportContext_109").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightPhaseElectricalConductivity);
-                nvc.Add(App.Current.FindResource("ReportContext_110").ToString() + "[" + App.Current.FindResource("ReportContext_110").ToString() + "]" + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftAgeElectricalConductivity);
-                nvc.Add(App.Current.FindResource("ReportContext_110").ToString() + "[" + App.Current.FindResource("ReportContext_110").ToString() + "]" + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightAgeElectricalConductivity);
+        //        nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMeanElectricalConductivity1);
+        //        nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMeanElectricalConductivity1);
+        //        nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMeanElectricalConductivity2);
+        //        nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMeanElectricalConductivity2);
+        //        nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + reportModel.DataMeanElectricalConductivity3 + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMeanElectricalConductivity3);
+        //        nvc.Add(App.Current.FindResource("ReportContext_100").ToString() + " - " + reportModel.DataMeanElectricalConductivity3 + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMeanElectricalConductivity3);
+        //        nvc.Add(App.Current.FindResource("ReportContext_106").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString() , reportModel.DataLeftComparativeElectricalConductivity1);                
+        //        nvc.Add(App.Current.FindResource("ReportContext_106").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString(), reportModel.DataLeftComparativeElectricalConductivity2);               
+        //        nvc.Add(App.Current.FindResource("ReportContext_106").ToString() + " - " + reportModel.DataComparativeElectricalConductivity3 , reportModel.DataLeftComparativeElectricalConductivity3);
+        //        nvc.Add(App.Current.FindResource("ReportContext_107").ToString() + " - " + App.Current.FindResource("ReportContext_101").ToString(), reportModel.DataLeftDivergenceBetweenHistograms1);
+        //        nvc.Add(App.Current.FindResource("ReportContext_107").ToString() + " - " + App.Current.FindResource("ReportContext_102").ToString(), reportModel.DataLeftDivergenceBetweenHistograms2);
+        //        nvc.Add(App.Current.FindResource("ReportContext_107").ToString() + " - " + reportModel.DataDivergenceBetweenHistograms3, reportModel.DataLeftDivergenceBetweenHistograms3);
+        //        nvc.Add(App.Current.FindResource("ReportContext_109").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftPhaseElectricalConductivity);
+        //        nvc.Add(App.Current.FindResource("ReportContext_109").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightPhaseElectricalConductivity);
+        //        nvc.Add(App.Current.FindResource("ReportContext_110").ToString() + "[" + App.Current.FindResource("ReportContext_110").ToString() + "]" + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftAgeElectricalConductivity);
+        //        nvc.Add(App.Current.FindResource("ReportContext_110").ToString() + "[" + App.Current.FindResource("ReportContext_110").ToString() + "]" + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightAgeElectricalConductivity);
                 
-                nvc.Add(App.Current.FindResource("ReportContext_115").ToString(), reportModel.DataExamConclusion);
+        //        nvc.Add(App.Current.FindResource("ReportContext_115").ToString(), reportModel.DataExamConclusion);
 
-                nvc.Add(App.Current.FindResource("ReportContext_121").ToString(), reportModel.DataLeftMammaryGland);
-                nvc.Add(App.Current.FindResource("ReportContext_139").ToString(), reportModel.DataRightMammaryGland);
+        //        nvc.Add(App.Current.FindResource("ReportContext_121").ToString(), reportModel.DataLeftMammaryGland);
+        //        nvc.Add(App.Current.FindResource("ReportContext_139").ToString(), reportModel.DataRightMammaryGland);
 
-                nvc.Add(App.Current.FindResource("ReportContext_127").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftAgeRelated);
-                nvc.Add(App.Current.FindResource("ReportContext_127").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightAgeRelated);
+        //        nvc.Add(App.Current.FindResource("ReportContext_127").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftAgeRelated);
+        //        nvc.Add(App.Current.FindResource("ReportContext_127").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightAgeRelated);
 
-                nvc.Add(App.Current.FindResource("ReportContext_182").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMammaryGlandResult);
-                nvc.Add(App.Current.FindResource("ReportContext_182").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMammaryGlandResult);
+        //        nvc.Add(App.Current.FindResource("ReportContext_182").ToString() + "(" + App.Current.FindResource("ReportContext_44").ToString() + ")", reportModel.DataLeftMammaryGlandResult);
+        //        nvc.Add(App.Current.FindResource("ReportContext_182").ToString() + "(" + App.Current.FindResource("ReportContext_45").ToString() + ")", reportModel.DataRightMammaryGlandResult);
 
-                nvc.Add(App.Current.FindResource("ReportContext_141").ToString() + App.Current.FindResource("ReportContext_142").ToString(), reportModel.DataTotalPts);
-                nvc.Add(App.Current.FindResource("ReportContext_150").ToString(), reportModel.DataBiRadsCategory);
-                nvc.Add(App.Current.FindResource("ReportContext_226").ToString(), reportModel.DataConclusion);
-                nvc.Add(App.Current.FindResource("ReportContext_157").ToString(), reportModel.DataRecommendation);
-                nvc.Add(App.Current.FindResource("ReportContext_227").ToString(), reportModel.DataComments);
-                nvc.Add(App.Current.FindResource("ReportContext_173").ToString(), reportModel.DataDoctor);
-                nvc.Add(App.Current.FindResource("ReportContext_200").ToString(), reportModel.DataDoctorLicense);
+        //        nvc.Add(App.Current.FindResource("ReportContext_141").ToString() + App.Current.FindResource("ReportContext_142").ToString(), reportModel.DataTotalPts);
+        //        nvc.Add(App.Current.FindResource("ReportContext_150").ToString(), reportModel.DataBiRadsCategory);
+        //        nvc.Add(App.Current.FindResource("ReportContext_226").ToString(), reportModel.DataConclusion);
+        //        nvc.Add(App.Current.FindResource("ReportContext_157").ToString(), reportModel.DataRecommendation);
+        //        nvc.Add(App.Current.FindResource("ReportContext_227").ToString(), reportModel.DataComments);
+        //        nvc.Add(App.Current.FindResource("ReportContext_173").ToString(), reportModel.DataDoctor);
+        //        nvc.Add(App.Current.FindResource("ReportContext_200").ToString(), reportModel.DataDoctorLicense);
 
-                nvc.Add(App.Current.FindResource("ReportContext_190").ToString(), reportModel.DataSignDate);                
+        //        nvc.Add(App.Current.FindResource("ReportContext_190").ToString(), reportModel.DataSignDate);                
 
-                var excelApp = new Microsoft.Office.Interop.Excel.Application();
-                var books = (Microsoft.Office.Interop.Excel.Workbooks)excelApp.Workbooks;
-                var book = (Microsoft.Office.Interop.Excel._Workbook)(books.Add(System.Type.Missing));
-                var sheets = (Microsoft.Office.Interop.Excel.Sheets)book.Worksheets;
-                var sheet = (Microsoft.Office.Interop.Excel._Worksheet)(sheets.get_Item(1));
+        //        var excelApp = new Microsoft.Office.Interop.Excel.Application();
+        //        var books = (Microsoft.Office.Interop.Excel.Workbooks)excelApp.Workbooks;
+        //        var book = (Microsoft.Office.Interop.Excel._Workbook)(books.Add(System.Type.Missing));
+        //        var sheets = (Microsoft.Office.Interop.Excel.Sheets)book.Worksheets;
+        //        var sheet = (Microsoft.Office.Interop.Excel._Worksheet)(sheets.get_Item(1));
 
-                Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("A1", "A100");
-                range.ColumnWidth = 80;                
-                range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("B1", "B100");
-                range.ColumnWidth = 80;                
-                range.NumberFormatLocal = "@"; //设置单元格为文本
+        //        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("A1", "A100");
+        //        range.ColumnWidth = 80;                
+        //        range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("B1", "B100");
+        //        range.ColumnWidth = 80;                
+        //        range.NumberFormatLocal = "@"; //设置单元格为文本
 
-                sheet.Cells[1, 1] = "Field Name";
-                sheet.Cells[2, 1] = "Field Value";
-                for (int i = 0; i < nvc.Count; i++)
-                {                    
-                    var value = nvc[i];
-                    sheet.Cells[1, i + 2] = nvc.GetKey(i); ;
-                    sheet.Cells[2, i + 2] = value;                    
-                }
-                book.SaveAs(excelFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel8, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-                book.Close();
-                excelApp.Quit();
-            }
-            catch (Exception exe)
-            {
-                MessageBox.Show(exe.Message);
-            }
-        }
+        //        sheet.Cells[1, 1] = "Field Name";
+        //        sheet.Cells[2, 1] = "Field Value";
+        //        for (int i = 0; i < nvc.Count; i++)
+        //        {                    
+        //            var value = nvc[i];
+        //            sheet.Cells[1, i + 2] = nvc.GetKey(i); ;
+        //            sheet.Cells[2, i + 2] = value;                    
+        //        }
+        //        book.SaveAs(excelFile, Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel8, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+        //        book.Close();
+        //        excelApp.Quit();
+        //    }
+        //    catch (Exception exe)
+        //    {
+        //        MessageBox.Show(exe.Message);
+        //    }
+        //}
 
         /// <summary>
         /// 针对FLowDocument对象生成PDF文件

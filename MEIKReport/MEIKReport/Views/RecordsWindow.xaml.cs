@@ -140,44 +140,44 @@ namespace MEIKReport
             }
         }
 
-        private void export_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new Microsoft.Win32.SaveFileDialog() { Filter = "xls|*.xls" };
-            if (dlg.ShowDialog(this) == true)
-            {                
-                var excelApp = new Microsoft.Office.Interop.Excel.Application();
-                var books = (Microsoft.Office.Interop.Excel.Workbooks)excelApp.Workbooks;
-                var book = (Microsoft.Office.Interop.Excel._Workbook)(books.Add(System.Type.Missing));
-                var sheets = (Microsoft.Office.Interop.Excel.Sheets)book.Worksheets;
-                var sheet = (Microsoft.Office.Interop.Excel._Worksheet)(sheets.get_Item(1));
+        //private void export_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var dlg = new Microsoft.Win32.SaveFileDialog() { Filter = "xls|*.xls" };
+        //    if (dlg.ShowDialog(this) == true)
+        //    {                
+        //        var excelApp = new Microsoft.Office.Interop.Excel.Application();
+        //        var books = (Microsoft.Office.Interop.Excel.Workbooks)excelApp.Workbooks;
+        //        var book = (Microsoft.Office.Interop.Excel._Workbook)(books.Add(System.Type.Missing));
+        //        var sheets = (Microsoft.Office.Interop.Excel.Sheets)book.Worksheets;
+        //        var sheet = (Microsoft.Office.Interop.Excel._Worksheet)(sheets.get_Item(1));
 
 
-                Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("A1", "A100");
-                range.ColumnWidth = 15;
-                range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("B1", "B100");
-                range.ColumnWidth = 30;
-                range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("C1", "C100");
-                range.ColumnWidth = 20;
-                range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("D1", "D100");
-                range.ColumnWidth = 100;
-                sheet.Cells[1, 1] = App.Current.FindResource("Excel1").ToString();
-                sheet.Cells[1, 2] = App.Current.FindResource("Excel2").ToString();
-                sheet.Cells[1, 3] = App.Current.FindResource("Excel3").ToString();
-                sheet.Cells[1, 4] = App.Current.FindResource("Excel4").ToString();
-                for (int i = 0; i < patientList.Count; i++)
-                {
-                    Patient item = patientList[i];
-                    sheet.Cells[i + 2, 1] = item.Code;
-                    sheet.Cells[i + 2, 2] = item.Name;
-                    sheet.Cells[i + 2, 3] = item.ScreenDate;
-                    sheet.Cells[i + 2, 4] = item.Desc;
-                }
-                book.SaveAs(dlg.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel8, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
-                book.Close();
-                excelApp.Quit();
-            }            
+        //        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("A1", "A100");
+        //        range.ColumnWidth = 15;
+        //        range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("B1", "B100");
+        //        range.ColumnWidth = 30;
+        //        range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("C1", "C100");
+        //        range.ColumnWidth = 20;
+        //        range = (Microsoft.Office.Interop.Excel.Range)sheet.get_Range("D1", "D100");
+        //        range.ColumnWidth = 100;
+        //        sheet.Cells[1, 1] = App.Current.FindResource("Excel1").ToString();
+        //        sheet.Cells[1, 2] = App.Current.FindResource("Excel2").ToString();
+        //        sheet.Cells[1, 3] = App.Current.FindResource("Excel3").ToString();
+        //        sheet.Cells[1, 4] = App.Current.FindResource("Excel4").ToString();
+        //        for (int i = 0; i < patientList.Count; i++)
+        //        {
+        //            Patient item = patientList[i];
+        //            sheet.Cells[i + 2, 1] = item.Code;
+        //            sheet.Cells[i + 2, 2] = item.Name;
+        //            sheet.Cells[i + 2, 3] = item.ScreenDate;
+        //            sheet.Cells[i + 2, 4] = item.Desc;
+        //        }
+        //        book.SaveAs(dlg.FileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlExcel8, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+        //        book.Close();
+        //        excelApp.Quit();
+        //    }            
 
-        }
+        //}
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {

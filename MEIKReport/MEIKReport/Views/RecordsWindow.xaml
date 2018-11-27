@@ -42,9 +42,9 @@
                 <extToolkit:DateTimePicker Name="toDate" Text="{Binding DataScreenDate}" Height="22" Width="125" AllowSpin="False" CultureInfo="en-US" Format="Custom" FormatString="MMMM d, yyyy" ShowButtonSpinner="False" TimePickerAllowSpin="False" TimePickerShowButtonSpinner="False" TimePickerVisibility="Hidden" TextAlignment="Left" FontSize="14"/>
                 <Button Name="btnSearch" Height="22" Width="100" Content="{StaticResource RecordsWin4}" FontSize="12" Margin="15,0,0,0" Click="btnSearch_Click"></Button>
             </WrapPanel>
-            <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,10,20,0">
+            <!--<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="10,10,20,0">
                 <Button Name="export" Height="22" Width="150" Content="{StaticResource RecordsWin3}" Click="export_Click" FontSize="12"></Button>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
         
         <StackPanel Grid.ColumnSpan="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10,2,10,10">
