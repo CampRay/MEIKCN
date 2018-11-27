@@ -93,7 +93,7 @@
     <sys:String x:Key="Message_14">Saved the report setting successfully.</sys:String>
     <sys:String x:Key="Message_15">You did't configure the mail account or configured the mail account incorrectly.</sys:String>
     <sys:String x:Key="Message_16">The user's report has not been created, please fill and save the report first.</sys:String>
-    <sys:String x:Key="Message_17">Are you sure to send all of the data to Data Center?</sys:String>
+    <sys:String x:Key="Message_17">Are you sure to send out all of the screen data?</sys:String>
     <sys:String x:Key="Message_18">Sent the data successfully.</sys:String>
     <sys:String x:Key="Message_19">Failed to send email, Exception:</sys:String>
     <sys:String x:Key="Message_20">Failed to load the report setting. Exception:</sys:String>

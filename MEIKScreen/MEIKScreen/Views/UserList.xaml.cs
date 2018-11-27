@@ -1137,7 +1137,7 @@ namespace MEIKScreen
                                 bool isSsl = App.reportSettingModel.MailSsl;
 
                                 string toMailAddress = App.reportSettingModel.ToMailAddress;
-                                string subjectInfo = App.reportSettingModel.MailSubject + " (" + selectedUser.Code + "-" + selectedUser.SurName + ")";
+                                string subjectInfo = App.reportSettingModel.MailSubject + " (" + selectedUser.Code + ")";
                                 string bodyInfo = App.reportSettingModel.MailBody;                                
                                 string attachPath = zipFile;
 
@@ -1748,14 +1748,14 @@ namespace MEIKScreen
         /// <param name="e"></param>
         private void btnSetup_Click(object sender, RoutedEventArgs e)
         {
-            PasswordPage passwordPage = new PasswordPage();
-            var dialogResult=passwordPage.ShowDialog();
-            if (dialogResult.HasValue && dialogResult.Value)
-            {
+            //PasswordPage passwordPage = new PasswordPage();
+            //var dialogResult=passwordPage.ShowDialog();
+            //if (dialogResult.HasValue && dialogResult.Value)
+            //{
                 ReportSettingPage reportSettingPage = new ReportSettingPage();
                 reportSettingPage.Owner = this;
                 reportSettingPage.ShowDialog();
-            }
+            //}
         }
         
 
