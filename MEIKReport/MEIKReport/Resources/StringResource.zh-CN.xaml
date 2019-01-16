@@ -372,7 +372,7 @@
     <sys:String x:Key="ReportContext_8" xml:space="preserve">医保卡号: </sys:String>
     <sys:String x:Key="ReportContext_9" xml:space="preserve">客户编号: </sys:String>
     <sys:String x:Key="ReportContext_10" xml:space="preserve">年龄: </sys:String>
-    <sys:String x:Key="ReportContext_11" xml:space="preserve">体重: </sys:String>
+    <sys:String x:Key="ReportContext_11" xml:space="preserve">体重(公斤): </sys:String>
     <sys:String x:Key="ReportContext_12">磅</sys:String>
     <sys:String x:Key="ReportContext_13">公斤</sys:String>
     <sys:String x:Key="ReportContext_14" xml:space="preserve">月经周期: </sys:String>
@@ -493,7 +493,7 @@
     <sys:String x:Key="ReportContext_126">导管型乳腺结构</sys:String>
     <sys:String x:Key="ReportContext_127" xml:space="preserve">年龄相关电导率: </sys:String>
     <sys:String x:Key="ReportContext_128">平均电导率病变程度:</sys:String>
-    <sys:String x:Key="ReportContext_129">发现:</sys:String>
+    <sys:String x:Key="ReportContext_129">检测到分散性电导率改变</sys:String>
     <sys:String x:Key="ReportContext_130">无电导率改变</sys:String>
     <sys:String x:Key="ReportContext_131">检测到集中电导率改变</sys:String>
     <sys:String x:Key="ReportContext_132">结果:</sys:String>
@@ -507,20 +507,20 @@
     <sys:String x:Key="ReportContext_140">右乳腺:</sys:String>
     <sys:String x:Key="ReportContext_141">BI-EIM:</sys:String>
     <sys:String x:Key="ReportContext_142" xml:space="preserve">分数: </sys:String>
-    <sys:String x:Key="ReportContext_143" xml:space="preserve">积分</sys:String>
+    <sys:String x:Key="ReportContext_143" xml:space="preserve">分级   BI-RADS</sys:String>
     <sys:String x:Key="ReportContext_144">0-1分 - 1类</sys:String>
     <sys:String x:Key="ReportContext_145">2-3分 - 2类</sys:String>
     <sys:String x:Key="ReportContext_146">4分 - 3类</sys:String>
     <sys:String x:Key="ReportContext_147">5-7分 - 4类</sys:String>
     <sys:String x:Key="ReportContext_148">8分 - 5类</sys:String>
     <sys:String x:Key="ReportContext_149" xml:space="preserve">检测员: </sys:String>
-    <sys:String x:Key="ReportContext_150" xml:space="preserve">BI-RADS分类: </sys:String>
-    <sys:String x:Key="ReportContext_151">0 类 - 照片影像模糊 - 需重新扫描</sys:String>
-    <sys:String x:Key="ReportContext_152">1 类 - 未发现病理性改变</sys:String>
-    <sys:String x:Key="ReportContext_153">2 类 - 良性组织损伤</sys:String>
-    <sys:String x:Key="ReportContext_154">3 类 - 疑似良性发现</sys:String>
-    <sys:String x:Key="ReportContext_155">4 类 - 疑似恶性发现</sys:String>
-    <sys:String x:Key="ReportContext_156">5 类 - 高度可能为恶性</sys:String>
+    <sys:String x:Key="ReportContext_150" xml:space="preserve">BI-RADS</sys:String>
+    <sys:String x:Key="ReportContext_151">照片影像模糊 - 需重新扫描</sys:String>
+    <sys:String x:Key="ReportContext_152">未发现病理性变化</sys:String>
+    <sys:String x:Key="ReportContext_153">良性变化</sys:String>
+    <sys:String x:Key="ReportContext_154">疑似良性变化</sys:String>
+    <sys:String x:Key="ReportContext_155">发现疑似恶性变化</sys:String>
+    <sys:String x:Key="ReportContext_156">高度可疑似恶性变化</sys:String>
     <sys:String x:Key="ReportContext_157" xml:space="preserve">建议: </sys:String>
     <sys:String x:Key="ReportContext_158">MEIK乳腺电阻抗检测 (三月内)</sys:String>
     <sys:String x:Key="ReportContext_159">MEIK乳腺电阻抗检测 (六月内)</sys:String>
@@ -542,7 +542,7 @@
     <sys:String x:Key="ReportContext_170">查看截图</sys:String>
     
     <sys:String x:Key="ReportContext_173" xml:space="preserve">医生: </sys:String>
-    <sys:String x:Key="ReportContext_174" xml:space="preserve">医生签名: </sys:String>
+    <sys:String x:Key="ReportContext_174" xml:space="preserve">报告人: </sys:String>
     <sys:String x:Key="ReportContext_175">截取图像</sys:String>
     <sys:String x:Key="ReportContext_176">删除图像</sys:String>
     <sys:String x:Key="ReportContext_177" xml:space="preserve">检查日期: </sys:String>
@@ -551,6 +551,7 @@
     <sys:String x:Key="ReportContext_180">左乳</sys:String>
     <sys:String x:Key="ReportContext_181">右乳</sys:String>
     <sys:String x:Key="ReportContext_182" xml:space="preserve">发现: </sys:String>
+    <sys:String x:Key="ReportContext_183">乳腺扫描图失调</sys:String>
     <!--<sys:String x:Key="ReportContext_183">疑似良性的发现</sys:String>
     <sys:String x:Key="ReportContext_184">未发现病理性改变</sys:String>
     <sys:String x:Key="ReportContext_185">良性组织损伤</sys:String>
@@ -566,8 +567,8 @@
     <sys:String x:Key="ReportContext_195">* 在扫描图中，绿色的标志表示良性的发现，红色的标志表示可疑的病变</sys:String>
     <sys:String x:Key="ReportContext_196">MEIK检查结果</sys:String>
     <sys:String x:Key="ReportContext_197">MEIK v.5.6 -乳腺成像总结报告</sys:String>
-    <sys:String x:Key="ReportContext_198">乳腺电阻抗检查报告</sys:String>
-    <sys:String x:Key="ReportContext_199">3D乳腺成像 – MEIK v.5.6</sys:String>
+    <sys:String x:Key="ReportContext_198">乳腺电阻抗检查报告(EIM)乳腺成像</sys:String>
+    <sys:String x:Key="ReportContext_199">MEIK 5.6</sys:String>
     <sys:String x:Key="ReportContext_200">授权编号:</sys:String>
     <sys:String x:Key="ReportContext_201">BI-EIM分類: 0 类 - 照片影像模糊 - 需重新扫描; 1 类 - 未发现病理性改变; 2 类 - 良性组织损伤; 3 类 - 疑似良性发现; 4 类 - 疑似恶性发现</sys:String>
     <sys:String x:Key="ReportContext_202">客户号码:</sys:String>

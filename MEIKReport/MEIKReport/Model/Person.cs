@@ -10,6 +10,12 @@ namespace MEIKReport.Model
             set { clientNumber = value; OnPropertyChanged("ClientNumber"); }
         }
 
+        private string cid;
+        public string Cid
+        {
+            get { return cid; }
+            set { cid = value; }
+        }
         private string archiveFolder;
         private string crdFilePath;
         private string iniFilePath;
@@ -47,7 +53,17 @@ namespace MEIKReport.Model
         private string regYear;
         private string remark;
         private bool free = false;
-       
+        //自動分析結果：-1 無結果， 0 正常，1 綠色，2 紅色
+        private int result = -1;
+        private int leftResult = -1;
+        private int rightResult = -1;
+
+        private string techName;
+        private string techLicense;
+        private string doctorName;
+        private string doctorLicense;
+        private string screenVenue;
+
         private string icon = "/Images/id_card.png";
         private string uploaded;
         private string emailTo;
@@ -361,6 +377,22 @@ namespace MEIKReport.Model
             }
         }
 
+        public int Result
+        {
+            get { return result; }
+            set { result = value; }
+        }
+
+        public int LeftResult
+        {
+            get { return leftResult; }
+            set { leftResult = value; }
+        }
+        public int RightResult
+        {
+            get { return rightResult; }
+            set { rightResult = value; }
+        }
         public string Remark
         {
             get { return this.remark; }
@@ -990,34 +1022,31 @@ namespace MEIKReport.Model
             get { return examinationsOtherDesc; }
             set { examinationsOtherDesc = value; OnPropertyChanged("ExaminationsOtherDesc"); }
         }
-
-        private string techName;
+        
         public string TechName
         {
             get { return techName; }
             set { techName = value; }
         }
-        private string techLicense;
+       
         public string TechLicense
         {
             get { return techLicense; }
             set { techLicense = value; }
         }
-
-        private string doctorName;
+        
         public string DoctorName
         {
             get { return doctorName; }
             set { doctorName = value; }
-        }
-        private string doctorLicense;
+        }        
         public string DoctorLicense
         {
             get { return doctorLicense; }
             set { doctorLicense = value; }
         }
 
-        private string screenVenue;
+        
         public string ScreenVenue
         {
             get { return screenVenue; }

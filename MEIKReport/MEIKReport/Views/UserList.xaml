@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cvt="clr-namespace:MEIKReport.Common"
         xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        Title="MEIK Report Application V2.2.2" Height="768" Width="1084"
+        Title="MEIK Report Application V2.2.3" Height="768" Width="1084"
         Icon="/MEIKReport;component/Images/App_Icon.png"
         ShowInTaskbar="True" ResizeMode="CanResize"  Closed="Window_Closed" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">    
     <!--<Window.TaskbarItemInfo>
@@ -1235,11 +1235,13 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <WrapPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Button Name="btnOpenDiagn" Width="100" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="0" Click="btnOpenDiagn_Click" Content="{DynamicResource CommonOpenBtn}"></Button>                            
-                            <Button Name="btnScreenShot" Width="100" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="10,0,0,0" Click="btnScreenShot_Click" Content="{DynamicResource ReportContext_175}"></Button>
-                            <Button Name="btnViewImg" Width="100" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="10,0,0,0" Click="btnViewImg_Click" Content="{DynamicResource ReportContext_170}"></Button>
-                            <Button Name="save" Width="100" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="10,0,0,0" Click="save_Click" Content="{DynamicResource CommonSaveBtn}"></Button>                            
-                            <Button Name="previewBtn" Width="100" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="10,0,0,0" Click="previewBtn_Click" Content="{DynamicResource CommonPreviewBtn}"></Button>                                              
+                            <Button Name="btnOpenDiagn" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="0" Click="btnOpenDiagn_Click" Content="{DynamicResource CommonOpenBtn}"></Button>                            
+                            <Button Name="btnUpdate" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="5,0,0,0" Content="{DynamicResource CommonUpdateBtn}" Click="btnUpdate_Click"></Button>
+                            <Button Name="btnScreenShot" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="5,0,0,0" Click="btnScreenShot_Click" Content="{DynamicResource ReportContext_175}"></Button>
+                            <Button Name="btnViewImg" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="5,0,0,0" Click="btnViewImg_Click" Content="{DynamicResource ReportContext_170}"></Button>
+                            <Button Name="btnAnalysis" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="5,0,0,0" Content="{DynamicResource CommonAnalysisBtn}" Click="btnAnalysis_Click"></Button>
+                            <Button Name="save" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="5,0,0,0" Click="save_Click" Content="{DynamicResource CommonSaveBtn}"></Button>                            
+                            <Button Name="previewBtn" Width="90" Height="28" Style="{DynamicResource NewButtonStyle}" Margin="5,0,0,0" Click="previewBtn_Click" Content="{DynamicResource CommonPreviewBtn}"></Button>                                              
                         </WrapPanel>
 
                     </Grid>
@@ -1252,18 +1254,19 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="1125"/>
+                                <RowDefinition Height="1425"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
+
                             <Grid Grid.Column="1" Grid.Row="1" Background="White">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="764"/>
+                                    <ColumnDefinition Width="720"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
-                                    <RowDefinition Height="1100"/>
+                                    <RowDefinition Height="1355"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Grid Name="reportDataGrid" Grid.Column="1" Grid.Row="1">
@@ -1271,167 +1274,905 @@
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="1*"/>
-                                        <RowDefinition Height="1.2*"/>
-                                        <RowDefinition Height="0.5*"/>
+                                        <RowDefinition Height="1.5*"/>
+                                        <RowDefinition Height="1.5*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
-                                        <RowDefinition Height="2.3*"/>
-                                        <RowDefinition Height="0.3*"/>
-                                        <RowDefinition Height="0.1"/>
-                                        <RowDefinition Height=".2*"/>
-                                        <RowDefinition Height="*"/>                                        
                                         <RowDefinition Height="0.2*"/>
-                                        <RowDefinition Height="30*"/>                                                                                
                                         <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="0.2*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="0.2*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        
                                     </Grid.RowDefinitions>
                                     <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
-                                        <TextBlock Text="{DynamicResource ReportContext_198}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16"/>
+                                        <TextBlock Text="{DynamicResource ReportContext_198}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
                                     </StackPanel>
                                     <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
-                                        <TextBlock Text="{DynamicResource ReportContext_199}" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16" TextDecorations="Underline"/>
+                                        <TextBlock Text="{DynamicResource ReportContext_199}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" TextDecorations="Underline"/>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">                                        
-                                        <TextBlock Text="{DynamicResource ReportContext_9}" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataUserCode" Text="{Binding DataUserCode}" Width="180" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{DynamicResource ReportContext_2}" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataScreenDate" Text="{Binding DataScreenDate}" Width="180" VerticalAlignment="Center"/>
-                                        <TextBlock Text="{DynamicResource ReportContext_1}" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataName" Text="{Binding DataName}" VerticalAlignment="Center" Width="180" Height="18" ></TextBlock>
+                                    <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <TextBlock Text="{DynamicResource ReportContext_202}" FontWeight="Bold" Width="100" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                        <TextBlock Name="dataClientNum" Text="{Binding DataClientNum}" VerticalAlignment="Center" Width="150" Visibility="Collapsed"></TextBlock>
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_1}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataName" Text="{Binding DataName}" VerticalAlignment="Center" Width="260" ></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_9}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataUserCode" Text="{Binding DataUserCode}" Width="248" VerticalAlignment="Center"/>
+                                        </Border>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" >                                                                                
-                                        <TextBlock Text="{DynamicResource ReportContext_10}" Margin="0,0,5,0" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataAge" Text="{Binding DataAge}" Width="180" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="{DynamicResource ReportContext_203}" Margin="0,0,5,0" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataHeight" Text="{Binding DataHeight}" VerticalAlignment="Center" Width="180"></TextBlock>
-                                        <TextBlock Text="{DynamicResource ReportContext_11}" Margin="0,0,5,0" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataWeight" Text="{Binding DataWeight}" VerticalAlignment="Center" Width="180"></TextBlock>                                                                            
-
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                        <TextBlock Text="{DynamicResource ReportContext_204}" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataMobile" Text="{Binding DataMobile}" Width="200" Margin="0,0,5,0" VerticalAlignment="Center"></TextBlock>
-                                        <TextBlock Text="{DynamicResource ReportContext_205}" Margin="10,0,0,0" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataEmail" Text="{Binding DataEmail}" Width="350" VerticalAlignment="Center"></TextBlock>
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left">
-                                        <TextBlock Text="{DynamicResource ReportContext_6}" FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataScreenLocation" Text="{Binding DataScreenLocation}" VerticalAlignment="Center" Width="320" Margin="0,0,5,0"></TextBlock>
-                                        <TextBlock Text="{DynamicResource ReportContext_149}"  FontWeight="Bold" VerticalAlignment="Center"/>
-                                        <TextBlock Name="dataMeikTech" Text="{Binding Path=DataMeikTech}" VerticalAlignment="Center"></TextBlock>
-                                        <TextBox Name="dataMeikTechLicense" Text="{Binding ElementName=dataMeikTech,Path=SelectedItem.License}" Visibility="Collapsed"></TextBox>
-                                    </StackPanel>
-
-                                    <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                        <TextBlock Text="{DynamicResource ReportContext_14}" FontWeight="Bold" Width="100" VerticalAlignment="Center"/>
-                                        <ComboBox Name="dataMenstrualCycle" SelectedIndex="{Binding DataMenstrualCycle}" Width="200" BorderBrush="Gray" Background="{x:Null}"  Margin="0,0,5,0" FontSize="10">
+                                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_6}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataScreenLocation" Text="{Binding DataScreenLocation}" VerticalAlignment="Center" Width="260"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_8}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataHealthCard" Text="{Binding DataHealthCard}" Width="248" BorderBrush="{x:Null}" Background="{x:Null}"></TextBox>
+                                        </Border>
+                                        <TextBlock Visibility="Collapsed" Text="{DynamicResource ReportContext_3}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                        <ComboBox Visibility="Collapsed" Name="dataGender" Width="95" BorderBrush="Gray" Background="{x:Null}" FontSize="10" SelectedIndex="{Binding DataGender}">
                                             <ComboBoxItem IsSelected="True"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_15}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_16}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_17}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_18}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_19}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_20}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_21}"></ComboBoxItem>
-                                            <ComboBoxItem Content="{DynamicResource ReportContext_24}"></ComboBoxItem>
-                                        </ComboBox>                                        
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_4}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_5}"></ComboBoxItem>
+                                        </ComboBox>
+                                        
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0" >
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_10}" Width="50" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataAge" Text="{Binding DataAge}" Width="47" VerticalAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_203}" Width="80" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataHeight" Text="{Binding DataHeight}" Width="50" VerticalAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_11}" Width="80" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataWeight" Text="{Binding DataWeight}" Width="41" VerticalAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_14}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataMenstrualCycle" SelectedIndex="{Binding DataMenstrualCycle}" Width="248" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_15}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_16}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_17}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_18}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_19}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_20}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_21}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_24}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        
+
+
+                                        <TextBlock Visibility="Collapsed" Text="{DynamicResource ReportContext_204}" VerticalAlignment="Center"/>
+                                        <TextBlock Visibility="Collapsed" Name="dataMobile" Text="{Binding DataMobile}" Width="200" Margin="0,0,5,0" VerticalAlignment="Center"></TextBlock>
+                                        <TextBlock Visibility="Collapsed" Text="{DynamicResource ReportContext_205}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                        <TextBlock Visibility="Collapsed" Name="dataEmail" Text="{Binding DataEmail}" Width="350" VerticalAlignment="Center"></TextBlock>
+                                    </StackPanel>
+                                    <!--<StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+
+                                        <TextBlock Visibility="Collapsed" Text="{DynamicResource ReportContext_149}"  VerticalAlignment="Center"/>
+                                        <TextBlock Visibility="Collapsed" Name="dataMeikTech" Text="{Binding Path=DataMeikTech}" VerticalAlignment="Center"></TextBlock>
+                                        <TextBox Visibility="Collapsed" Name="dataMeikTechLicense" Text="{Binding ElementName=dataMeikTech,Path=SelectedItem.License}"></TextBox>
+                                    </StackPanel>-->
+
+                                    <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_23}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataSkinAffections" SelectedIndex="{Binding DataSkinAffections}" Width="260"  BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_25}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_26}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_27}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_28}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_29}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_30}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_31}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_22}" Width="100" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataHormones" Text="{Binding DataHormones}" VerticalAlignment="Center" Width="248" BorderBrush="{x:Null}" Background="{x:Null}"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Rectangle Width="720" Fill="Black" Height="2"></Rectangle>
+                                    </StackPanel>
+                                    <!--<StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Left"  Visibility="Collapsed">
+                                        <TextBlock Text="{DynamicResource ReportContext_32}" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        <ComboBox Name="dataPertinentHistory" SelectedIndex="{Binding DataPertinentHistory}" Width="75" BorderBrush="Gray" Background="{x:Null}">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_33}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_34}"></ComboBoxItem>
+                                        </ComboBox>
+                                        <TextBlock Text="-" VerticalAlignment="Center"/>
+                                        <TextBox Name="dataPertinentHistory1" Text="{Binding DataPertinentHistory1}" VerticalAlignment="Center" Width="80" BorderBrush="Gray" Background="{x:Null}"/>
+                                        <TextBlock Text="{DynamicResource ReportContext_35}" FontWeight="Bold" Margin="5,0,0,0" VerticalAlignment="Center"/>
+                                        <ComboBox Name="dataMotherUltra" SelectedIndex="{Binding DataMotherUltra}" Width="120" BorderBrush="Gray" Background="{x:Null}">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_36}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_37}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_38}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_39}"></ComboBoxItem>
+                                        </ComboBox>
 
                                     </StackPanel>
-                                    <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" >
-                                        <TextBlock Text="{DynamicResource ReportContext_165}" FontWeight="Bold" Width="100" VerticalAlignment="Top" Margin="0,5,0,0"/>
-                                        <TextBox Name="dataComments" Text="{Binding DataComments}" VerticalAlignment="Top" Width="650" Height="50" BorderBrush="Gray" Background="{x:Null}" FontSize="10" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                        <Rectangle Width="760" Fill="Black" Height="1"></Rectangle>
-                                    </StackPanel>
-                                    
-                                    <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Left" >
+                                    <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Collapsed" >
                                         <TextBlock Text="{DynamicResource ReportContext_40}" Width="160" FontWeight="Bold" Margin="200,0,0,0" VerticalAlignment="Center"/>
                                         <TextBlock Text="{DynamicResource ReportContext_41}" VerticalAlignment="Center"/>
-                                        <TextBox Name="dataLeftBreastH" Text="{Binding DataLeftBreastH}" Width="30" Height="18" BorderBrush="Gray" Background="{x:Null}" FontSize="10" PreviewTextInput="Hour_PreviewTextInput"></TextBox>
+                                        <TextBox Name="dataLeftBreastH" Text="{Binding DataLeftBreastH}" Width="30" BorderBrush="Gray" Background="{x:Null}" PreviewTextInput="Hour_PreviewTextInput"></TextBox>
                                         <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
-                                        <TextBox Name="dataLeftBreastM" Text="{Binding DataLeftBreastM}" Width="30" Height="18" BorderBrush="Gray" Background="{x:Null}" FontSize="10" PreviewTextInput="Minute_PreviewTextInput"></TextBox>
-                                        <ComboBox Name="dataLeftBreastAP" SelectedIndex="{Binding DataLeftBreastAP}" Width="40" Height="18" BorderBrush="Gray"  Margin="2,0,0,0" Background="{x:Null}" FontSize="10">
+                                        <TextBox Name="dataLeftBreastM" Text="{Binding DataLeftBreastM}" Width="30" BorderBrush="Gray" Background="{x:Null}" PreviewTextInput="Minute_PreviewTextInput"></TextBox>
+                                        <ComboBox Name="dataLeftBreastAP" SelectedIndex="{Binding DataLeftBreastAP}" Width="40" BorderBrush="Gray"  Margin="2,0,0,0" Background="{x:Null}">
                                             <ComboBoxItem IsSelected="True" Content="am"></ComboBoxItem>
                                             <ComboBoxItem Content="pm"></ComboBoxItem>
                                         </ComboBox>
                                         <TextBlock Text="{DynamicResource ReportContext_42}" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                                        <!--<extToolkit:DateTimePicker Name="dataRightBreast" Text="{Binding DataRightBreast}" Height="18" Width="80" AllowSpin="False" CultureInfo="en-US" Format="Custom" FormatString="HH:mm" ShowButtonSpinner="False" TimePickerAllowSpin="True" TimePickerShowButtonSpinner="True" TimePickerVisibility="Visible" TextAlignment="Left" FontSize="10"/>-->
-                                        <TextBox Name="dataRightBreastH" Text="{Binding DataRightBreastH}" Width="30" Height="18" BorderBrush="Gray" Background="{x:Null}" FontSize="10" PreviewTextInput="Hour_PreviewTextInput"></TextBox>
+                                        <extToolkit:DateTimePicker Name="dataRightBreast" Text="{Binding DataRightBreast}" Width="80" AllowSpin="False" CultureInfo="en-US" Format="Custom" FormatString="HH:mm" ShowButtonSpinner="False" TimePickerAllowSpin="True" TimePickerShowButtonSpinner="True" TimePickerVisibility="Visible" TextAlignment="Left"/>
+                                        <TextBox Name="dataRightBreastH" Text="{Binding DataRightBreastH}" Width="30" BorderBrush="Gray" Background="{x:Null}" PreviewTextInput="Hour_PreviewTextInput"></TextBox>
                                         <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
-                                        <TextBox Name="dataRightBreastM" Text="{Binding DataRightBreastM}" Width="30" Height="18" BorderBrush="Gray" Background="{x:Null}" FontSize="10" PreviewTextInput="Minute_PreviewTextInput"></TextBox>
-                                        <ComboBox Name="dataRightBreastAP" SelectedIndex="{Binding DataRightBreastAP}" Width="40" Height="18" BorderBrush="Gray"  Margin="2,0,0,0" Background="{x:Null}" FontSize="10">
+                                        <TextBox Name="dataRightBreastM" Text="{Binding DataRightBreastM}" Width="30" BorderBrush="Gray" Background="{x:Null}" PreviewTextInput="Minute_PreviewTextInput"></TextBox>
+                                        <ComboBox Name="dataRightBreastAP" SelectedIndex="{Binding DataRightBreastAP}" Width="40" BorderBrush="Gray"  Margin="2,0,0,0" Background="{x:Null}">
                                             <ComboBoxItem IsSelected="True" Content="am"></ComboBoxItem>
                                             <ComboBoxItem Content="pm"></ComboBoxItem>
                                         </ComboBox>
+                                    </StackPanel> -->
+                                    <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_43}" Width="390" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_44}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_45}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
                                     </StackPanel>
-                                    <StackPanel Grid.Row="14">
-                                        <StackPanel VerticalAlignment="Center" Margin="0,10,0,20">
-                                            <Image Name="screenImg" Source="{x:Null}" Margin="10"/>
-                                        </StackPanel>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="30"/>                                                
-                                                <RowDefinition Height="110"/>
-                                                <RowDefinition Height="50"/>
-                                                <RowDefinition Height="20"/>
-                                                <RowDefinition Height="50"/>                                                
-                                            </Grid.RowDefinitions>
-                                            <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                                <TextBlock Text="" Width="420" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                <TextBlock Text="{DynamicResource ReportContext_44}" Width="200" FontWeight="Bold" TextDecorations="Underline" VerticalAlignment="Center"/>
-                                                <TextBlock Text="{DynamicResource ReportContext_45}" Width="120" FontWeight="Bold" TextDecorations="Underline" VerticalAlignment="Center"/>
-                                            </StackPanel>
-                                            <Grid Grid.Row="1">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
-                                                </Grid.RowDefinitions>                                                
-                                                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                                    <TextBlock Text="{DynamicResource ReportContext_64}" Width="340" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                    <TextBox Name="dataLeftSegment" Text="{Binding DataLeftSegment}" Width="200" Height="22" BorderBrush="Gray" Background="{x:Null}"></TextBox>
-                                                    <TextBox Name="dataRightSegment" Text="{Binding DataRightSegment}" Width="200" Height="22" BorderBrush="Gray" Background="{x:Null}" Margin="5,0,0,0"></TextBox>
-                                                </StackPanel>
-                                                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                                    <TextBlock Text="{DynamicResource ReportContext_65}" Width="340" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                    <TextBox Name="dataLeftNumber" Text="{Binding DataLeftNumber}" Width="200" Height="22" BorderBrush="Gray" Background="{x:Null}"></TextBox>
-                                                    <TextBox Name="dataRightNumber" Text="{Binding DataRightNumber}" Width="200" Height="22" BorderBrush="Gray" Background="{x:Null}" Margin="5,0,0,0"></TextBox>
-                                                </StackPanel>
-                                                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                                    <TextBlock Text="{DynamicResource ReportContext_67}" Width="340" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                    <TextBox Name="dataLeftShape" Text="{Binding DataLeftShape}" Width="200" Height="22" BorderBrush="Gray" Background="{x:Null}"></TextBox>
-                                                    <TextBox Name="dataRightShape" Text="{Binding DataRightShape}" Width="200" Height="22" BorderBrush="Gray" Background="{x:Null}" Margin="5,0,0,0"></TextBox>
-                                                </StackPanel>
-                                                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left" >
-                                                    <TextBlock Text="{DynamicResource ReportContext_66}" Width="340" FontWeight="Bold" VerticalAlignment="Center"/>
-                                                    <TextBox Name="dataLeftSize" Text="{Binding DataLeftSize}" VerticalContentAlignment="Center" Width="165" Height="22" BorderBrush="Gray" HorizontalContentAlignment="Right"  Background="{x:Null}"></TextBox>
-                                                    <TextBlock Text="{DynamicResource ReportContext_225}" Width="40" VerticalAlignment="Center"/>
-                                                    <TextBox Name="dataRightSize" Text="{Binding DataRightSize}" VerticalContentAlignment="Center" Width="165" Height="22" BorderBrush="Gray" HorizontalContentAlignment="Right"  Background="{x:Null}"></TextBox>
-                                                    <TextBlock Text="{DynamicResource ReportContext_225}" Width="40" VerticalAlignment="Center"/>
-                                                </StackPanel>
+                                    <!--<StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Collapsed">
+                                        <TextBlock Text="{DynamicResource ReportContext_46}" Width="380" VerticalAlignment="Center"/>
+                                        <ComboBox Name="dataLeftPalpableMass" SelectedIndex="{Binding DataLeftPalpableMass}" VerticalContentAlignment="Center" Width="150" BorderBrush="Gray" Background="{x:Null}">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_34}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_33}"></ComboBoxItem>
+                                        </ComboBox>
+                                        <ComboBox Name="dataRightPalpableMass" SelectedIndex="{Binding DataRightPalpableMass}" VerticalContentAlignment="Center" Width="150" BorderBrush="Gray" Background="{x:Null}" Margin="5,0,0,0">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_34}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_33}"></ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>-->
+                                    <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_47}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftChangesOfElectricalConductivity" SelectedIndex="{Binding DataLeftChangesOfElectricalConductivity}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" SelectionChanged="dataLeftChangesOfElectrical_SelectionChanged">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_48}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_49}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_50}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightChangesOfElectricalConductivity" SelectedIndex="{Binding DataRightChangesOfElectricalConductivity}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" SelectionChanged="dataRightChangesOfElectrical_SelectionChanged">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_48}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_49}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_50}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_51}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftMammaryStruct" SelectedIndex="{Binding DataLeftMammaryStruct}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_52}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_53}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightMammaryStruct" SelectedIndex="{Binding DataRightMammaryStruct}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_52}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_53}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_54}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftLactiferousSinusZone" SelectedIndex="{Binding DataLeftLactiferousSinusZone}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_55}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_56}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_57}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_58}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightLactiferousSinusZone" SelectedIndex="{Binding DataRightLactiferousSinusZone}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_55}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_56}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_57}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_58}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_59}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftMammaryContour" SelectedIndex="{Binding DataLeftMammaryContour}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" SelectionChanged="dataLeftMammaryContour_SelectionChanged">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_60}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_61}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_62}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightMammaryContour" SelectedIndex="{Binding DataRightMammaryContour}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" SelectionChanged="dataRightMammaryContour_SelectionChanged">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_60}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_61}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_62}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="13" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_63}" Width="390" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_44}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_45}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_64}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataLeftSegment" Text="{Binding DataLeftSegment}" Width="160" BorderBrush="{x:Null}" Background="{x:Null}"></TextBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataRightSegment" Text="{Binding DataRightSegment}" Width="160" BorderBrush="{x:Null}" Background="{x:Null}"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="15" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_65}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftNumber" SelectedIndex="{Binding DataLeftNumber}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content="0"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_206}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_207}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_208}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_209}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightNumber" SelectedIndex="{Binding DataRightNumber}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content="0"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_206}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_207}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_208}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_209}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="16" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_66}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataLeftSize" Text="{Binding DataLeftSize}" VerticalContentAlignment="Center" Width="125" BorderBrush="{x:Null}"  Background="{x:Null}"></TextBox>
+                                        </Border>
+                                        <TextBlock Text="{DynamicResource ReportContext_225}" Width="35" VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataRightSize" Text="{Binding DataRightSize}" VerticalContentAlignment="Center" Width="125" BorderBrush="{x:Null}"  Background="{x:Null}"></TextBox>
+                                        </Border>
+                                        <TextBlock Text="{DynamicResource ReportContext_225}" Width="35" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="17" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_67}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftShape" SelectedIndex="{Binding DataLeftShape}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_68}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_69}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_70}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_71}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightShape" SelectedIndex="{Binding DataRightShape}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_68}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_69}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_70}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_71}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="18" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_72}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftContourAroundFocus" SelectedIndex="{Binding DataLeftContourAroundFocus}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_48}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_73}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_74}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_75}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightContourAroundFocus" SelectedIndex="{Binding DataRightContourAroundFocus}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_48}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_73}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_74}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_75}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
 
-                                            </Grid>
-                                            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
-                                                <TextBlock Text="{DynamicResource ReportContext_226}" FontWeight="Bold" Width="100"/>
-                                                <TextBox Name="dataConclusion" Text="{Binding DataConclusion}" VerticalAlignment="Top" Width="650" Height="50" BorderBrush="Gray" Background="{x:Null}" TextWrapping="Wrap" AcceptsReturn="True"></TextBox>
-                                            </StackPanel>
+                                    <StackPanel Grid.Row="19" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_76}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftInternalElectricalStructure" SelectedIndex="{Binding DataLeftInternalElectricalStructure}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_77}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_78}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_79}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_80}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightInternalElectricalStructure" SelectedIndex="{Binding DataRightInternalElectricalStructure}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_77}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_78}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_79}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_80}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="20" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0" >
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_81}" Width="390" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftSurroundingTissues" SelectedIndex="{Binding DataLeftSurroundingTissues}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_82}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_83}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_84}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_85}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_86}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_87}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightSurroundingTissues" SelectedIndex="{Binding DataRightSurroundingTissues}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_82}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_83}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_84}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_85}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_86}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_87}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
 
-                                            <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Bottom">
-                                                <Button Name="btnSignature" Style="{DynamicResource NewButtonStyle}" Content="{DynamicResource ReportContext_174}" Margin="350,0,0,0" Height="26" Width="160" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="btnSignature_Click" FocusVisualStyle="{ DynamicResource NewButtonFocusVisual}"></Button>
-                                                <Border Grid.Row="1" Grid.Column="1" BorderBrush="Black" Width="210" BorderThickness="0,0,0,1">
-                                                    <Image Name="dataSignImg" Height="36" Width="200"></Image>
-                                                </Border>
-                                            </StackPanel>
-                                            
-                                        </Grid>
-                                    </StackPanel>                                                                                                            
+
+                                    <StackPanel Grid.Row="21" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_88}" Width="390" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_44}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                                            <TextBlock Text="{DynamicResource ReportContext_45}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="22" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_100}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_101}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Width="97"  VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftMeanElectricalConductivity1" Text="{Binding DataLeftMeanElectricalConductivity1}" VerticalContentAlignment="Center" Width="160" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataRightMeanElectricalConductivity1" Text="{Binding DataRightMeanElectricalConductivity1}" VerticalContentAlignment="Center" Width="160" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="23" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,0,1,0">
+                                            <TextBlock  Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_102}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Width="97"  VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftMeanElectricalConductivity2" Text="{Binding DataLeftMeanElectricalConductivity2}" VerticalContentAlignment="Center" Width="160" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataRightMeanElectricalConductivity2" Text="{Binding DataRightMeanElectricalConductivity2}" VerticalContentAlignment="Center" Width="160" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="24" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,0,1,1">
+                                            <TextBlock  Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataMeanElectricalConductivity3"  Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Width="97"  VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftMeanElectricalConductivity3" Text="{Binding DataLeftMeanElectricalConductivity3}" VerticalContentAlignment="Center" Width="160" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataRightMeanElectricalConductivity3" Text="{Binding DataRightMeanElectricalConductivity3}" VerticalContentAlignment="Center" Width="160" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
                                     
+                                    <StackPanel Grid.Row="25" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_106}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_101}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="(-0.07-0.07)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftComparativeElectricalConductivity1" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalContentAlignment="Center" Width="321" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="26" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,0,1,0">
+                                            <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_102}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="(-0.10-0.10)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftComparativeElectricalConductivity2" Text="{Binding DataLeftComparativeElectricalConductivity2}" VerticalContentAlignment="Center" Width="321" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="27" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,0,1,1">
+                                            <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock  Name="dataComparativeElectricalConductivity3" Text="{Binding DataComparativeElectricalConductivity3}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="" Width="95"  VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftComparativeElectricalConductivity3" Text="{Binding DataLeftComparativeElectricalConductivity3}" VerticalContentAlignment="Center" Width="321" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="28" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_107}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_101}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="(-0.07-0.07)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftDivergenceBetweenHistograms1" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalContentAlignment="Center" Width="321" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="29" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,0,1,0">
+                                            <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_102}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="(-0.10-0.10)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftDivergenceBetweenHistograms2" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalContentAlignment="Center" Width="321" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="30" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1,0,1,1">
+                                            <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataDivergenceBetweenHistograms3" Text="{Binding DataDivergenceBetweenHistograms3}" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="" Width="95"  VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftDivergenceBetweenHistograms3" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalContentAlignment="Center" Width="321" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="31" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_109}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" Margin="1,0,0,0">
+                                            <TextBlock Text="" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Text="(-0.11-0.11)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftPhaseElectricalConductivity" Text="{Binding DataLeftPhaseElectricalConductivity}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataRightPhaseElectricalConductivity" Text="{Binding DataRightPhaseElectricalConductivity}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="32" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_110}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" Margin="1,0,0,0">
+                                            <TextBlock Text="" Width="70"  VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataAgeElectricalConductivityReference" Text="{Binding DataAgeElectricalConductivityReference}" TextAlignment="Center" VerticalContentAlignment="Center" Width="95" BorderBrush="{x:Null}" Background="{x:Null}" IsEnabled="False"></TextBox>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftAgeElectricalConductivity" Text="{Binding DataLeftAgeElectricalConductivity}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataRightAgeElectricalConductivity" Text="{Binding DataRightAgeElectricalConductivity}" VerticalContentAlignment="Center" Width="160" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalAlignment="Center" HorizontalContentAlignment="Center" IsEnabled="False"></TextBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="33" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Rectangle Width="760" Fill="Black" Height="2"></Rectangle>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="34" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_115}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataExamConclusion" SelectedIndex="{Binding DataExamConclusion}" VerticalContentAlignment="Center" Width="492" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_116}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_117}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_118}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_119}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_120}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="35" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_121}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftMammaryGland" SelectedIndex="{Binding DataLeftMammaryGland}" VerticalContentAlignment="Center" Width="492" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_122}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_123}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_124}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_125}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_126}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="36" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_127}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataLeftAgeRelated" SelectedIndex="{Binding DataLeftAgeRelated}" VerticalContentAlignment="Center" Width="70" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_111}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_112}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_113}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataLeftMammaryGlandResult" Text="{Binding DataLeftMammaryGlandResult}" VerticalAlignment="Center" Width="419"></TextBlock>
+                                            <!--<ComboBox Name="dataLeftMammaryGlandResult" SelectedIndex="{Binding DataLeftMammaryGlandResult}" VerticalContentAlignment="Center" Width="419" BorderBrush="{x:Null}" Background="{x:Null}" IsEnabled="False">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_134}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_135}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_137}"></ComboBoxItem>
+                                            </ComboBox>-->
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="37" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <TextBlock Text="" Width="222" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBox Name="dataLeftBiRadsCategory" Text="{Binding DataLeftBiRadsCategory}" VerticalAlignment="Center" Width="493"></TextBox>
+                                        </Border>
+                                        <!--
+                                        <ComboBox Name="dataLeftBiRadsCategory" SelectedIndex="{Binding DataLeftBiRadsCategory}" VerticalContentAlignment="Center" Width="420" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_151}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_152}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_153}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_154}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_155}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_156}"></ComboBoxItem>
+                                        </ComboBox>-->
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="38" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_139}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightMammaryGland" SelectedIndex="{Binding DataRightMammaryGland}" VerticalContentAlignment="Center" Width="492" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_122}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_123}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_124}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_125}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_126}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="39" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_127}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataRightAgeRelated" SelectedIndex="{Binding DataRightAgeRelated}" VerticalContentAlignment="Center" Width="70" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_111}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_112}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_113}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataRightMammaryGlandResult" Text="{Binding DataRightMammaryGlandResult}" VerticalAlignment="Center" Width="419"></TextBlock>
+                                            <!--<ComboBox Name="dataRightMammaryGlandResult" SelectedIndex="{Binding DataRightMammaryGlandResult}" VerticalContentAlignment="Center" Width="350" BorderBrush="Gray" Background="{x:Null}" Margin="5,0,1,0">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_134}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_135}"></ComboBoxItem>                                                
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_137}"></ComboBoxItem>                                                
+                                            </ComboBox>-->
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Visibility="Visible" Grid.Row="40" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <TextBlock Text="" Width="222" FontWeight="Bold" VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataRightBiRadsCategory" Text="{Binding DataRightBiRadsCategory}" VerticalAlignment="Center" Width="492"></TextBox>
+                                            <!--<ComboBox Name="dataRightBiRadsCategory" SelectedIndex="{Binding DataRightBiRadsCategory}" VerticalContentAlignment="Center" Width="420" BorderBrush="Gray" Background="{x:Null}" IsEnabled="False">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_151}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_152}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_153}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_154}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_155}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_156}"></ComboBoxItem>
+                                            </ComboBox>-->
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="41" Orientation="Horizontal" HorizontalAlignment="Left">
+                                        <Rectangle Width="718" Fill="Black" Height="2"></Rectangle>
+                                    </StackPanel>
+                                    <StackPanel  Grid.Row="42" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_141}" Width="50" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataTotalPts" SelectedIndex="{Binding DataTotalPts}" VerticalContentAlignment="Center" Width="50" BorderBrush="Gray" Background="{x:Null}" Margin="0,0,1,0" IsEnabled="False">
+                                                <ComboBoxItem IsSelected="True" Content="0"></ComboBoxItem>
+                                                <ComboBoxItem>1分</ComboBoxItem>
+                                                <ComboBoxItem>2分</ComboBoxItem>
+                                                <ComboBoxItem>3分</ComboBoxItem>
+                                                <ComboBoxItem>4分</ComboBoxItem>
+                                                <ComboBoxItem>5分</ComboBoxItem>
+                                                <ComboBoxItem>6分</ComboBoxItem>
+                                                <ComboBoxItem>7分</ComboBoxItem>
+                                                <ComboBoxItem>8分</ComboBoxItem>
+                                                <ComboBoxItem>9分</ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataBiRads" Text="{DynamicResource ReportContext_143}" Width="112" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataBiRadsCategory" SelectedIndex="{Binding DataBiRadsCategory}" VerticalContentAlignment="Center" Width="492" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_152}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_153}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_154}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_155}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_156}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Grid.Row="43" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <TextBlock Text="" Width="221" VerticalAlignment="Center"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataConclusion" Text="{Binding DataConclusion}" VerticalAlignment="Center" Width="492"></TextBox>
+                                            <!--<ComboBox Name="dataConclusion" SelectedIndex="{Binding DataConclusion}" Width="620" BorderBrush="Gray" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_236}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_228}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_166}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_237}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_238}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_167}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_229}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_168}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_230}"></ComboBoxItem>
+                                            </ComboBox>-->
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="44" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_157}" Width="220" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <ComboBox Name="dataFurtherExam" SelectedIndex="{Binding DataFurtherExam}" VerticalContentAlignment="Center" Width="492" BorderBrush="Gray" Background="{x:Null}">
+                                                <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_162}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_163}"></ComboBoxItem>
+                                                <ComboBoxItem Content="{DynamicResource ReportContext_164}"></ComboBoxItem>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="45" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <TextBlock Text="" Width="221" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFD1DCDC">
+                                            <TextBox Name="dataRecommendation" Text="{Binding DataRecommendation}" VerticalAlignment="Center" Width="492"></TextBox>
+                                        </Border>
+                                        <!--<ComboBox Name="dataFurtherExam" SelectedIndex="{Binding DataFurtherExam}" VerticalContentAlignment="Center" Width="500" BorderBrush="Gray" Background="{x:Null}">
+                                            <ComboBoxItem IsSelected="True" Content=""></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_162}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_240}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_241}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_163}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_164}"></ComboBoxItem>
+                                        </ComboBox>-->
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="47" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                                        <Border BorderBrush="Gray" BorderThickness="1">
+                                            <TextBlock Text="{DynamicResource ReportContext_2}" Width="80" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <TextBlock Name="dataScreenDate" Text="{Binding DataScreenDate}" Width="134" VerticalAlignment="Center"/>
+                                        </Border>
+
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="120,0,0,0">
+                                            <TextBlock Text="{DynamicResource ReportContext_174}" Width="120" VerticalAlignment="Center"/>
+                                        </Border>
+                                        <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                                            <!--<TextBox Name="dataDoctor" Text="{Binding DataDoctor}" Width="252" VerticalAlignment="Center"/>-->
+                                            <ComboBox Name="dataDoctor" VerticalContentAlignment="Center" Width="252" BorderBrush="{x:Null}" Background="{x:Null}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal" >
+                                                            <TextBlock Text="{Binding Path=Name}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ComboBox>
+                                        </Border>
+                                    </StackPanel>
+
+
+                                    <StackPanel Grid.Row="49" Orientation="Horizontal" HorizontalAlignment="Left" >
+                                        <TextBlock Text="1.MEIK电阻抗检查是用于初步检测乳腺疾病，在发现临床症状的情况下应进行补充检查（X光，超声波或其他）" Width="715" VerticalAlignment="Center"  FontSize="10"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="50" Orientation="Horizontal" HorizontalAlignment="Left" >
+                                        <TextBlock Text="2.MEIK电阻抗检查未能检测到乳腺肿瘤的概率约为10-15%" Width="715" VerticalAlignment="Center" FontSize="10"/>
+                                    </StackPanel>
                                 </Grid>                                
                             </Grid>
                         </Grid>

@@ -158,10 +158,10 @@
                             <StackPanel Grid.Row="2" Grid.Column="1" Margin="5" HorizontalAlignment="Left">
                                 <TextBox Name="txtMyMailAddress" Text="{Binding MailAddress}" FontSize="14" Width="190" Height="28"></TextBox>
                             </StackPanel>
-                            <StackPanel Grid.Row="2" Grid.Column="2" Margin="5">
+                            <!--<StackPanel Grid.Row="2" Grid.Column="2" Margin="5">
                                 <Label Height="28" Width="Auto" FontSize="14" HorizontalContentAlignment="Right" Content="{StaticResource SettingEmailTo}" Foreground="#FF3E6E8F"></Label>
                             </StackPanel>
-                            <!--<StackPanel Grid.Row="2" Grid.Column="3" Margin="5" HorizontalAlignment="Left">
+                            <StackPanel Grid.Row="2" Grid.Column="3" Margin="5" HorizontalAlignment="Left">
                                 <TextBox Name="txtToMailAddress" Text="{Binding ToMailAddress}" FontSize="14" Width="190" Height="28"></TextBox>
                             </StackPanel>-->
                             <StackPanel Grid.Row="3" Grid.Column="0" Margin="5">
@@ -197,7 +197,7 @@
                             </StackPanel>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="tabImage"  Header="{StaticResource SettingImageTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White">
+                    <TabItem Name="tabImage"  Header="{StaticResource SettingImageTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White" Visibility="Collapsed">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10"/>
@@ -219,7 +219,7 @@
                             
                         </Grid>
                     </TabItem>
-                    <TabItem Name="tabIcon"  Header="{StaticResource SettingCompanyTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White">
+                    <TabItem Name="tabIcon"  Header="{StaticResource SettingCompanyTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White" Visibility="Collapsed">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10"/>

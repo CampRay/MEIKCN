@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -38,76 +39,56 @@ namespace MEIKReport
         /// <param name="strTmplName"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static FixedPage LoadFixedDocumentAndRender(string strTmplName, Object data)
-        {
-            FixedPage doc = (FixedPage)Application.LoadComponent(new Uri(strTmplName, UriKind.RelativeOrAbsolute));
+        public static FixedDocument LoadFixedDocumentAndRender(string strTmplName, Object data)
+        {            
+            FixedPage page = (FixedPage)Application.LoadComponent(new Uri(strTmplName, UriKind.RelativeOrAbsolute));
+            double pageWidth=0,pageHeight=0;
             if ("Letter".Equals(App.reportSettingModel.PrintPaper.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                doc.Width = 96 * 8.5;
-                doc.Height = 96 * 11;
+                pageWidth = 96 * 8.5;
+                pageHeight = 96 * 11;
             }
             else if ("A4".Equals(App.reportSettingModel.PrintPaper.ToString(), StringComparison.OrdinalIgnoreCase))
             {
-                doc.Width = 96 * 8.27;
-                doc.Height = 96 * 11.69;                
+                pageWidth = 96 * 8.27;
+                pageHeight = 96 * 11.69;                
             }
-            doc.DataContext = data;
+            page.Width = pageWidth;
+            page.Height = pageHeight;
+            page.DataContext = data;
+            
+            FixedPage screenShoPage = (FixedPage)Application.LoadComponent(new Uri("Views/ExaminationScreenShotDocumen.xaml", UriKind.RelativeOrAbsolute));
             //加载图片到文档中
             if (data.GetType() == typeof(ShortFormReport))
             {
                 var shortFormReport = data as ShortFormReport;
                 if (shortFormReport != null)
                 {
-                     
-                    var topImage = doc.FindName("imgTitleLog") as Image;
-                    if (topImage != null)
-                    {
-                        if (!App.reportSettingModel.DefaultLogo)
-                        {
-                            topImage.Source = ImageTools.GetBitmapImage(AppDomain.CurrentDomain.BaseDirectory + "logo.png");
-                        }                        
-                    }
-                    var footTxt = doc.FindName("footTxt") as TextBlock;
-                    if (footTxt != null)
-                    {
-                        footTxt.Text = App.reportSettingModel.CompanyAddress;
-                    }
-                    
-                    var signImage = doc.FindName("dataSignImg") as Image;
-                    if (signImage != null && shortFormReport.DataSignImg!=null)
-                    {
-                        signImage.Source = ImageTools.GetBitmapImage(shortFormReport.DataSignImg);
-                    }
-                    var screenShotImg = doc.FindName("dataScreenShotImg") as Image;
+                    var screenShotImg = screenShoPage.FindName("dataScreenShotImg") as Image;
                     if (screenShotImg != null && shortFormReport.DataScreenShotImg != null)
                     {
-                        screenShotImg.Source = ImageTools.GetBitmapImage(shortFormReport.DataScreenShotImg);
-                    }
-                    if (!App.reportSettingModel.ShowTechSignature)
-                    {
-                        var techSignPanel = doc.FindName("techSignPanel") as Panel;
-                        if (techSignPanel != null)
-                        {
-                            techSignPanel.Visibility = Visibility.Collapsed;
-                        }
-                    }
-                    if (!App.reportSettingModel.ShowDoctorSignature)
-                    {
-                        var doctorSignPanel = doc.FindName("doctorSignPanel") as Panel;
-                        if (doctorSignPanel != null)
-                        {
-                            doctorSignPanel.Visibility = Visibility.Collapsed;
-                        }
-                        var doctorSignGrid = doc.FindName("doctorSignGrid") as Panel;
-                        if (doctorSignGrid != null)
-                        {
-                            doctorSignGrid.Visibility = Visibility.Collapsed;
-                        }
+                        BitmapImage image = ImageTools.GetBitmapImage(shortFormReport.DataScreenShotImg);
+                        image.Rotation = Rotation.Rotate90;                        
+                        screenShotImg.Source = image;                        
                     }
 
                 }
-            }            
-            return doc;
+            }
+
+            //创建一个文档
+            FixedDocument fixedDoc = new FixedDocument();             
+            fixedDoc.DocumentPaginator.PageSize = new Size(pageWidth, pageHeight);
+            PageContent pageContent = new PageContent(); 
+             ((IAddChild)pageContent).AddChild(page);
+            PageContent screenPageContent = new PageContent();
+            ((IAddChild)screenPageContent).AddChild(screenShoPage);
+            fixedDoc.Pages.Add(pageContent);//将对象到当前文档中
+            fixedDoc.Pages.Add(screenPageContent);
+
+
+
+
+            return fixedDoc;
         }
         /// <summary>
         /// 使用FlowDocument模板并加载渲染数据
@@ -237,7 +218,8 @@ namespace MEIKReport
             XpsDocumentWriter writer = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
             if (this.isFixedPage)
             {
-                writer.Write((FixedPage)m_doc);
+                //writer.Write((FixedPage)m_doc);
+                writer.Write((FixedDocument)m_doc);
 
             }
             else

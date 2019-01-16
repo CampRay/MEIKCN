@@ -747,13 +747,14 @@ namespace MEIKReport.Views
             {
                 File.Delete(xpsFile);
             }
-            
-            FixedPage page = (FixedPage)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
-            
+
+            //FixedPage page = (FixedPage)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
+            FixedDocument document = (FixedDocument)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
+
             XpsDocument xpsDocument = new XpsDocument(xpsFile, FileAccess.ReadWrite);
             //将flow document写入基于内存的xps document中去
             XpsDocumentWriter writer = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
-            writer.Write(page);
+            writer.Write(document);
             xpsDocument.Close();
             if (File.Exists(pdfFile))
             {

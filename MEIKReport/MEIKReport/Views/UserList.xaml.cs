@@ -203,7 +203,7 @@ namespace MEIKReport
             {
                 this.Close();
             }
-            updateVersion();            
+            updateVersion();
         }
 
         private bool validateLicense()
@@ -232,6 +232,12 @@ namespace MEIKReport
                         }
                         string info = (string)jsonObj["info"];
                         MessageBox.Show(this, App.Current.FindResource(info).ToString());
+                        LicensePage licensePage = new LicensePage();
+                        var dialogRes = licensePage.ShowDialog();
+                        if (!dialogRes.HasValue || !dialogRes.Value)
+                        {
+                            this.Close();
+                        }
                     }
                     catch { }
                     return false;
@@ -4003,36 +4009,36 @@ namespace MEIKReport
                             MessageBox.Show(this, App.Current.FindResource("Message_76").ToString() + exe.Message);
                         }
 
-                        if (shortFormReportModel.DataSignImg != null)
-                        {
-                            this.dataSignImg.Source = ImageTools.GetBitmapImage(shortFormReportModel.DataSignImg);
-                        }
-                        else
-                        {
-                            this.dataSignImg.Source = null;
-                        }
-                        if (shortFormReportModel.DataScreenShotImg != null)
-                        {
-                            this.screenImg.Source = ImageTools.GetBitmapImage(shortFormReportModel.DataScreenShotImg);
-                        }
-                        else
-                        {
-                            this.screenImg.Source = null;
-                        }
+                        //if (shortFormReportModel.DataSignImg != null)
+                        //{
+                        //    this.dataSignImg.Source = ImageTools.GetBitmapImage(shortFormReportModel.DataSignImg);
+                        //}
+                        //else
+                        //{
+                        //    this.dataSignImg.Source = null;
+                        //}
+                        //if (shortFormReportModel.DataScreenShotImg != null)
+                        //{
+                        //    this.screenImg.Source = ImageTools.GetBitmapImage(shortFormReportModel.DataScreenShotImg);
+                        //}
+                        //else
+                        //{
+                        //    this.screenImg.Source = null;
+                        //}
 
                     }
                     else
                     {
                         shortFormReportModel.DataUserCode = person.Code;
-                        if (App.reportSettingModel.UseDefaultSignature)
-                        {
-                            string imgFile = AppDomain.CurrentDomain.BaseDirectory + "/Signature/temp.jpg";
-                            if (File.Exists(imgFile))
-                            {
-                                this.dataSignImg.Source = ImageTools.GetBitmapImage(imgFile);
-                            }
-                        }                        
-                        this.screenImg.Source = null;
+                        //if (App.reportSettingModel.UseDefaultSignature)
+                        //{
+                        //    string imgFile = AppDomain.CurrentDomain.BaseDirectory + "/Signature/temp.jpg";
+                        //    if (File.Exists(imgFile))
+                        //    {
+                        //        this.dataSignImg.Source = ImageTools.GetBitmapImage(imgFile);
+                        //    }
+                        //}                        
+                        //this.screenImg.Source = null;
                     }
                     if ("en-US".Equals(App.local))
                     {
@@ -4053,6 +4059,7 @@ namespace MEIKReport
                     shortFormReportModel.DataScreenLocation = person.ScreenVenue;
                     this.reportDataGrid.DataContext = shortFormReportModel;
                     //以下是添加处理操作员和医生的名字的选择项                    
+                    //以下是添加处理操作员和医生的名字的选择项                    
                     User doctorUser = new User();
                     if (!string.IsNullOrEmpty(shortFormReportModel.DataDoctor))
                     {
@@ -4065,18 +4072,40 @@ namespace MEIKReport
                         {
                             doctorUser.Name = person.DoctorName;
                             doctorUser.License = person.DoctorLicense;
-                            shortFormReportModel.DataDoctor =person.DoctorName;
+                            shortFormReportModel.DataDoctor = person.DoctorName;
                             shortFormReportModel.DataDoctorLicense = person.DoctorLicense;
                         }
                     }
-                                                            
+
+                    this.dataDoctor.ItemsSource = App.reportSettingModel.DoctorNames;
+                    if (!string.IsNullOrEmpty(doctorUser.Name))
+                    {
+                        for (int i = 0; i < App.reportSettingModel.DoctorNames.Count; i++)
+                        {
+                            var item = App.reportSettingModel.DoctorNames[i];
+                            if (doctorUser.Name.Equals(item.Name) && (string.IsNullOrEmpty(doctorUser.License) == string.IsNullOrEmpty(item.License) || doctorUser.License == item.License))
+                            {
+                                this.dataDoctor.SelectedIndex = i;
+                                break;
+                            }
+                        }
+                        //如果没有找到匹配的用户
+                        if (this.dataDoctor.SelectedIndex == -1)
+                        {
+                            tempDoctorNames.Add(doctorUser);
+                            this.dataDoctor.ItemsSource = tempDoctorNames;
+                            this.dataDoctor.SelectedIndex = tempDoctorNames.Count - 1;
+
+                        }
+                    }
+
                     if (!string.IsNullOrEmpty(person.TechName))
                     {
                         shortFormReportModel.DataMeikTech = person.TechName;
                         shortFormReportModel.DataTechLicense = person.TechLicense;
-                    }
-                    
-                    
+                    }                    
+
+
                 }
             }
             catch (Exception ex)
@@ -4090,9 +4119,11 @@ namespace MEIKReport
             try
             {
                 LoadDataModel();
-                var reportModel = CloneReportModel();                
+                var reportModel = CloneReportModel();
                 //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ExaminationReportFlow.xaml", false, reportModel);
-                PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/SummaryReportImageDocument.xaml", true, reportModel);                
+                //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/SummaryReportImageDocument.xaml", true, reportModel);                
+                //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ExaminationReportFlow.xaml", false, reportModel);
+                PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ExaminationReportDocument.xaml", true, reportModel);
                 previewWnd.Owner = this;
                 previewWnd.ShowInTaskbar = false;
                 previewWnd.ShowDialog();
@@ -4135,12 +4166,428 @@ namespace MEIKReport
                 MessageBox.Show(this, "System Exception: " + ex.Message);
             }
         }
-        
-        private void save_Click(object sender, RoutedEventArgs e)
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+            var person = this.CodeListBox.SelectedItem as Person; 
+            //判断是否已经从MEIK生成的DOC文档中导入检查数据，如果之前没有，则查找是否已在本地生成DOC文档，导入数据            
+            string docFile = FindMEIKXmlReport(person.ArchiveFolder);
+            if (!string.IsNullOrEmpty(docFile) && File.Exists(docFile))
+            {
+                //ShortFormReport shortFormReport = WordTools.ReadWordFile(docFile);
+                ShortFormReport shortFormReport = XmlTools.ReadXmlFile(docFile);
+                if (shortFormReport != null)
+                {
+                    try
+                    {
+                        /**因为ShortFormReport的属性没有添加依赖变更事件，所以这里为shortFormReportModel赋值不会影响页面显示效果。
+                         * 不过即使为ShortFormReport的属性添加上依赖变更事件，但由于之前用户可能已经序列化过一些报表数据，
+                         * 如果改变ShortFormReport对象的继承定义，会导致反序列化失败，所以只能暂时不处理，只在这里强制修改页面元素
+                         * **/
+                        shortFormReportModel.DataMenstrualCycle = shortFormReport.DataMenstrualCycle;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataMenstrualCycle))
+                        {
+                            this.dataMenstrualCycle.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataMenstrualCycle);
+                        }
+                        shortFormReportModel.DataHormones = shortFormReport.DataHormones;
+                        this.dataHormones.Text = shortFormReportModel.DataHormones;
+                        shortFormReportModel.DataSkinAffections = shortFormReport.DataSkinAffections;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataSkinAffections))
+                        {
+                            this.dataSkinAffections.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataSkinAffections);
+                        }
+                        shortFormReportModel.DataLeftChangesOfElectricalConductivity = shortFormReport.DataLeftChangesOfElectricalConductivity;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftChangesOfElectricalConductivity))
+                        {
+                            this.dataLeftChangesOfElectricalConductivity.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftChangesOfElectricalConductivity);
+                        }
+                        shortFormReportModel.DataRightChangesOfElectricalConductivity = shortFormReport.DataRightChangesOfElectricalConductivity;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightChangesOfElectricalConductivity))
+                        {
+                            this.dataRightChangesOfElectricalConductivity.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightChangesOfElectricalConductivity);
+                        }
+
+                        shortFormReportModel.DataLeftMammaryStruct = shortFormReport.DataLeftMammaryStruct;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftMammaryStruct))
+                        {
+                            this.dataLeftMammaryStruct.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftMammaryStruct);
+                        }
+                        shortFormReportModel.DataRightMammaryStruct = shortFormReport.DataRightMammaryStruct;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightMammaryStruct))
+                        {
+                            this.dataRightMammaryStruct.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightMammaryStruct);
+                        }
+                        shortFormReportModel.DataLeftLactiferousSinusZone = shortFormReport.DataLeftLactiferousSinusZone;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftLactiferousSinusZone))
+                        {
+                            this.dataLeftLactiferousSinusZone.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftLactiferousSinusZone);
+                        }
+                        shortFormReportModel.DataRightLactiferousSinusZone = shortFormReport.DataRightLactiferousSinusZone;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightLactiferousSinusZone))
+                        {
+                            this.dataRightLactiferousSinusZone.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightLactiferousSinusZone);
+                        }
+                        shortFormReportModel.DataLeftMammaryContour = shortFormReport.DataLeftMammaryContour;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftMammaryContour))
+                        {
+                            this.dataLeftMammaryContour.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftMammaryContour);
+                        }
+                        shortFormReportModel.DataRightMammaryContour = shortFormReport.DataRightMammaryContour;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightMammaryContour))
+                        {
+                            this.dataRightMammaryContour.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightMammaryContour);
+                        }
+
+                        shortFormReportModel.DataLeftNumber = shortFormReport.DataLeftNumber;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftNumber))
+                        {
+                            this.dataLeftNumber.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftNumber);
+                        }
+                        shortFormReportModel.DataRightNumber = shortFormReport.DataRightNumber;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightNumber))
+                        {
+                            this.dataRightNumber.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightNumber);
+                        }
+
+                        shortFormReportModel.DataLeftSegment = shortFormReport.DataLeftSegment;
+                        this.dataLeftSegment.Text = shortFormReportModel.DataLeftSegment;
+                        shortFormReportModel.DataRightSegment = shortFormReport.DataRightSegment;
+                        this.dataRightSegment.Text = shortFormReportModel.DataRightSegment;
+                        shortFormReportModel.DataLeftSize = shortFormReport.DataLeftSize;
+                        this.dataLeftSize.Text = shortFormReportModel.DataLeftSize;
+                        shortFormReportModel.DataRightSize = shortFormReport.DataRightSize;
+                        this.dataRightSize.Text = shortFormReportModel.DataRightSize;
+
+                        shortFormReportModel.DataLeftShape = shortFormReport.DataLeftShape;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftShape))
+                        {
+                            this.dataLeftShape.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftShape);
+                        }
+                        shortFormReportModel.DataRightShape = shortFormReport.DataRightShape;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightShape))
+                        {
+                            this.dataRightShape.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightShape);
+                        }
+
+                        shortFormReportModel.DataLeftContourAroundFocus = shortFormReport.DataLeftContourAroundFocus;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftContourAroundFocus))
+                        {
+                            this.dataLeftContourAroundFocus.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftContourAroundFocus);
+                        }
+                        shortFormReportModel.DataRightContourAroundFocus = shortFormReport.DataRightContourAroundFocus;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightContourAroundFocus))
+                        {
+                            this.dataRightContourAroundFocus.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightContourAroundFocus);
+                        }
+                        shortFormReportModel.DataLeftInternalElectricalStructure = shortFormReport.DataLeftInternalElectricalStructure;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftInternalElectricalStructure))
+                        {
+                            this.dataLeftInternalElectricalStructure.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftInternalElectricalStructure);
+                        }
+                        shortFormReportModel.DataRightInternalElectricalStructure = shortFormReport.DataRightInternalElectricalStructure;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightInternalElectricalStructure))
+                        {
+                            this.dataRightInternalElectricalStructure.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightInternalElectricalStructure);
+                        }
+                        shortFormReportModel.DataLeftSurroundingTissues = shortFormReport.DataLeftSurroundingTissues;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftSurroundingTissues))
+                        {
+                            this.dataLeftSurroundingTissues.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftSurroundingTissues);
+                        }
+                        shortFormReportModel.DataRightSurroundingTissues = shortFormReport.DataRightSurroundingTissues;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightSurroundingTissues))
+                        {
+                            this.dataRightSurroundingTissues.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightSurroundingTissues);
+                        }
+
+                        shortFormReportModel.DataLeftMeanElectricalConductivity1 = shortFormReport.DataLeftMeanElectricalConductivity1;
+                        this.dataLeftMeanElectricalConductivity1.Text = shortFormReportModel.DataLeftMeanElectricalConductivity1;
+                        shortFormReportModel.DataRightMeanElectricalConductivity1 = shortFormReport.DataRightMeanElectricalConductivity1;
+                        this.dataRightMeanElectricalConductivity1.Text = shortFormReportModel.DataRightMeanElectricalConductivity1;
+                        shortFormReportModel.DataLeftMeanElectricalConductivity2 = shortFormReport.DataLeftMeanElectricalConductivity2;
+                        this.dataLeftMeanElectricalConductivity2.Text = shortFormReportModel.DataLeftMeanElectricalConductivity2;
+                        shortFormReportModel.DataRightMeanElectricalConductivity2 = shortFormReport.DataRightMeanElectricalConductivity2;
+                        this.dataRightMeanElectricalConductivity2.Text = shortFormReportModel.DataRightMeanElectricalConductivity2;
+                        shortFormReportModel.DataMeanElectricalConductivity3 = shortFormReport.DataMeanElectricalConductivity3;
+                        
+                        shortFormReportModel.DataLeftMeanElectricalConductivity3 = shortFormReport.DataLeftMeanElectricalConductivity3;
+                        this.dataLeftMeanElectricalConductivity3.Text = shortFormReportModel.DataLeftMeanElectricalConductivity3;
+                        shortFormReportModel.DataRightMeanElectricalConductivity3 = shortFormReport.DataRightMeanElectricalConductivity3;
+                        this.dataRightMeanElectricalConductivity3.Text = shortFormReportModel.DataRightMeanElectricalConductivity3;
+                        shortFormReportModel.DataLeftComparativeElectricalConductivity1 = shortFormReport.DataLeftComparativeElectricalConductivity1;
+                        this.dataLeftComparativeElectricalConductivity1.Text = shortFormReportModel.DataLeftComparativeElectricalConductivity1;
+                        shortFormReportModel.DataLeftComparativeElectricalConductivity2 = shortFormReport.DataLeftComparativeElectricalConductivity2;
+                        this.dataLeftComparativeElectricalConductivity2.Text = shortFormReportModel.DataLeftComparativeElectricalConductivity2;
+                        shortFormReportModel.DataLeftComparativeElectricalConductivity3 = shortFormReport.DataLeftComparativeElectricalConductivity3;
+                        this.dataLeftComparativeElectricalConductivity3.Text = shortFormReportModel.DataLeftComparativeElectricalConductivity3;
+
+                        shortFormReportModel.DataComparativeElectricalConductivity3 = shortFormReportModel.DataComparativeElectricalConductivity3;
+                        
+
+                        shortFormReportModel.DataDivergenceBetweenHistograms3 = shortFormReportModel.DataDivergenceBetweenHistograms3;
+                        
+
+                        shortFormReportModel.DataLeftDivergenceBetweenHistograms1 = shortFormReport.DataLeftDivergenceBetweenHistograms1;
+                        this.dataLeftDivergenceBetweenHistograms1.Text = shortFormReportModel.DataLeftDivergenceBetweenHistograms1;
+                        shortFormReportModel.DataLeftDivergenceBetweenHistograms2 = shortFormReport.DataLeftDivergenceBetweenHistograms2;
+                        this.dataLeftDivergenceBetweenHistograms2.Text = shortFormReportModel.DataLeftDivergenceBetweenHistograms2;
+                        shortFormReportModel.DataLeftDivergenceBetweenHistograms3 = shortFormReport.DataLeftDivergenceBetweenHistograms3;
+                        this.dataLeftDivergenceBetweenHistograms3.Text = shortFormReportModel.DataLeftDivergenceBetweenHistograms3;
+
+                        shortFormReportModel.DataLeftPhaseElectricalConductivity = shortFormReport.DataLeftPhaseElectricalConductivity;
+                        this.dataLeftPhaseElectricalConductivity.Text = shortFormReportModel.DataLeftPhaseElectricalConductivity;
+                        shortFormReportModel.DataRightPhaseElectricalConductivity = shortFormReport.DataRightPhaseElectricalConductivity;
+                        this.dataRightPhaseElectricalConductivity.Text = shortFormReportModel.DataRightPhaseElectricalConductivity;
+                        shortFormReportModel.DataAgeElectricalConductivityReference = shortFormReport.DataAgeElectricalConductivityReference;
+                        this.dataAgeElectricalConductivityReference.Text = shortFormReportModel.DataAgeElectricalConductivityReference;
+                        shortFormReportModel.DataLeftAgeElectricalConductivity = shortFormReport.DataLeftAgeElectricalConductivity;
+                        this.dataLeftAgeElectricalConductivity.Text = shortFormReportModel.DataLeftAgeElectricalConductivity;
+                        shortFormReportModel.DataRightAgeElectricalConductivity = shortFormReport.DataRightAgeElectricalConductivity;
+                        this.dataRightAgeElectricalConductivity.Text = shortFormReportModel.DataRightAgeElectricalConductivity;
+
+                        shortFormReportModel.DataExamConclusion = shortFormReport.DataExamConclusion;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataExamConclusion))
+                        {
+                            this.dataExamConclusion.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataExamConclusion);
+                        }
+                        shortFormReportModel.DataLeftMammaryGland = shortFormReport.DataLeftMammaryGland;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftMammaryGland))
+                        {
+                            this.dataLeftMammaryGland.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftMammaryGland);
+                        }
+                        shortFormReportModel.DataLeftAgeRelated = shortFormReport.DataLeftAgeRelated;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftAgeRelated))
+                        {
+                            this.dataLeftAgeRelated.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataLeftAgeRelated);
+                        }
+                        shortFormReportModel.DataRightMammaryGlandResult = shortFormReport.DataRightMammaryGlandResult;
+                        this.dataRightMammaryGlandResult.Text = shortFormReportModel.DataRightMammaryGlandResult;
+                        shortFormReportModel.DataRightBiRadsCategory = shortFormReport.DataRightBiRadsCategory;
+                        this.dataRightBiRadsCategory.Text = shortFormReportModel.DataRightBiRadsCategory;
+
+
+
+                        shortFormReportModel.DataRightMammaryGland = shortFormReport.DataRightMammaryGland;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightMammaryGland))
+                        {
+                            this.dataRightMammaryGland.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightMammaryGland);
+                        }
+                        shortFormReportModel.DataRightAgeRelated = shortFormReport.DataRightAgeRelated;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataRightAgeRelated))
+                        {
+                            this.dataRightAgeRelated.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataRightAgeRelated);
+                        }
+
+                        shortFormReportModel.DataLeftMammaryGlandResult = shortFormReport.DataLeftMammaryGlandResult;
+                        this.dataLeftMammaryGlandResult.Text = shortFormReportModel.DataLeftMammaryGlandResult;
+                        shortFormReportModel.DataLeftBiRadsCategory = shortFormReport.DataLeftBiRadsCategory;
+                        this.dataLeftBiRadsCategory.Text = shortFormReportModel.DataLeftBiRadsCategory;
+
+
+                        shortFormReportModel.DataTotalPts = shortFormReport.DataTotalPts;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataTotalPts))
+                        {
+                            this.dataTotalPts.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataTotalPts);
+                        }
+
+                        this.dataBiRads.Text = shortFormReport.DataPoint + App.Current.FindResource("ReportContext_143").ToString();
+                        shortFormReportModel.DataBiRadsCategory = shortFormReport.DataBiRadsCategory;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataBiRadsCategory))
+                        {
+                            this.dataBiRadsCategory.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataBiRadsCategory);
+                        }
+                        shortFormReportModel.DataConclusion = shortFormReport.DataConclusion;
+                        this.dataConclusion.Text = shortFormReportModel.DataConclusion;
+
+                        shortFormReportModel.DataFurtherExam = shortFormReport.DataFurtherExam;
+                        if (!string.IsNullOrEmpty(shortFormReportModel.DataFurtherExam))
+                        {
+                            this.dataFurtherExam.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataFurtherExam);
+                        }
+                        shortFormReportModel.DataRecommendation = shortFormReport.DataRecommendation;
+                        this.dataRecommendation.Text = shortFormReportModel.DataRecommendation;
+
+                        MessageBox.Show(this, App.Current.FindResource("Message_27").ToString());
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(this, string.Format(App.Current.FindResource("Message_33").ToString(), docFile));
+                }
+            }
+            else
+            {
+                MessageBox.Show(this, App.Current.FindResource("Message_26").ToString());
+            }
+        }
+
+        private void btnAnalysis_Click(object sender, RoutedEventArgs e)
+        {
+            generatePoints();
+        }
+
+        /// <summary>
+        /// 点击Save按钮保存报告数据
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void save_Click(object sender, RoutedEventArgs e)
+        {            
             SaveReport(null);
         }
 
+        private void generatePoints()
+        {
+            //計算診斷分數
+            int leftBreast1 = 0;
+            //int leftBreast2 = 0;
+            //int leftBreast3 = 0;
+            int rightBreast1 = 0;
+            //int rightBreast2 = 0;
+            //int rightBreast3 = 0;            
+            int divergenceBetweenHistograms = 0;
+            if (!string.IsNullOrEmpty(dataLeftDivergenceBetweenHistograms1.Text))
+            {
+                double val = Convert.ToDouble(dataLeftDivergenceBetweenHistograms1.Text.Replace("%",""));
+                divergenceBetweenHistograms = val < 20 ? 0 : val < 30 ? 1 : val < 40 ? 2 : 3;
+            }
+            else if (!string.IsNullOrEmpty(dataLeftDivergenceBetweenHistograms2.Text))
+            {
+                double val = Convert.ToDouble(dataLeftDivergenceBetweenHistograms2.Text.Replace("%", ""));
+                divergenceBetweenHistograms = val < 20 ? 0 : val < 30 ? 1 : val < 40 ? 2 : 3;
+            }
+            else if (!string.IsNullOrEmpty(dataLeftDivergenceBetweenHistograms3.Text))
+            {
+                double val = Convert.ToDouble(dataLeftDivergenceBetweenHistograms3.Text.Replace("%", ""));
+                divergenceBetweenHistograms = val < 20 ? 0 : val < 30 ? 1 : val < 40 ? 2 : 3;
+            }
+
+            List<int> list = new List<int>();
+            
+            if (dataLeftChangesOfElectricalConductivity.SelectedIndex > 0)
+            {
+                leftBreast1 += dataLeftShape.SelectedIndex > 2 ? 2 : (dataLeftShape.SelectedIndex > 0 ? 1 : 0);
+                leftBreast1 += dataLeftContourAroundFocus.SelectedIndex > 2 ? 2 : (dataLeftContourAroundFocus.SelectedIndex > 1 ? 1 : 0);
+                leftBreast1 += dataLeftSurroundingTissues.SelectedIndex > 1 ? (dataLeftSurroundingTissues.SelectedIndex > 3 ? 2 : 1) : 0;
+                leftBreast1 += dataLeftInternalElectricalStructure.SelectedIndex > 1 ? dataLeftInternalElectricalStructure.SelectedIndex - 1 : 0;
+                leftBreast1 += divergenceBetweenHistograms;
+                list.Add(leftBreast1);
+            }
+            if (dataRightChangesOfElectricalConductivity.SelectedIndex > 0)
+            {
+                rightBreast1 += dataRightShape.SelectedIndex > 2 ? 2 : (dataRightShape.SelectedIndex > 0 ? 1 : 0);
+                rightBreast1 += dataRightContourAroundFocus.SelectedIndex > 2 ? 2 : (dataRightContourAroundFocus.SelectedIndex > 1 ? 1 : 0);
+                rightBreast1 += dataRightSurroundingTissues.SelectedIndex > 1 ? (dataRightSurroundingTissues.SelectedIndex > 3 ? 2 : 1) : 0;
+                rightBreast1 += dataRightInternalElectricalStructure.SelectedIndex > 1 ? dataRightInternalElectricalStructure.SelectedIndex - 1 : 0;
+                rightBreast1 += divergenceBetweenHistograms;
+                list.Add(rightBreast1);
+            }
+            if (list.Count > 0)
+            {
+                list.Sort();
+
+                int maxPoints = list[list.Count-1];
+                shortFormReportModel.DataTotalPts = maxPoints > 8 ? "8" : maxPoints == 0 ? "1" : maxPoints.ToString();
+                this.dataTotalPts.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataTotalPts);
+                shortFormReportModel.DataBiRadsCategory = maxPoints < 2 ? "2" : maxPoints < 4 ? "3" : maxPoints < 5 ? "4" : maxPoints < 8 ? "5" : "6";
+                this.dataBiRadsCategory.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataBiRadsCategory);
+                shortFormReportModel.DataPoint = shortFormReportModel.DataBiRadsCategory;
+            }
+            else
+            {
+                shortFormReportModel.DataTotalPts = "0";
+                this.dataTotalPts.SelectedIndex = 0;
+                shortFormReportModel.DataBiRadsCategory = "1";
+                this.dataBiRadsCategory.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataBiRadsCategory);
+                shortFormReportModel.DataPoint = "0";
+            }
+            this.dataBiRads.Text = shortFormReportModel.DataPoint + App.Current.FindResource("ReportContext_143").ToString();
+
+
+            //if (!string.IsNullOrEmpty(dataLeftBreastH.Text) && !string.IsNullOrEmpty(dataRightBreastH.Text))
+            //{                
+
+            //if (dataLeftSe.SelectedIndex > 0)
+            //{
+            //    leftBreast1 += dataLeftShape.SelectedIndex > 2 ? 2 : (dataLeftShape.SelectedIndex > 0 ? 1 : 0);
+            //    leftBreast1 += dataLeftContourAroundFocus.SelectedIndex > 2 ? 2 : (dataLeftContourAroundFocus.SelectedIndex > 1 ? 1 : 0);
+            //    leftBreast1 += dataLeftSurroundingTissues.SelectedIndex > 1 ? (dataLeftSurroundingTissues.SelectedIndex > 3 ? 2 : 1) : 0;
+            //    leftBreast1 += dataLeftInternalElectricalStructure.SelectedIndex > 1 ? dataLeftInternalElectricalStructure.SelectedIndex - 1 : 0;
+            //    leftBreast1 += divergenceBetweenHistograms;                      
+            //}
+            //if (dataRightLocation.SelectedIndex > 0)
+            //{
+            //    rightBreast1 += dataRightShape.SelectedIndex > 2 ? 2 : (dataRightShape.SelectedIndex > 0 ? 1 : 0);
+            //    rightBreast1 += dataRightContourAroundFocus.SelectedIndex > 2 ? 2 : (dataRightContourAroundFocus.SelectedIndex > 1 ? 1 : 0);                
+            //    rightBreast1 += dataRightSurroundingTissues.SelectedIndex > 1 ? (dataRightSurroundingTissues.SelectedIndex > 3 ? 2 : 1) : 0;
+            //    rightBreast1 += dataRightInternalElectricalStructure.SelectedIndex > 1 ? dataRightInternalElectricalStructure.SelectedIndex - 1 : 0;
+            //    rightBreast1 += divergenceBetweenHistograms;                
+            //}
+
+            //if (dataLeftLocation2.SelectedIndex > 0)
+            //{
+            //    leftBreast2 += dataLeftShape2.SelectedIndex > 2 ? 2 : (dataLeftShape2.SelectedIndex > 0 ? 1 : 0);
+            //    leftBreast2 += dataLeftContourAroundFocus2.SelectedIndex > 2 ? 2 : (dataLeftContourAroundFocus2.SelectedIndex > 1 ? 1 : 0);
+            //    leftBreast2 += dataLeftInternalElectricalStructure2.SelectedIndex > 1 ? dataLeftInternalElectricalStructure2.SelectedIndex - 1 : 0;
+            //    leftBreast2 += dataLeftSurroundingTissues2.SelectedIndex > 1 ? (dataLeftSurroundingTissues2.SelectedIndex > 3 ? 2 : 1) : 0;
+            //    leftBreast2 += divergenceBetweenHistograms;                
+            //}
+            //if (dataRightLocation2.SelectedIndex > 0)
+            //{
+            //    rightBreast2 += dataRightShape2.SelectedIndex > 2 ? 2 : (dataRightShape2.SelectedIndex > 0 ? 1 : 0);
+            //    rightBreast2 += dataRightContourAroundFocus2.SelectedIndex > 2 ? 2 : (dataRightContourAroundFocus2.SelectedIndex > 1 ? 1 : 0);
+            //    rightBreast2 += dataRightInternalElectricalStructure2.SelectedIndex > 1 ? dataRightInternalElectricalStructure2.SelectedIndex - 1 : 0;
+            //    rightBreast2 += dataRightSurroundingTissues2.SelectedIndex > 1 ? (dataRightSurroundingTissues2.SelectedIndex > 3 ? 2 : 1) : 0;
+            //    rightBreast2 += divergenceBetweenHistograms;                
+            //}
+
+            //if (dataLeftLocation3.SelectedIndex > 0)
+            //{
+            //    leftBreast3 += dataLeftShape3.SelectedIndex > 2 ? 2 : (dataLeftShape3.SelectedIndex > 0 ? 1 : 0);
+            //    leftBreast3 += dataLeftContourAroundFocus3.SelectedIndex > 2 ? 2 : (dataLeftContourAroundFocus3.SelectedIndex > 1 ? 1 : 0);
+            //    leftBreast3 += dataLeftInternalElectricalStructure3.SelectedIndex > 1 ? dataLeftInternalElectricalStructure3.SelectedIndex - 1 : 0;
+            //    leftBreast3 += dataLeftSurroundingTissues3.SelectedIndex > 1 ? (dataLeftSurroundingTissues3.SelectedIndex > 3 ? 2 : 1) : 0;
+            //    leftBreast3 += divergenceBetweenHistograms;                
+            //}
+            //if (dataRightLocation3.SelectedIndex > 0)
+            //{
+            //    rightBreast3 += dataRightShape3.SelectedIndex > 2 ? 2 : (dataRightShape3.SelectedIndex > 0 ? 1 : 0);
+            //    rightBreast3 += dataRightContourAroundFocus3.SelectedIndex > 2 ? 2 : (dataRightContourAroundFocus3.SelectedIndex > 1 ? 1 : 0);
+            //    rightBreast3 += dataRightInternalElectricalStructure3.SelectedIndex > 1 ? dataRightInternalElectricalStructure3.SelectedIndex - 1 : 0;
+            //    rightBreast3 += dataRightSurroundingTissues3.SelectedIndex > 1 ? (dataRightSurroundingTissues3.SelectedIndex > 3 ? 2 : 1) : 0;
+            //    rightBreast3 += divergenceBetweenHistograms;                
+            //}
+
+            //    List<int> list = new List<int>();
+            //    list.Add(leftBreast1);
+            //    //list.Add(leftBreast2);
+            //    //list.Add(leftBreast3);
+            //    list.Add(rightBreast1);
+            //    //list.Add(rightBreast2);
+            //    //list.Add(rightBreast3);
+            //    list.Sort();
+
+            //    int maxPoints = list[5];
+            //    shortFormReportModel.DataTotalPts = maxPoints > 8 ? "8" : maxPoints == 0 ? "1" : maxPoints.ToString();
+            //    this.dataTotalPts.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataTotalPts);
+            //    shortFormReportModel.DataBiRadsCategory = maxPoints < 2 ? "2" : maxPoints < 4 ? "3" : maxPoints < 5 ? "4" : maxPoints < 8 ? "5" : "6";
+            //    this.dataBiRadsCategory.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataBiRadsCategory);
+
+            //}
+            //else
+            //{
+            //    shortFormReportModel.DataTotalPts = "0";
+            //    this.dataTotalPts.SelectedIndex = 0;
+            //    shortFormReportModel.DataBiRadsCategory = "1";
+            //    this.dataBiRadsCategory.SelectedIndex = Convert.ToInt32(shortFormReportModel.DataBiRadsCategory);
+            //}                         
+
+        }
 
         private void btnSignature_Click(object sender, RoutedEventArgs e)
         {
@@ -4187,12 +4634,19 @@ namespace MEIKReport
                 //Clone生成全文本的报表数据对象模型
                 var reportModel = CloneReportModel();
 
+                //string docFile = FindMEIKXmlReport(person.ArchiveFolder);
+                //if (!string.IsNullOrEmpty(docFile) && File.Exists(docFile))
+                //{
+                //    XmlTools.WriteXmlFile(docFile,reportModel);
+                //}
+
                 string folderName = person.ArchiveFolder;
                 string strName = person.SurName + (string.IsNullOrEmpty(person.GivenName) ? "" : "," + person.GivenName) + (string.IsNullOrEmpty(person.OtherName) ? "" : " " + person.OtherName) + ".pdf";
 
                 //生成Summary报告的PDF文件
                 string sfPdfFile = folderName + System.IO.Path.DirectorySeparatorChar + person.Code + " - " + strName;
-                string sfReportTempl = "Views/SummaryReportImageDocument.xaml";
+                //string sfReportTempl = "Views/SummaryReportImageDocument.xaml";
+                string sfReportTempl = "Views/ExaminationReportDocument.xaml";
 
                 ExportPDF(sfReportTempl, sfPdfFile, reportModel);
 
@@ -4216,42 +4670,147 @@ namespace MEIKReport
         /// </summary>
         private void LoadDataModel()
         {
-            var person = this.CodeListBox.SelectedItem as Person; 
-            shortFormReportModel.DataMenstrualCycle = this.dataMenstrualCycle.SelectedIndex.ToString();                                         
-            shortFormReportModel.DataLeftBreastH = this.dataLeftBreastH.Text;
-            shortFormReportModel.DataRightBreastH = this.dataRightBreastH.Text;
-            shortFormReportModel.DataLeftBreastM = this.dataLeftBreastM.Text;
-            shortFormReportModel.DataRightBreastM = this.dataRightBreastM.Text;
-            shortFormReportModel.DataLeftBreastAP = this.dataLeftBreastAP.SelectedIndex.ToString();
-            shortFormReportModel.DataRightBreastAP = this.dataRightBreastAP.SelectedIndex.ToString();
-            shortFormReportModel.DataLeftBreast = this.dataLeftBreastH.Text + ":" + this.dataLeftBreastM.Text + this.dataLeftBreastAP.Text;
-            shortFormReportModel.DataRightBreast = this.dataRightBreastH.Text + ":" + this.dataRightBreastM.Text + this.dataRightBreastAP.Text;
+            var person = this.CodeListBox.SelectedItem as Person;
+            //shortFormReportModel.DataClientNum = this.dataClientNum.Text;
+            //shortFormReportModel.DataUserCode = this.dataUserCode.Text;
+            //shortFormReportModel.DataAge = this.dataAge.Text;            
+            //shortFormReportModel.DataName = this.dataName.Text;
+            //shortFormReportModel.DataScreenDate = this.dataScreenDate.Text;
+            //shortFormReportModel.DataScreenLocation = this.dataScreenLocation.Text;
+            //shortFormReportModel.DataScreenLocation = person.ScreenVenue;
+            //shortFormReportModel.DataAddress = this.dataAddress.Text;
+            //shortFormReportModel.DataAddress = person.Address;
+            //shortFormReportModel.DataGender = this.dataGender.SelectedIndex.ToString();
+            //shortFormReportModel.DataWeight = this.dataWeight.Text;
+            //shortFormReportModel.DataWeightUnit = this.dataWeightUnit.SelectedIndex.ToString();
+            shortFormReportModel.DataHealthCard = this.dataHealthCard.Text;
+            shortFormReportModel.DataMenstrualCycle = this.dataMenstrualCycle.SelectedIndex.ToString();
+            shortFormReportModel.DataHormones = this.dataHormones.Text;
+            shortFormReportModel.DataSkinAffections = this.dataSkinAffections.SelectedIndex.ToString();                       
+            //shortFormReportModel.DataMotherUltra = this.dataMotherUltra.SelectedIndex.ToString();
 
+            //shortFormReportModel.DataLeftBreastH = this.dataLeftBreastH.Text;
+            //shortFormReportModel.DataRightBreastH = this.dataRightBreastH.Text;
+            //shortFormReportModel.DataLeftBreastM = this.dataLeftBreastM.Text;
+            //shortFormReportModel.DataRightBreastM = this.dataRightBreastM.Text;
+            //shortFormReportModel.DataLeftBreastAP = this.dataLeftBreastAP.SelectedIndex.ToString();
+            //shortFormReportModel.DataRightBreastAP = this.dataRightBreastAP.SelectedIndex.ToString();
+            //shortFormReportModel.DataLeftBreast = this.dataLeftBreastH.Text + ":" + this.dataLeftBreastM.Text + this.dataLeftBreastAP.Text;
+            //shortFormReportModel.DataRightBreast = this.dataRightBreastH.Text + ":" + this.dataRightBreastM.Text + this.dataRightBreastAP.Text;
 
-            shortFormReportModel.DataLeftNumber = this.dataLeftNumber.Text;
-            shortFormReportModel.DataRightNumber = this.dataRightNumber.Text;
+            //shortFormReportModel.DataLeftPalpableMass = this.dataLeftPalpableMass.SelectedIndex.ToString();
+            //shortFormReportModel.DataRightPalpableMass = this.dataRightPalpableMass.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftChangesOfElectricalConductivity = this.dataLeftChangesOfElectricalConductivity.SelectedIndex.ToString();
+            shortFormReportModel.DataRightChangesOfElectricalConductivity = this.dataRightChangesOfElectricalConductivity.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftMammaryStruct = this.dataLeftMammaryStruct.SelectedIndex.ToString();
+            shortFormReportModel.DataRightMammaryStruct = this.dataRightMammaryStruct.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftLactiferousSinusZone = this.dataLeftLactiferousSinusZone.SelectedIndex.ToString();
+            shortFormReportModel.DataRightLactiferousSinusZone = this.dataRightLactiferousSinusZone.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftMammaryContour = this.dataLeftMammaryContour.SelectedIndex.ToString();
+            shortFormReportModel.DataRightMammaryContour = this.dataRightMammaryContour.SelectedIndex.ToString();
 
             shortFormReportModel.DataLeftSegment = this.dataLeftSegment.Text;
             shortFormReportModel.DataRightSegment = this.dataRightSegment.Text;
+            shortFormReportModel.DataLeftNumber = this.dataLeftNumber.SelectedIndex.ToString();
+            shortFormReportModel.DataRightNumber = this.dataRightNumber.SelectedIndex.ToString();
             shortFormReportModel.DataLeftSize = this.dataLeftSize.Text;
             shortFormReportModel.DataRightSize = this.dataRightSize.Text;
-            shortFormReportModel.DataLeftShape = this.dataLeftShape.Text;
-            shortFormReportModel.DataRightShape = this.dataRightShape.Text;
-                        
-            shortFormReportModel.DataComments = this.dataComments.Text;
-            shortFormReportModel.DataConclusion = this.dataConclusion.Text;            
+            shortFormReportModel.DataLeftShape = this.dataLeftShape.SelectedIndex.ToString();
+            shortFormReportModel.DataRightShape = this.dataRightShape.SelectedIndex.ToString();
+            //shortFormReportModel.DataLeftLocation = this.dataLeftLocation.Text;
+            //shortFormReportModel.DataRightLocation = this.dataRightLocation.Text;
 
-            var signImg = this.dataSignImg.Source as BitmapImage;
-            if (signImg != null)
+
+            shortFormReportModel.DataLeftContourAroundFocus = this.dataLeftContourAroundFocus.SelectedIndex.ToString();
+            shortFormReportModel.DataRightContourAroundFocus = this.dataRightContourAroundFocus.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftInternalElectricalStructure = this.dataLeftInternalElectricalStructure.SelectedIndex.ToString();
+            shortFormReportModel.DataRightInternalElectricalStructure = this.dataRightInternalElectricalStructure.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftSurroundingTissues = this.dataLeftSurroundingTissues.SelectedIndex.ToString();
+            shortFormReportModel.DataRightSurroundingTissues = this.dataRightSurroundingTissues.SelectedIndex.ToString();
+            
+                        
+            shortFormReportModel.DataRightMeanElectricalConductivity1 = this.dataRightMeanElectricalConductivity1.Text;
+            
+            if (!string.IsNullOrEmpty(shortFormReportModel.DataLeftMeanElectricalConductivity1))
             {
-                var stream = signImg.StreamSource;
-                stream.Position = 0;
-                byte[] buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, buffer.Length);
-                stream.Flush();
-                //stream.Close();
-                shortFormReportModel.DataSignImg = buffer;
+                shortFormReportModel.DataLeftMeanECOfLesion = shortFormReportModel.DataLeftMeanElectricalConductivity1;
             }
+            if (!string.IsNullOrEmpty(shortFormReportModel.DataRightMeanElectricalConductivity1))
+            {
+                shortFormReportModel.DataRightMeanECOfLesion = shortFormReportModel.DataRightMeanElectricalConductivity1;
+            }
+            shortFormReportModel.DataMeanElectricalConductivity3 = this.dataMeanElectricalConductivity3.Text;
+            shortFormReportModel.DataLeftMeanElectricalConductivity2 = this.dataLeftMeanElectricalConductivity2.Text;
+            shortFormReportModel.DataLeftMeanElectricalConductivity3 = this.dataLeftMeanElectricalConductivity3.Text;
+            shortFormReportModel.DataRightMeanElectricalConductivity2 = this.dataRightMeanElectricalConductivity2.Text;
+            shortFormReportModel.DataRightMeanElectricalConductivity3 = this.dataRightMeanElectricalConductivity3.Text;
+
+
+            shortFormReportModel.DataLeftComparativeElectricalConductivity1 = this.dataLeftComparativeElectricalConductivity1.Text;
+            shortFormReportModel.DataLeftComparativeElectricalConductivity2 = this.dataLeftComparativeElectricalConductivity2.Text;
+            shortFormReportModel.DataLeftComparativeElectricalConductivity3 = this.dataLeftComparativeElectricalConductivity3.Text;
+            shortFormReportModel.DataComparativeElectricalConductivity3 = this.dataComparativeElectricalConductivity3.Text;
+
+            shortFormReportModel.DataLeftDivergenceBetweenHistograms1 = this.dataLeftDivergenceBetweenHistograms1.Text;
+            
+            shortFormReportModel.DataLeftDivergenceBetweenHistograms2 = this.dataLeftDivergenceBetweenHistograms2.Text;
+            shortFormReportModel.DataDivergenceBetweenHistograms3 = this.dataDivergenceBetweenHistograms3.Text;
+            shortFormReportModel.DataLeftDivergenceBetweenHistograms3 = this.dataLeftDivergenceBetweenHistograms3.Text;
+
+            //shortFormReportModel.DataPhaseElectricalConductivityReference = this.dataPhaseElectricalConductivityReference.Text;
+            shortFormReportModel.DataLeftPhaseElectricalConductivity = this.dataLeftPhaseElectricalConductivity.Text;
+            shortFormReportModel.DataRightPhaseElectricalConductivity = this.dataRightPhaseElectricalConductivity.Text;
+
+            shortFormReportModel.DataAgeElectricalConductivityReference = this.dataAgeElectricalConductivityReference.Text;
+            shortFormReportModel.DataLeftAgeElectricalConductivity = this.dataLeftAgeElectricalConductivity.Text;
+            shortFormReportModel.DataRightAgeElectricalConductivity = this.dataRightAgeElectricalConductivity.Text;
+            //shortFormReportModel.DataAgeValueOfEC = this.dataAgeValueOfEC.SelectedIndex.ToString();
+
+            shortFormReportModel.DataExamConclusion = this.dataExamConclusion.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftMammaryGland = this.dataLeftMammaryGland.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftAgeRelated = this.dataLeftAgeRelated.SelectedIndex.ToString();
+            //shortFormReportModel.DataLeftMeanECOfLesion = this.dataLeftMeanECOfLesion.Text;
+            //shortFormReportModel.DataLeftFindings = this.dataLeftFindings.SelectedIndex.ToString();
+            shortFormReportModel.DataLeftMammaryGlandResult = this.dataLeftMammaryGlandResult.Text;            
+            shortFormReportModel.DataLeftBiRadsCategory = this.dataLeftBiRadsCategory.Text;
+
+            shortFormReportModel.DataRightMammaryGland = this.dataRightMammaryGland.SelectedIndex.ToString();
+            shortFormReportModel.DataRightAgeRelated = this.dataRightAgeRelated.SelectedIndex.ToString();
+            //shortFormReportModel.DataRightMeanECOfLesion = this.dataRightMeanECOfLesion.Text;
+            //shortFormReportModel.DataRightFindings = this.dataRightFindings.SelectedIndex.ToString();
+            shortFormReportModel.DataRightMammaryGlandResult = this.dataRightMammaryGlandResult.Text;
+            shortFormReportModel.DataRightBiRadsCategory = this.dataRightBiRadsCategory.Text;
+
+
+            shortFormReportModel.DataTotalPts = this.dataTotalPts.SelectedIndex.ToString();
+            //shortFormReportModel.DataPoint = this.dataPoint.SelectedIndex.ToString();
+            //用DataComments保存"5分级 Bi-RADS"这个字段
+            shortFormReportModel.DataComments = this.dataBiRads.Text;
+
+            shortFormReportModel.DataBiRadsCategory = this.dataBiRadsCategory.SelectedIndex.ToString();            
+            //shortFormReportModel.DataComments = this.dataComments.Text;
+            shortFormReportModel.DataConclusion = this.dataConclusion.Text;
+            shortFormReportModel.DataFurtherExam = this.dataFurtherExam.SelectedIndex.ToString();
+            shortFormReportModel.DataRecommendation = this.dataRecommendation.Text;
+            //shortFormReportModel.DataConclusion = this.dataConclusion.Text;            
+            if (this.dataDoctor.SelectedItem != null)
+            {
+                var doctor = this.dataDoctor.SelectedItem as User;
+                shortFormReportModel.DataDoctor = doctor.Name;
+                shortFormReportModel.DataDoctorLicense = doctor.License;
+            }
+
+            //var signImg = this.dataSignImg.Source as BitmapImage;
+            //if (signImg != null)
+            //{
+            //    var stream = signImg.StreamSource;
+            //    stream.Position = 0;
+            //    byte[] buffer = new byte[stream.Length];
+            //    stream.Read(buffer, 0, buffer.Length);
+            //    stream.Flush();
+            //    //stream.Close();
+            //    shortFormReportModel.DataSignImg = buffer;
+            //}
 
             App.reportSettingModel.ShowTechSignature = person.ShowTechSignature;
 
@@ -4264,22 +4823,382 @@ namespace MEIKReport
         {
             ShortFormReport reportModel = shortFormReportModel.Clone();
             reportModel = shortFormReportModel.Clone();
+            //reportModel.DataGender = this.dataGender.Text;
+            //reportModel.DataWeightUnit = this.dataWeightUnit.Text;
             reportModel.DataMenstrualCycle = this.dataMenstrualCycle.Text;
-            
-            reportModel.DataLeftBreastAP = this.dataLeftBreastAP.Text;
-            reportModel.DataRightBreastAP = this.dataRightBreastAP.Text;
-            reportModel.DataLeftBreast = this.dataLeftBreastH.Text + ":" + this.dataLeftBreastM.Text +" "+ this.dataLeftBreastAP.Text;
-            reportModel.DataRightBreast = this.dataLeftBreastH.Text + ":" + this.dataRightBreastM.Text + " " + this.dataRightBreastAP.Text;
-                       
+            reportModel.DataSkinAffections = this.dataSkinAffections.Text;
+            //reportModel.DataPertinentHistory = this.dataPertinentHistory.Text;
+            //reportModel.DataMotherUltra = this.dataMotherUltra.Text;
+            //reportModel.DataLeftPalpableMass = this.dataLeftPalpableMass.Text;
+            //reportModel.DataRightPalpableMass = this.dataRightPalpableMass.Text;
+
+            //reportModel.DataLeftBreastAP = this.dataLeftBreastAP.Text;
+            //reportModel.DataRightBreastAP = this.dataRightBreastAP.Text;
+            //reportModel.DataLeftBreast = this.dataLeftBreastH.Text + ":" + this.dataLeftBreastM.Text +" "+ this.dataLeftBreastAP.Text;
+            //reportModel.DataRightBreast = this.dataLeftBreastH.Text + ":" + this.dataRightBreastM.Text + " " + this.dataRightBreastAP.Text;
+
+            reportModel.DataLeftChangesOfElectricalConductivity = this.dataLeftChangesOfElectricalConductivity.Text;
+            reportModel.DataRightChangesOfElectricalConductivity = this.dataRightChangesOfElectricalConductivity.Text;
+            reportModel.DataLeftMammaryStruct = this.dataLeftMammaryStruct.Text;
+            reportModel.DataRightMammaryStruct = this.dataRightMammaryStruct.Text;
+            reportModel.DataLeftLactiferousSinusZone = this.dataLeftLactiferousSinusZone.Text;
+            reportModel.DataRightLactiferousSinusZone = this.dataRightLactiferousSinusZone.Text;
+            reportModel.DataLeftMammaryContour = this.dataLeftMammaryContour.Text;
+            reportModel.DataRightMammaryContour = this.dataRightMammaryContour.Text;
+            reportModel.DataLeftNumber = this.dataLeftNumber.Text;
+            reportModel.DataRightNumber = this.dataRightNumber.Text;
+
+            reportModel.DataLeftSegment = this.dataLeftSegment.Text;
+            reportModel.DataRightSegment = this.dataLeftSegment.Text;
+            //reportModel.DataLeftLocation = this.dataLeftLocation.Text;
+            //reportModel.DataRightLocation = this.dataRightLocation.Text;
+            //reportModel.DataLeftLocation2 = this.dataLeftLocation2.Text;
+            //reportModel.DataRightLocation2 = this.dataRightLocation2.Text;
+            //reportModel.DataLeftLocation3 = this.dataLeftLocation3.Text;
+            //reportModel.DataRightLocation3 = this.dataRightLocation3.Text;
+
             reportModel.DataLeftSize = string.IsNullOrEmpty(this.dataLeftSize.Text) ? "" : this.dataLeftSize.Text + " mm";
             reportModel.DataRightSize = string.IsNullOrEmpty(this.dataRightSize.Text) ? "" : this.dataRightSize.Text + " mm";
-                        
+            //reportModel.DataLeftSize2 = string.IsNullOrEmpty(this.dataLeftSize2.Text) ? "" : this.dataLeftSize2.Text + " mm";
+            //reportModel.DataRightSize2 = string.IsNullOrEmpty(this.dataRightSize2.Text) ? "" : this.dataRightSize2.Text + " mm";
+            //reportModel.DataLeftSize3 = string.IsNullOrEmpty(this.dataLeftSize3.Text) ? "" : this.dataLeftSize3.Text + " mm";
+            //reportModel.DataRightSize3 = string.IsNullOrEmpty(this.dataRightSize3.Text) ? "":this.dataRightSize3.Text +" mm";
+
+            reportModel.DataLeftShape = this.dataLeftShape.Text;
+            reportModel.DataRightShape = this.dataRightShape.Text;
+            //reportModel.DataLeftShape2 = this.dataLeftShape2.Text;
+            //reportModel.DataRightShape2 = this.dataRightShape2.Text;
+            //reportModel.DataLeftShape3 = this.dataLeftShape3.Text;
+            //reportModel.DataRightShape3 = this.dataRightShape3.Text;
+
+            reportModel.DataLeftContourAroundFocus = this.dataLeftContourAroundFocus.Text;
+            reportModel.DataRightContourAroundFocus = this.dataRightContourAroundFocus.Text;
+            //reportModel.DataLeftContourAroundFocus2 = this.dataLeftContourAroundFocus2.Text;
+            //reportModel.DataRightContourAroundFocus2 = this.dataRightContourAroundFocus2.Text;
+            //reportModel.DataLeftContourAroundFocus3 = this.dataLeftContourAroundFocus3.Text;
+            //reportModel.DataRightContourAroundFocus3 = this.dataRightContourAroundFocus3.Text;
+
+            reportModel.DataLeftInternalElectricalStructure = this.dataLeftInternalElectricalStructure.Text;
+            reportModel.DataRightInternalElectricalStructure = this.dataRightInternalElectricalStructure.Text;
+            //reportModel.DataLeftInternalElectricalStructure2 = this.dataLeftInternalElectricalStructure2.Text;
+            //reportModel.DataRightInternalElectricalStructure2 = this.dataRightInternalElectricalStructure2.Text;
+            //reportModel.DataLeftInternalElectricalStructure3 = this.dataLeftInternalElectricalStructure3.Text;
+            //reportModel.DataRightInternalElectricalStructure3 = this.dataRightInternalElectricalStructure3.Text;
+
+            reportModel.DataLeftSurroundingTissues = this.dataLeftSurroundingTissues.Text;
+            reportModel.DataRightSurroundingTissues = this.dataRightSurroundingTissues.Text;
+            //reportModel.DataLeftSurroundingTissues2 = this.dataLeftSurroundingTissues2.Text;
+            //reportModel.DataRightSurroundingTissues2 = this.dataRightSurroundingTissues2.Text;
+            //reportModel.DataLeftSurroundingTissues3 = this.dataLeftSurroundingTissues3.Text;
+            //reportModel.DataRightSurroundingTissues3 = this.dataRightSurroundingTissues3.Text;
+
+            //reportModel.DataLeftOncomarkerHighlightBenignChanges = this.dataLeftOncomarkerHighlightBenignChanges.Text;
+            //reportModel.DataRightOncomarkerHighlightBenignChanges = this.dataRightOncomarkerHighlightBenignChanges.Text;
+            //reportModel.DataLeftOncomarkerHighlightSuspiciousChanges = this.dataLeftOncomarkerHighlightSuspiciousChanges.Text;
+            //reportModel.DataRightOncomarkerHighlightSuspiciousChanges = this.dataRightOncomarkerHighlightSuspiciousChanges.Text;
+            //reportModel.DataMeanElectricalConductivity3 = this.dataMeanElectricalConductivity3.Text;
+            //reportModel.DataComparativeElectricalConductivity3 = this.dataComparativeElectricalConductivity3.Text;
+            //reportModel.DataDivergenceBetweenHistograms3 = this.dataDivergenceBetweenHistograms3.Text;
+            reportModel.DataLeftAgeElectricalConductivity = this.dataLeftAgeElectricalConductivity.Text;
+            reportModel.DataRightAgeElectricalConductivity = this.dataRightAgeElectricalConductivity.Text;
+            //reportModel.DataAgeValueOfEC = this.dataAgeValueOfEC.Text;
+            reportModel.DataExamConclusion = this.dataExamConclusion.Text;
+            reportModel.DataLeftMammaryGland = this.dataLeftMammaryGland.Text;
+            reportModel.DataLeftAgeRelated = this.dataLeftAgeRelated.Text;
+            //reportModel.DataLeftFindings = this.dataLeftFindings.Text;
+            reportModel.DataLeftMammaryGlandResult = this.dataLeftMammaryGlandResult.Text;
+            reportModel.DataRightMammaryGland = this.dataRightMammaryGland.Text;
+            reportModel.DataRightAgeRelated = this.dataRightAgeRelated.Text;
+            //reportModel.DataRightFindings = this.dataRightFindings.Text;
+            reportModel.DataRightMammaryGlandResult = this.dataRightMammaryGlandResult.Text;
+            reportModel.DataTotalPts = this.dataTotalPts.Text;
+            //reportModel.DataLeftTotalPts = this.dataLeftTotalPts.Text;
+            //reportModel.DataRightTotalPts = this.dataRightTotalPts.Text;
+            //reportModel.DataPoint = this.dataPoint.Text;
+
+            reportModel.DataBiRadsCategory = this.dataBiRadsCategory.Text;
+
+            if (this.dataBiRadsCategory.Text.StartsWith("0"))
+            {
+                reportModel.DataPoint="";
+            }
+            else if (this.dataBiRadsCategory.Text.StartsWith("1"))
+            {
+                reportModel.DataPoint=App.Current.FindResource("ReportContext_144").ToString();
+            }
+            else if (this.dataBiRadsCategory.Text.StartsWith("2"))
+            {
+                reportModel.DataPoint=App.Current.FindResource("ReportContext_145").ToString();
+            }
+            else if (this.dataBiRadsCategory.Text.StartsWith("3"))
+            {
+                reportModel.DataPoint=App.Current.FindResource("ReportContext_146").ToString();
+            }
+            else if (this.dataBiRadsCategory.Text.StartsWith("4"))
+            {
+                reportModel.DataPoint=App.Current.FindResource("ReportContext_147").ToString();
+            }
+            else if (this.dataBiRadsCategory.Text.StartsWith("5"))
+            {
+                reportModel.DataPoint=App.Current.FindResource("ReportContext_148").ToString();
+            }
+
+
+
+            reportModel.DataLeftBiRadsCategory = this.dataLeftBiRadsCategory.Text;
+            reportModel.DataRightBiRadsCategory = this.dataRightBiRadsCategory.Text;
+            reportModel.DataRecommendation = this.dataRecommendation.Text;
+            reportModel.DataConclusion = this.dataConclusion.Text;
+            //reportModel.DataFurtherExam = this.dataFurtherExam.Text;
+
+
             return reportModel;
+        }
+        private ShortFormReport CloneClientReportModel()
+        {
+            ShortFormReport reportModel = shortFormReportModel.Clone();
+            reportModel = shortFormReportModel.Clone();
+            //reportModel.DataGender = this.dataGender.Text;
+            //reportModel.DataWeightUnit = this.dataWeightUnit.Text;
+            reportModel.DataMenstrualCycle = this.dataMenstrualCycle.Text;
+            reportModel.DataSkinAffections = this.dataSkinAffections.Text;
+            //reportModel.DataPertinentHistory = this.dataPertinentHistory.Text;
+            //reportModel.DataMotherUltra = this.dataMotherUltra.Text;
+            //reportModel.DataLeftPalpableMass = this.dataLeftPalpableMass.Text;
+            //reportModel.DataRightPalpableMass = this.dataRightPalpableMass.Text;
+
+            //reportModel.DataLeftBreastAP = this.dataLeftBreastAP.Text;
+            //reportModel.DataRightBreastAP = this.dataRightBreastAP.Text;
+            //reportModel.DataLeftBreast = this.dataLeftBreastH.Text + ":" + this.dataLeftBreastM.Text + " " + this.dataLeftBreastAP.Text;
+            //reportModel.DataRightBreast = this.dataLeftBreastH.Text + ":" + this.dataRightBreastM.Text + " " + this.dataRightBreastAP.Text;
+
+            reportModel.DataLeftChangesOfElectricalConductivity = this.dataLeftChangesOfElectricalConductivity.Text;
+            reportModel.DataRightChangesOfElectricalConductivity = this.dataRightChangesOfElectricalConductivity.Text;
+            reportModel.DataLeftMammaryStruct = this.dataLeftMammaryStruct.Text;
+            reportModel.DataRightMammaryStruct = this.dataRightMammaryStruct.Text;
+            reportModel.DataLeftLactiferousSinusZone = this.dataLeftLactiferousSinusZone.Text;
+            reportModel.DataRightLactiferousSinusZone = this.dataRightLactiferousSinusZone.Text;
+            reportModel.DataLeftMammaryContour = this.dataLeftMammaryContour.Text;
+            reportModel.DataRightMammaryContour = this.dataRightMammaryContour.Text;
+            reportModel.DataLeftNumber = this.dataLeftNumber.Text;
+            reportModel.DataRightNumber = this.dataRightNumber.Text;
+
+            reportModel.DataLeftSegment = this.dataLeftSegment.Text;
+            reportModel.DataRightSegment = this.dataLeftSegment.Text;
+            //reportModel.DataLeftLocation = this.dataLeftLocation.Text;
+            //reportModel.DataRightLocation = this.dataRightLocation.Text;
+            //reportModel.DataLeftLocation2 = this.dataLeftLocation2.Text;
+            //reportModel.DataRightLocation2 = this.dataRightLocation2.Text;
+            //reportModel.DataLeftLocation3 = this.dataLeftLocation3.Text;
+            //reportModel.DataRightLocation3 = this.dataRightLocation3.Text;
+
+            reportModel.DataLeftSize = string.IsNullOrEmpty(this.dataLeftSize.Text) ? "" : this.dataLeftSize.Text + " mm";
+            reportModel.DataRightSize = string.IsNullOrEmpty(this.dataRightSize.Text) ? "" : this.dataRightSize.Text + " mm";
+            //reportModel.DataLeftSize2 = string.IsNullOrEmpty(this.dataLeftSize2.Text) ? "" : this.dataLeftSize2.Text + " mm";
+            //reportModel.DataRightSize2 = string.IsNullOrEmpty(this.dataRightSize2.Text) ? "" : this.dataRightSize2.Text + " mm";
+            //reportModel.DataLeftSize3 = string.IsNullOrEmpty(this.dataLeftSize3.Text) ? "" : this.dataLeftSize3.Text + " mm";
+            //reportModel.DataRightSize3 = string.IsNullOrEmpty(this.dataRightSize3.Text) ? "" : this.dataRightSize3.Text + " mm";
+
+            //reportModel.DataLeftShape = getSharpStr(reportModel.DataLeftShape);
+            //reportModel.DataRightShape = getSharpStr(reportModel.DataRightShape);
+            //reportModel.DataLeftShape2 = getSharpStr(reportModel.DataLeftShape2);
+            //reportModel.DataRightShape2 = getSharpStr(reportModel.DataRightShape2);
+            //reportModel.DataLeftShape3 = getSharpStr(reportModel.DataLeftShape3);
+            //reportModel.DataRightShape3 = getSharpStr(reportModel.DataRightShape3);
+
+            reportModel.DataLeftContourAroundFocus = this.dataLeftContourAroundFocus.Text;
+            reportModel.DataRightContourAroundFocus = this.dataRightContourAroundFocus.Text;
+            //reportModel.DataLeftContourAroundFocus2 = this.dataLeftContourAroundFocus2.Text;
+            //reportModel.DataRightContourAroundFocus2 = this.dataRightContourAroundFocus2.Text;
+            //reportModel.DataLeftContourAroundFocus3 = this.dataLeftContourAroundFocus3.Text;
+            //reportModel.DataRightContourAroundFocus3 = this.dataRightContourAroundFocus3.Text;
+
+            reportModel.DataLeftInternalElectricalStructure = this.dataLeftInternalElectricalStructure.Text;
+            reportModel.DataRightInternalElectricalStructure = this.dataRightInternalElectricalStructure.Text;
+            //reportModel.DataLeftInternalElectricalStructure2 = this.dataLeftInternalElectricalStructure2.Text;
+            //reportModel.DataRightInternalElectricalStructure2 = this.dataRightInternalElectricalStructure2.Text;
+            //reportModel.DataLeftInternalElectricalStructure3 = this.dataLeftInternalElectricalStructure3.Text;
+            //reportModel.DataRightInternalElectricalStructure3 = this.dataRightInternalElectricalStructure3.Text;
+
+            reportModel.DataLeftSurroundingTissues = this.dataLeftSurroundingTissues.Text;
+            reportModel.DataRightSurroundingTissues = this.dataRightSurroundingTissues.Text;
+            //reportModel.DataLeftSurroundingTissues2 = this.dataLeftSurroundingTissues2.Text;
+            //reportModel.DataRightSurroundingTissues2 = this.dataRightSurroundingTissues2.Text;
+            //reportModel.DataLeftSurroundingTissues3 = this.dataLeftSurroundingTissues3.Text;
+            //reportModel.DataRightSurroundingTissues3 = this.dataRightSurroundingTissues3.Text;
+
+            //reportModel.DataLeftOncomarkerHighlightBenignChanges = this.dataLeftOncomarkerHighlightBenignChanges.Text;
+            //reportModel.DataRightOncomarkerHighlightBenignChanges = this.dataRightOncomarkerHighlightBenignChanges.Text;
+            //reportModel.DataLeftOncomarkerHighlightSuspiciousChanges = this.dataLeftOncomarkerHighlightSuspiciousChanges.Text;
+            //reportModel.DataRightOncomarkerHighlightSuspiciousChanges = this.dataRightOncomarkerHighlightSuspiciousChanges.Text;
+            //reportModel.DataMeanElectricalConductivity3 = this.dataMeanElectricalConductivity3.Text;
+            //reportModel.DataComparativeElectricalConductivity3 = this.dataComparativeElectricalConductivity3.Text;
+            //reportModel.DataDivergenceBetweenHistograms3 = this.dataDivergenceBetweenHistograms3.Text;
+            reportModel.DataLeftAgeElectricalConductivity = this.dataLeftAgeElectricalConductivity.Text;
+            reportModel.DataRightAgeElectricalConductivity = this.dataRightAgeElectricalConductivity.Text;
+            //reportModel.DataAgeValueOfEC = this.dataAgeValueOfEC.Text;
+            reportModel.DataExamConclusion = this.dataExamConclusion.Text;
+            reportModel.DataLeftMammaryGland = this.dataLeftMammaryGland.Text;
+            reportModel.DataLeftAgeRelated = this.dataLeftAgeRelated.Text;
+            //reportModel.DataLeftFindings = this.dataLeftFindings.Text;
+            reportModel.DataLeftMammaryGlandResult = this.dataLeftMammaryGlandResult.Text;
+            reportModel.DataRightMammaryGland = this.dataRightMammaryGland.Text;
+            reportModel.DataRightAgeRelated = this.dataRightAgeRelated.Text;
+            //reportModel.DataRightFindings = this.dataRightFindings.Text;
+            reportModel.DataRightMammaryGlandResult = this.dataRightMammaryGlandResult.Text;
+            reportModel.DataTotalPts = this.dataTotalPts.Text;
+            //reportModel.DataLeftTotalPts = this.dataLeftTotalPts.Text;
+            //reportModel.DataRightTotalPts = this.dataRightTotalPts.Text;
+            //reportModel.DataPoint = this.dataPoint.Text;
+
+            //reportModel.DataBiRadsCategory = this.dataBiRadsCategory.Text;
+
+            //if (this.dataBiRadsCategory.Text.StartsWith("0"))
+            //{
+            //    reportModel.DataPoint = "";
+            //}
+            //else if (this.dataBiRadsCategory.Text.StartsWith("1"))
+            //{
+            //    reportModel.DataPoint = App.Current.FindResource("ReportContext_144").ToString();
+            //}
+            //else if (this.dataBiRadsCategory.Text.StartsWith("2"))
+            //{
+            //    reportModel.DataPoint = App.Current.FindResource("ReportContext_145").ToString();
+            //}
+            //else if (this.dataBiRadsCategory.Text.StartsWith("3"))
+            //{
+            //    reportModel.DataPoint = App.Current.FindResource("ReportContext_146").ToString();
+            //}
+            //else if (this.dataBiRadsCategory.Text.StartsWith("4"))
+            //{
+            //    reportModel.DataPoint = App.Current.FindResource("ReportContext_147").ToString();
+            //}
+            //else if (this.dataBiRadsCategory.Text.StartsWith("5"))
+            //{
+            //    reportModel.DataPoint = App.Current.FindResource("ReportContext_148").ToString();
+            //}
+
+            reportModel.DataRecommendation = getCommentsStr(shortFormReportModel.DataRecommendation, true);
+            //暫時保存DataRecommendation字段的英文翻譯到reportModel.DataComments中（只針對ClientReport，因為ClientReport沒有顯示DataComments內容）
+            reportModel.DataComments = getCommentsStr(shortFormReportModel.DataRecommendation, false);
+
+            reportModel.DataConclusion = getAnalysisStr(shortFormReportModel.DataConclusion, true);
+            //reportModel.DataConclusion2 = getAnalysisStr(shortFormReportModel.DataConclusion, false);
+            //reportModel.DataFurtherExam = this.dataFurtherExam.Text;
+
+
+            return reportModel;
+        }
+
+        /// <summary>
+        /// 根据形状选项index获取对应的中英文字符串
+        /// </summary>
+        /// <param name="shapeIndex"></param>
+        /// <returns></returns>
+        private string getSharpStr(string shapeIndex)
+        {
+            string sharpStr = "";
+            switch (shapeIndex)
+            {
+                case "1":
+                    sharpStr = "圓形 Round";
+                    break;
+                case "2":
+                    sharpStr = "橢圓形 Oval";
+                    break;
+                case "3":
+                    sharpStr = "分葉狀 Lobular";
+                    break;
+                case "4":
+                    sharpStr = "不規則 Irregular";
+                    break;
+                default:                    
+                    break;
+
+            }
+            return sharpStr;
+        }
+
+        /// <summary>
+        /// 根据结果分析选项index获取对应的中英文字符串
+        /// </summary>
+        /// <param name="analysisIndex"></param>
+        /// <returns></returns>
+        private string getAnalysisStr(string analysisIndex, bool isChinese)
+        {
+            string analysisStr = "";
+            switch (analysisIndex)
+            {
+                case "1":
+
+                    analysisStr = isChinese ? "照片影像模糊, 需重新掃描" : "Poor Image, need to re-screen";
+                    break;
+                case "2":
+                    analysisStr = isChinese ? "沒有發現病理性改變" : "No abnormal changes detected";
+                    break;
+                case "3":
+                    analysisStr = isChinese ? "沒有發現病理性改變，（平均電導率）屬於高風險類型" : "No abnormal changes detected, (MEC) belong to high risk group";
+                    break;
+                case "4":
+                    analysisStr = isChinese ? "發現良性病理性改變" : "Benign Changes";
+                    break;
+                case "5":
+                    analysisStr = isChinese ? "發現良性病理性改變 – (平均電導率) 屬於高風險型" : "Benign Changes, (MEC) belong to high risk group";
+                    break;
+                case "6":
+                    analysisStr = isChinese ? "發現疑似良性病理性改變" : "Benign lesion detected";
+                    break;
+                case "7":
+                    analysisStr = isChinese ? "發現疑似良性病理性改變，（平均電導率）屬於高風險類型" : "Benign lesion detected, (MEC) belong to high risk group";
+                    break;
+                case "8":
+                    analysisStr = isChinese ? "發現可疑病理性改變" : "Suspicious abnormality detected";
+                    break;
+                case "9":
+                    analysisStr = isChinese ? "發現高度可疑病理性改變" : "Highly suspicious abnormality detected";
+                    break;
+                default:
+                    break;
+
+            }
+            return analysisStr;
+        }
+
+        /// <summary>
+        /// 根据建议选项index获取对应的中英文字符串
+        /// </summary>
+        /// <param name="analysisIndex"></param>
+        /// <returns></returns>
+        private string getCommentsStr(string commentsIndex,bool isChinese)
+        {
+            string commentsStr = "";
+            switch (commentsIndex)
+            {
+                case "1":
+                    commentsStr =isChinese ?  "在第1階段月經週期內進行MEIK檢查":"MEIK re-examination in 1 phase menstrual cycle";
+                    break;
+                case "2":
+                    commentsStr =isChinese ?  "在第2階段月經週期內進行MEIK檢查":"MEIK re-examination in 2 phase menstrual cycle";
+                    break;
+                case "3":
+                    commentsStr = isChinese ? "MEIK乳腺電阻抗檢測 (三月內)" : "MEIK examination in 3 months";
+                    break;
+                case "4":
+                    commentsStr = isChinese ? "MEIK乳腺電阻抗檢測 (六月內)" : "MEIK examination in 6 months";
+                    break;
+                case "5":
+                    commentsStr = isChinese ? "MEIK乳腺電阻抗檢測 (年度)" : "MEIK examination in 1 year";
+                    break;
+                default:
+                    break;
+
+            }
+            return commentsStr;
         }
 
         public void ShowSignature(Object obj)
         {
-            dataSignImg.Source = ImageTools.GetBitmapImage(AppDomain.CurrentDomain.BaseDirectory + "Signature" + System.IO.Path.DirectorySeparatorChar + "temp.jpg");
+            //dataSignImg.Source = ImageTools.GetBitmapImage(AppDomain.CurrentDomain.BaseDirectory + "Signature" + System.IO.Path.DirectorySeparatorChar + "temp.jpg");
         }
 
         private void savePdfBtn_Click(object sender, RoutedEventArgs e)
@@ -4297,7 +5216,7 @@ namespace MEIKReport
 
                 //生成Summary报告的PDF文件
                 string sfPdfFile = folderName + System.IO.Path.DirectorySeparatorChar + person.Code + " - " + strName;
-                string sfReportTempl = "Views/SummaryReportImageDocument.xaml";
+                string sfReportTempl = "Views/ExaminationReportDocument.xaml";
                 
                 ExportPDF(sfReportTempl, sfPdfFile, reportModel);
 
@@ -4331,12 +5250,12 @@ namespace MEIKReport
                 File.Delete(xpsFile);
             }
 
-            FixedPage page = (FixedPage)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
-
+            //FixedPage page = (FixedPage)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
+            FixedDocument document = (FixedDocument)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
             XpsDocument xpsDocument = new XpsDocument(xpsFile, FileAccess.ReadWrite);
             //将flow document写入基于内存的xps document中去
             XpsDocumentWriter writer = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
-            writer.Write(page);
+            writer.Write(document);
             xpsDocument.Close();
             if (File.Exists(pdfFile))
             {
@@ -4527,17 +5446,17 @@ namespace MEIKReport
                 textBlock1 = page.FindName("dataAge") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = reportModel.DataAge;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataAge) ? "N/A" : reportModel.DataAge;
                 }
                 textBlock1 = page.FindName("dataHeight") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = reportModel.DataHeight;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataHeight) ? "N/A" : reportModel.DataHeight;
                 }
                 textBlock1 = page.FindName("dataWeight") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = reportModel.DataWeight;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataWeight) ? "N/A" : reportModel.DataWeight; 
                 }
                 textBlock1 = page.FindName("dataScreenLocation") as TextBlock;
                 if (textBlock1 != null)
@@ -4547,12 +5466,12 @@ namespace MEIKReport
                 textBlock1 = page.FindName("dataMobile") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = reportModel.DataMobile;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataMobile) ? "N/A" : reportModel.DataMobile; 
                 }
                 textBlock1 = page.FindName("dataEmail") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = reportModel.DataEmail;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataEmail) ? "N/A" : reportModel.DataEmail; 
                 }
                 textBlock1 = page.FindName("dataLeftBreast") as TextBlock;
                 if (textBlock1 != null)
@@ -4624,15 +5543,15 @@ namespace MEIKReport
                 {
                     textBlock1.Text = reportModel.DataRightNumber;
                 }
-                textBlock1 = page.FindName("dataLeftSegment") as TextBlock;
+                textBlock1 = page.FindName("dataLeftLocation") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataLeftSegment) ? "Nil" : reportModel.DataLeftSegment;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataLeftLocation) ? "Nil" : reportModel.DataLeftLocation;
                 }
-                textBlock1 = page.FindName("dataRightSegment") as TextBlock;
+                textBlock1 = page.FindName("dataRightLocation") as TextBlock;
                 if (textBlock1 != null)
                 {
-                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataRightSegment) ? "Nil" : reportModel.DataRightSegment;
+                    textBlock1.Text = string.IsNullOrEmpty(reportModel.DataRightLocation) ? "Nil" : reportModel.DataRightLocation;
                 }
                 textBlock1 = page.FindName("dataLeftSize") as TextBlock;
                 if (textBlock1 != null)
@@ -5025,6 +5944,11 @@ namespace MEIKReport
                 {
                     textBlock1.Text = reportModel.DataRecommendation;
                 }
+                textBlock1 = page.FindName("dataRecommendationEN") as TextBlock;
+                if (textBlock1 != null)
+                {
+                    textBlock1.Text = reportModel.DataComments;
+                }
                 textBlock1 = page.FindName("dataFurtherExam") as TextBlock;
                 if (textBlock1 != null)
                 {
@@ -5034,6 +5958,11 @@ namespace MEIKReport
                 if (textBlock1 != null)
                 {
                     textBlock1.Text = reportModel.DataConclusion;
+                }
+                textBlock1 = page.FindName("dataConclusionEN") as TextBlock;
+                if (textBlock1 != null)
+                {
+                    textBlock1.Text = reportModel.DataConclusion2;
                 }
                 textBlock1 = page.FindName("dataComments") as TextBlock;
                 if (textBlock1 != null)
@@ -5573,7 +6502,7 @@ namespace MEIKReport
                 stream.Flush();
                 shortFormReportModel.DataScreenShotImg = buffer;
 
-                screenImg.Source = ImageTools.GetBitmapImage(imgFileName as string);
+                //screenImg.Source = ImageTools.GetBitmapImage(imgFileName as string);
             }
 
             
@@ -5590,11 +6519,103 @@ namespace MEIKReport
                 ViewImagePage viewImagePage = new ViewImagePage(shortFormReportModel.DataScreenShotImg);
                 viewImagePage.ShowDialog();
             }
-        }        
+        }
 
-        
+
 
         #endregion
+
         
+
+        private void dataLeftChangesOfElectrical_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.dataLeftMammaryGlandResult != null)
+            {
+                switch (this.dataLeftChangesOfElectricalConductivity.SelectedIndex)
+                {
+                    case 0:
+                        this.dataLeftMammaryGlandResult.Text = "";
+                        shortFormReportModel.DataLeftMammaryGlandResult = "";
+                        break;
+                    case 1:
+                        this.dataLeftMammaryGlandResult.Text = App.Current.FindResource("ReportContext_130").ToString();
+                        shortFormReportModel.DataLeftMammaryGlandResult = App.Current.FindResource("ReportContext_130").ToString();
+                        break;
+                    case 2:
+                        this.dataLeftMammaryGlandResult.Text = App.Current.FindResource("ReportContext_131").ToString();
+                        shortFormReportModel.DataLeftMammaryGlandResult = App.Current.FindResource("ReportContext_131").ToString();
+                        break;
+                    case 3:
+                        this.dataLeftMammaryGlandResult.Text = App.Current.FindResource("ReportContext_129").ToString();
+                        shortFormReportModel.DataLeftMammaryGlandResult = App.Current.FindResource("ReportContext_129").ToString();
+                        break;
+
+                }
+            }
+        }
+
+        private void dataRightChangesOfElectrical_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.dataRightMammaryGlandResult != null)
+            {
+                switch (this.dataRightChangesOfElectricalConductivity.SelectedIndex)
+                {
+                    case 0:
+                        this.dataRightMammaryGlandResult.Text = "";
+                        shortFormReportModel.DataRightMammaryGlandResult = "";
+                        break;
+                    case 1:
+                        this.dataRightMammaryGlandResult.Text = App.Current.FindResource("ReportContext_130").ToString();
+                        shortFormReportModel.DataRightMammaryGlandResult = App.Current.FindResource("ReportContext_130").ToString();
+                        break;
+                    case 2:
+                        this.dataRightMammaryGlandResult.Text = App.Current.FindResource("ReportContext_131").ToString();
+                        shortFormReportModel.DataRightMammaryGlandResult = App.Current.FindResource("ReportContext_131").ToString();
+                        break;
+                    case 3:
+                        this.dataRightMammaryGlandResult.Text = App.Current.FindResource("ReportContext_129").ToString();
+                        shortFormReportModel.DataRightMammaryGlandResult = App.Current.FindResource("ReportContext_129").ToString();
+                        break;
+
+                }
+            }
+
+        }        
+
+        private void dataLeftMammaryContour_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.dataLeftBiRadsCategory != null)
+            {
+                switch (this.dataLeftMammaryContour.SelectedIndex)
+                {
+                    case 0:
+                        this.dataLeftBiRadsCategory.Text = "";
+                        shortFormReportModel.DataLeftBiRadsCategory = "";
+                        break;
+                    default:
+                        this.dataLeftBiRadsCategory.Text = App.Current.FindResource("ReportContext_183").ToString();
+                        shortFormReportModel.DataLeftBiRadsCategory = App.Current.FindResource("ReportContext_183").ToString();
+                        break;                    
+                }
+            }
+        }
+
+        private void dataRightMammaryContour_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.dataRightBiRadsCategory != null)
+            {
+                switch (this.dataRightMammaryContour.SelectedIndex)
+                {
+                    case 0:
+                        this.dataRightBiRadsCategory.Text = "";
+                        shortFormReportModel.DataRightBiRadsCategory = "";
+                        break;
+                    default:
+                        this.dataRightMammaryGlandResult.Text = App.Current.FindResource("ReportContext_183").ToString();
+                        shortFormReportModel.DataRightBiRadsCategory = App.Current.FindResource("ReportContext_183").ToString();
+                        break;
+                }
+            }
+        }
     }
 }

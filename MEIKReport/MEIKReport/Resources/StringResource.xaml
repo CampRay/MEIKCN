@@ -391,10 +391,10 @@
     <sys:String x:Key="ReportContext_5">Male</sys:String>
     <sys:String x:Key="ReportContext_6" xml:space="preserve">Screen Venue: </sys:String>
     <sys:String x:Key="ReportContext_7" xml:space="preserve">Address: </sys:String>
-    <sys:String x:Key="ReportContext_8" xml:space="preserve">Health insurance card: </sys:String>
+    <sys:String x:Key="ReportContext_8" xml:space="preserve">Insurance card: </sys:String>
     <sys:String x:Key="ReportContext_9" xml:space="preserve">Screen Code: </sys:String>
     <sys:String x:Key="ReportContext_10" xml:space="preserve">Age: </sys:String>
-    <sys:String x:Key="ReportContext_11" xml:space="preserve">Weight: </sys:String>
+    <sys:String x:Key="ReportContext_11" xml:space="preserve">Weight(Kgs): </sys:String>
     <sys:String x:Key="ReportContext_12">Lbs</sys:String>
     <sys:String x:Key="ReportContext_13">Kgs</sys:String>
     <sys:String x:Key="ReportContext_14" xml:space="preserve">Menstrual cycle: </sys:String>
@@ -516,7 +516,7 @@
     <sys:String x:Key="ReportContext_126">Ductal type of mammary gland structure</sys:String>
     <sys:String x:Key="ReportContext_127" xml:space="preserve">Age-related electrical conductivity: </sys:String>
     <sys:String x:Key="ReportContext_128">Mean EC of  lesion:</sys:String>
-    <sys:String x:Key="ReportContext_129">Findings:</sys:String>
+    <sys:String x:Key="ReportContext_129">Diffuse changes of electroconductivity detected</sys:String>
     <sys:String x:Key="ReportContext_130">No Focal changes of electroconductivity detected</sys:String>
     <sys:String x:Key="ReportContext_131">Focal changes of electroconductivity detected </sys:String>
     <sys:String x:Key="ReportContext_132">Result:</sys:String>
@@ -528,22 +528,22 @@
     <sys:String x:Key="ReportContext_138">Highly Suggestive of Malignancy</sys:String>
     <sys:String x:Key="ReportContext_139">Right mammary gland:</sys:String>
     <sys:String x:Key="ReportContext_140">Right mammary gland:</sys:String>
-    <sys:String x:Key="ReportContext_141">BI-EIM Total Pts:</sys:String>
+    <sys:String x:Key="ReportContext_141">BI-EIM:</sys:String>
     <sys:String x:Key="ReportContext_142" xml:space="preserve">Total Pts: </sys:String>
-    <sys:String x:Key="ReportContext_143" xml:space="preserve">Point / Category: </sys:String>
+    <sys:String x:Key="ReportContext_143" xml:space="preserve">Pts   BI-RADS</sys:String>
     <sys:String x:Key="ReportContext_144">0-1 pt - 1 Category</sys:String>
     <sys:String x:Key="ReportContext_145">2-3 pts - 2 Category</sys:String>
     <sys:String x:Key="ReportContext_146">4 pt - 3 Category</sys:String>
     <sys:String x:Key="ReportContext_147">5-7 pts - 4 Category</sys:String>
     <sys:String x:Key="ReportContext_148">8 pt - 5 Category</sys:String>
     <sys:String x:Key="ReportContext_149" xml:space="preserve">Technician Name: </sys:String>
-    <sys:String x:Key="ReportContext_150" xml:space="preserve">BI-EIM category: </sys:String>
-    <sys:String x:Key="ReportContext_151">0 Category - Poor Image - Re-Screen</sys:String>
-    <sys:String x:Key="ReportContext_152">1 Category - No pathological changes detected</sys:String>
-    <sys:String x:Key="ReportContext_153">2 Category - Benign lesion</sys:String>
-    <sys:String x:Key="ReportContext_154">3 Category - Probably benign findings</sys:String>
-    <sys:String x:Key="ReportContext_155">4 Category - Suspicious abnormality</sys:String>
-    <sys:String x:Key="ReportContext_156">5 Category - Highly suggestive malignancy</sys:String>
+    <sys:String x:Key="ReportContext_150" xml:space="preserve">BI-EIM</sys:String>
+    <sys:String x:Key="ReportContext_151">Poor Image - Re-Screen</sys:String>
+    <sys:String x:Key="ReportContext_152">No pathological changes detected</sys:String>
+    <sys:String x:Key="ReportContext_153">Benign lesion</sys:String>
+    <sys:String x:Key="ReportContext_154">Probably benign findings</sys:String>
+    <sys:String x:Key="ReportContext_155">Suspicious abnormality</sys:String>
+    <sys:String x:Key="ReportContext_156">Highly suggestive malignancy</sys:String>
     <sys:String x:Key="ReportContext_157" xml:space="preserve">Suggestion: </sys:String>
     <sys:String x:Key="ReportContext_158">MEIK examination in 3 months</sys:String>
     <sys:String x:Key="ReportContext_159">MEIK examination in 6 months</sys:String>
@@ -567,7 +567,7 @@
     <sys:String x:Key="ReportContext_170">View Image</sys:String>    
     <sys:String x:Key="ReportContext_172">Refer to Surgeon – Follow up Biopsy</sys:String>
     <sys:String x:Key="ReportContext_173" xml:space="preserve">Doctor: </sys:String>
-    <sys:String x:Key="ReportContext_174" xml:space="preserve">Doctor's Signature: </sys:String>
+    <sys:String x:Key="ReportContext_174" xml:space="preserve">Reported By: </sys:String>
     <sys:String x:Key="ReportContext_175">Capture Image</sys:String>
     <sys:String x:Key="ReportContext_176">Remove Image</sys:String>
     <sys:String x:Key="ReportContext_177" xml:space="preserve">Date of Screening: </sys:String>
@@ -576,11 +576,12 @@
     <sys:String x:Key="ReportContext_180">Left Breast</sys:String>
     <sys:String x:Key="ReportContext_181">Right Breast</sys:String>
     <sys:String x:Key="ReportContext_182" xml:space="preserve">Finding: </sys:String>
-    <sys:String x:Key="ReportContext_183">Probably benign findings</sys:String>
+    <sys:String x:Key="ReportContext_183">Mammary screening picture maladjustment</sys:String>
+    <!--<sys:String x:Key="ReportContext_183">Probably benign findings</sys:String>
     <sys:String x:Key="ReportContext_184">No pathological changes</sys:String>
     <sys:String x:Key="ReportContext_185">Benign findings</sys:String>
     <sys:String x:Key="ReportContext_186">Probably benign findings</sys:String>
-    <sys:String x:Key="ReportContext_187">Suspicious abnormality</sys:String>
+    <sys:String x:Key="ReportContext_187">Suspicious abnormality</sys:String>-->
     <sys:String x:Key="ReportContext_188" xml:space="preserve">Location: </sys:String>
     <sys:String x:Key="ReportContext_189" xml:space="preserve">Recommendation: </sys:String>
     <sys:String x:Key="ReportContext_190">Date of Interpretation：</sys:String>
