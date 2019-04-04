@@ -1,0 +1,11 @@
+﻿<Window x:Class="MEIKReport.ViewImagePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="/MEIK;component/Images/App_Icon.png"
+        Title="" Height="630" Width="980" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen">    
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <Image Name="dataScreenShotImg" Height="600" Width="980"/>
+        </StackPanel>
+    </Grid>
+</Window>

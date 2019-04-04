@@ -1,0 +1,647 @@
+﻿<FixedPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"               
+               Height="1122" Width="794">
+    <Grid Background="#00000000">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="794"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1122"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Column="1" Grid.Row="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="720"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="1056"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Name="reportDataGrid" Grid.Column="1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.2*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock Text="{DynamicResource ReportContext_198}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock Text="{DynamicResource ReportContext_6}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock Name="dataScreenLocation" Text="{Binding DataScreenLocation}" VerticalAlignment="Center" ></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Text="{DynamicResource ReportContext_202}" FontWeight="Bold" Width="100" VerticalAlignment="Center" Visibility="Collapsed"/>
+                    <TextBlock Name="dataClientNum" Text="{Binding DataClientNum}" VerticalAlignment="Center" Width="150" Visibility="Collapsed"></TextBlock>
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_1}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataName" Text="{Binding DataName}" VerticalAlignment="Center" Width="260" ></TextBlock>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_9}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataUserCode" Text="{Binding DataUserCode}" Width="248" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_7}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataAddress" Text="{Binding DataAddress}" VerticalAlignment="Center" Width="260"></TextBlock>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_8}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBox Name="dataHealthCard" Text="{Binding DataHealthCard}" Width="248"></TextBox>
+                    </Border>
+                    <TextBlock Visibility="Collapsed" Text="{DynamicResource ReportContext_3}" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                    <ComboBox Visibility="Collapsed" Name="dataGender" Width="95" BorderBrush="Gray" Background="{x:Null}" FontSize="10" SelectedIndex="{Binding DataGender}">
+                        <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                        <ComboBoxItem Content="{DynamicResource ReportContext_4}"></ComboBoxItem>
+                        <ComboBoxItem Content="{DynamicResource ReportContext_5}"></ComboBoxItem>
+                    </ComboBox>
+
+                </StackPanel>
+                <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0" >
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_10}" Width="50" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataAge" Text="{Binding DataAge}" Width="47" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_203}" Width="80" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataHeight" Text="{Binding DataHeight}" Width="50" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_11}" Width="80" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataWeight" Text="{Binding DataWeight}" Width="41" VerticalAlignment="Center"></TextBlock>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_14}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" VerticalAlignment="Center">
+                        <TextBox Name="dataMenstrualCycle" Text="{Binding DataMenstrualCycle}" Width="248" VerticalAlignment="Center" Height="22"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_23}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" VerticalAlignment="Center">
+                        <TextBox Name="dataSkinAffections" Text="{Binding DataSkinAffections}" Width="260" Height="22" VerticalAlignment="Center" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_22}" Width="100" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataHormones" Text="{Binding DataHormones}" VerticalAlignment="Center" Width="248"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Rectangle Width="720" Fill="Black" Height="2"></Rectangle>
+                </StackPanel>
+
+                <StackPanel Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_43}" Width="390" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_44}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_45}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <!--<StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Left" Visibility="Collapsed">
+                                        <TextBlock Text="{DynamicResource ReportContext_46}" Width="380" VerticalAlignment="Center"/>
+                                        <ComboBox Name="dataLeftPalpableMass" SelectedIndex="{Binding DataLeftPalpableMass}" VerticalContentAlignment="Center" Width="150" BorderBrush="Gray" Background="{x:Null}">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_34}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_33}"></ComboBoxItem>
+                                        </ComboBox>
+                                        <ComboBox Name="dataRightPalpableMass" SelectedIndex="{Binding DataRightPalpableMass}" VerticalContentAlignment="Center" Width="150" BorderBrush="Gray" Background="{x:Null}" Margin="5,0,0,0">
+                                            <ComboBoxItem IsSelected="True"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_34}"></ComboBoxItem>
+                                            <ComboBoxItem Content="{DynamicResource ReportContext_33}"></ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>-->
+                <StackPanel Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_47}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftChangesOfElectricalConductivity" Text="{Binding DataLeftChangesOfElectricalConductivity}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightChangesOfElectricalConductivity" Text="{Binding DataRightChangesOfElectricalConductivity}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_51}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMammaryStruct" Text="{Binding DataLeftMammaryStruct}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMammaryStruct" Text="{Binding DataRightMammaryStruct}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_54}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftLactiferousSinusZone" Text="{Binding DataLeftLactiferousSinusZone}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightLactiferousSinusZone" Text="{Binding DataRightLactiferousSinusZone}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_59}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMammaryContour" Text="{Binding DataLeftMammaryContour}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMammaryContour" Text="{Binding DataRightMammaryContour}" VerticalAlignment="Center" Width="160" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="13" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_63}" Width="390" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_44}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_45}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="14" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_64}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftSegment" Text="{Binding DataLeftSegment}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightSegment" Text="{Binding DataRightSegment}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="15" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_65}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftNumber" Text="{Binding DataLeftNumber}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightNumber" Text="{Binding DataRightNumber}" VerticalAlignment="Center" Width="160" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="16" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_66}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftSize" Text="{Binding DataLeftSize}" VerticalAlignment="Center" Width="125"/>
+                    </Border>
+                    <TextBlock Text="{DynamicResource ReportContext_225}" Width="35" VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightSize" Text="{Binding DataRightSize}" VerticalAlignment="Center" Width="125" />
+                    </Border>
+                    <TextBlock Text="{DynamicResource ReportContext_225}" Width="35" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Row="17" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_67}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftShape" Text="{Binding DataLeftShape}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightShape" Text="{Binding DataRightShape}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="18" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_72}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftContourAroundFocus" Text="{Binding DataLeftContourAroundFocus}" VerticalAlignment="Center" Width="160" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightContourAroundFocus" Text="{Binding DataRightContourAroundFocus}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="19" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_76}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" >
+                        <TextBlock Name="dataLeftInternalElectricalStructure" Text="{Binding DataLeftInternalElectricalStructure}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" >
+                        <TextBlock Name="dataRightInternalElectricalStructure" Text="{Binding DataRightInternalElectricalStructure}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="20" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0" >
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_81}" Width="390" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" >
+                        <TextBlock Name="dataLeftSurroundingTissues" Text="{Binding DataLeftSurroundingTissues}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightSurroundingTissues" Text="{Binding DataRightSurroundingTissues}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+
+
+                <StackPanel Grid.Row="21" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_88}" Width="390" FontWeight="Bold" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_44}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0" Background="#FFB1B0B2">
+                        <TextBlock Text="{DynamicResource ReportContext_45}" Width="160" FontWeight="Bold" TextAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="22" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                        <TextBlock Text="{DynamicResource ReportContext_100}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_101}" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Width="97"  VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMeanElectricalConductivity1" Text="{Binding DataLeftMeanElectricalConductivity1}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMeanElectricalConductivity1" Text="{Binding DataRightMeanElectricalConductivity1}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="23" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,0,1,0">
+                        <TextBlock  Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_102}" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Width="97"  VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMeanElectricalConductivity2" Text="{Binding DataLeftMeanElectricalConductivity2}" VerticalAlignment="Center" Width="160"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMeanElectricalConductivity2" Text="{Binding DataRightMeanElectricalConductivity2}" VerticalAlignment="Center" Width="160" ></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="24" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,0,1,1">
+                        <TextBlock  Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock  Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Width="97"  VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMeanElectricalConductivity3" Text="{Binding DataLeftMeanElectricalConductivity3}" VerticalAlignment="Center" Width="160" ></TextBlock>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMeanElectricalConductivity3" Text="{Binding DataRightMeanElectricalConductivity3}" VerticalAlignment="Center" Width="160" ></TextBlock>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="25" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                        <TextBlock Text="{DynamicResource ReportContext_106}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_101}" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="(-0.07-0.07)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftComparativeElectricalConductivity1" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalAlignment="Center" Width="321" HorizontalAlignment="Center" ></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="26" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,0,1,0">
+                        <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_102}" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="(-0.10-0.10)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftComparativeElectricalConductivity2" Text="{Binding DataLeftComparativeElectricalConductivity2}" VerticalAlignment="Center" Width="321"  HorizontalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="27" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,0,1,1">
+                        <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="" Width="95"  VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftComparativeElectricalConductivity3" Text="{Binding DataLeftComparativeElectricalConductivity3}" VerticalAlignment="Center" Width="321" HorizontalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="28" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,1,1,0">
+                        <TextBlock Text="{DynamicResource ReportContext_107}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_101}" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="(-0.07-0.07)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftDivergenceBetweenHistograms1" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalAlignment="Center" Width="321"  HorizontalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="29" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,0,1,0">
+                        <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_102}" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="(-0.10-0.10)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftDivergenceBetweenHistograms2" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalAlignment="Center" Width="321" HorizontalAlignment="Center" ></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="30" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1,0,1,1">
+                        <TextBlock Text="" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="" Width="95"  VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftDivergenceBetweenHistograms3" Text="{Binding DataLeftComparativeElectricalConductivity1}" VerticalAlignment="Center" Width="321" HorizontalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="31" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_109}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" Margin="1,0,0,0">
+                        <TextBlock Text="" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="(-0.11-0.11)" Width="95"  VerticalAlignment="Center" TextAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftPhaseElectricalConductivity" Text="{Binding DataLeftPhaseElectricalConductivity}" VerticalAlignment="Center" Width="160"  HorizontalAlignment="Center" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightPhaseElectricalConductivity" Text="{Binding DataRightPhaseElectricalConductivity}" VerticalAlignment="Center" Width="160" HorizontalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="32" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_110}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" Margin="1,0,0,0">
+                        <TextBlock Text="" Width="70"  VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataAgeElectricalConductivityReference" Text="{Binding DataAgeElectricalConductivityReference}" VerticalAlignment="Center" Width="95"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftAgeElectricalConductivity" Text="{Binding DataLeftAgeElectricalConductivity}" VerticalAlignment="Center" Width="160" HorizontalAlignment="Center" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightAgeElectricalConductivity" Text="{Binding DataRightAgeElectricalConductivity}" VerticalAlignment="Center" Width="160" HorizontalAlignment="Center" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="33" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Rectangle Width="760" Fill="Black" Height="2"></Rectangle>
+                </StackPanel>
+                <StackPanel Grid.Row="34" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_115}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataExamConclusion" Text="{Binding DataExamConclusion}" VerticalAlignment="Center" Width="492"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="35" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_121}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMammaryGland" Text="{Binding DataLeftMammaryGland}" VerticalAlignment="Center" Width="492" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="36" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_127}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftAgeRelated" Text="{Binding DataLeftAgeRelated}" VerticalAlignment="Center" Width="70" />
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftMammaryGlandResult" Text="{Binding DataLeftMammaryGlandResult}" VerticalAlignment="Center" Width="419"></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="37" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <TextBlock Text="" Width="222" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataLeftBiRadsCategory" Text="{Binding DataLeftBiRadsCategory}" VerticalAlignment="Center" Width="493"></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="38" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_139}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMammaryGland" Text="{Binding DataRightMammaryGland}" VerticalAlignment="Center" Width="492" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="39" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_127}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightAgeRelated" Text="{Binding DataRightAgeRelated}" VerticalAlignment="Center" Width="70" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightMammaryGlandResult" Text="{Binding DataRightMammaryGlandResult}" VerticalAlignment="Center" Width="419"></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Visibility="Visible" Grid.Row="40" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <TextBlock Text="" Width="222" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRightBiRadsCategory" Text="{Binding DataRightBiRadsCategory}" VerticalAlignment="Center" Width="492"></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="41" Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Rectangle Width="718" Fill="Black" Height="2"></Rectangle>
+                </StackPanel>
+                <StackPanel  Grid.Row="42" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_141}" Width="50" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataTotalPts" Text="{Binding DataTotalPts}" VerticalAlignment="Center" Width="50" />
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_143}" Width="112" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataBiRadsCategory" Text="{Binding DataBiRadsCategory}" VerticalAlignment="Center" Width="492"/>
+                    </Border>
+                </StackPanel>
+
+                <StackPanel Grid.Row="43" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <TextBlock Text="" Width="221" VerticalAlignment="Center"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataConclusion" Text="{Binding DataConclusion}" VerticalAlignment="Center" Width="492"></TextBlock>
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="44" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_157}" Width="220" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataFurtherExam" Text="{Binding DataFurtherExam}" VerticalAlignment="Center" Width="492" />
+                    </Border>
+                </StackPanel>
+                <StackPanel Grid.Row="45" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <TextBlock Text="" Width="221" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,0,3"/>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataRecommendation" Text="{Binding DataRecommendation}" VerticalAlignment="Center" Width="492"></TextBlock>
+                    </Border>
+
+                </StackPanel>
+                <StackPanel Grid.Row="47" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,1,0,0">
+                    <Border BorderBrush="Gray" BorderThickness="1">
+                        <TextBlock Text="{DynamicResource ReportContext_190}" Width="80" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataSignDate" Text="{Binding DataSignDate}" Width="134" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="120,0,0,0">
+                        <TextBlock Text="{DynamicResource ReportContext_173}" Width="120" VerticalAlignment="Center"/>
+                    </Border>
+                    <Border BorderBrush="Gray" BorderThickness="1" Margin="1,0,0,0">
+                        <TextBlock Name="dataDoctor" Text="{Binding DataDoctor}" Width="252" VerticalAlignment="Center"/>
+                    </Border>
+                </StackPanel>
+
+
+                <StackPanel Grid.Row="49" Orientation="Horizontal" HorizontalAlignment="Left" >
+                    <TextBlock Text="1.电阻抗检测（MEIK）是检测乳腺疾病的初级筛查工具。" Width="715" VerticalAlignment="Center"  FontSize="10"/>
+                </StackPanel>
+                <StackPanel Grid.Row="50" Orientation="Horizontal" HorizontalAlignment="Left" >
+                    <TextBlock Text="2.在电阻抗检测（MEIK）中，可能会有阻抗阴性肿瘤。" Width="715" VerticalAlignment="Center" FontSize="10"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</FixedPage>
