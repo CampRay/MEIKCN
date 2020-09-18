@@ -1,4 +1,5 @@
-﻿using MEIKReport.Common;
+﻿using MEIK.Common;
+using MEIKReport.Common;
 using MEIKReport.Model;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,15 @@ namespace MEIKReport
     /// </summary>
     public partial class AddFolderPage : Window
     {
-        private string lastCode = OperateIniFile.ReadIniData("Data", "Last Code", "", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
+        private ScanerHook listener = new ScanerHook();  
+        private string lastCode = OperateIniFile.ReadIniData("Data", "Last Code", "", System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");        
         
         public AddFolderPage()
         {
             InitializeComponent();
-            this.txtLastName.Focus();
+            listener.ScanerEvent += Listener_ScanerEvent;
+            listener.Start();
+            //this.txtLastName.Focus();
             string dateStr=DateTime.Now.ToString("yyMMdd");
             int num = 1;
             if (!string.IsNullOrEmpty(lastCode))
@@ -49,14 +53,85 @@ namespace MEIKReport
             }            
             this.txtPatientCode.Text = dateStr + App.reportSettingModel.DeviceNo + num.ToString("00");
             this.listTechnicianName.ItemsSource = App.reportSettingModel.TechNames;
-        }                        
+        }        
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            listener.Stop();
+        }
+
+        //扫码枪扫码结果处理
+        private void Listener_ScanerEvent(ScanerHook.ScanerCodes codes)
+        {
+            var scanText= codes.Result;
+            if(!string.IsNullOrEmpty(scanText)){
+                var strArr=scanText.Split('|');
+                if (strArr.Length >= 1)
+                {
+                    //Regex regChina = new Regex("^[^\x00-\xFF]");
+                    Regex regEnglish = new Regex("^[a-zA-Z]+\\s*[a-zA-Z]*\\s*[a-zA-Z]*$");
+                    var uname = strArr[0].Trim();
+                    //用正则表达示判断是否为英文名
+                    if (regEnglish.IsMatch(uname))
+                    {
+                        var nameArr = uname.Split(' ');
+                        if (nameArr.Length > 1)
+                        {
+                            txtSurName.Text = nameArr[1];
+                            txtGivenName.Text = nameArr[0];
+                        }
+                        else
+                        {
+                            txtSurName.Text = uname;
+                            txtGivenName.Text = ".";
+                        }
+                    }
+                    else
+                    {
+                        if (uname.Length > 1)
+                        {
+                            //如果是复姓
+                            if (Constant.SurNameList.Contains(uname.Substring(0, 2)))
+                            {
+                                txtSurName.Text = uname.Substring(0, 2);
+                                txtGivenName.Text = uname.Substring(2);
+                            }
+                            else
+                            {
+                                txtSurName.Text = uname.Substring(0, 1);
+                                txtGivenName.Text = uname.Substring(1);
+                            }
+                        }
+                        else
+                        {
+                            txtSurName.Text = uname;
+                        }
+                    }                    
+                    
+                }
+                if (strArr.Length >= 3)
+                {
+                    var idNumber=strArr[2].Trim();
+                    txtClientID.Text = idNumber;
+                    txtBirthDate.Text = idNumber.Substring(12, 2);
+                    txtBirthMonth.Text = idNumber.Substring(10, 2);
+                    txtBirthYear.Text = idNumber.Substring(6, 4);
+                }
+                if (strArr.Length >= 5)
+                {
+                    txtMobile.Text = strArr[4].Trim();
+                }
+            }
+            
+        }  
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(this.txtLastName.Text))
+            if (string.IsNullOrEmpty(this.txtSurName.Text))
             {
                 MessageBox.Show(this, App.Current.FindResource("Message_22").ToString());
-                this.txtLastName.Focus();
+                this.txtSurName.Focus();
             }
             else if (App.reportSettingModel.ShowTechSignature && this.listTechnicianName.SelectedIndex==-1)
             {
@@ -75,15 +150,11 @@ namespace MEIKReport
                 string patientFolder = null;
                 try
                 {
-                    patientFolder = monthFolder + System.IO.Path.DirectorySeparatorChar + this.txtPatientCode.Text + "-" + this.txtLastName.Text;
-                    if (!string.IsNullOrEmpty(this.txtFirstName.Text))
+                    patientFolder = monthFolder + System.IO.Path.DirectorySeparatorChar + this.txtPatientCode.Text + "-" + this.txtSurName.Text;
+                    if (!string.IsNullOrEmpty(this.txtGivenName.Text))
                     {
-                        patientFolder = patientFolder + "," + this.txtFirstName.Text;
-                    }                    
-                    if (!string.IsNullOrEmpty(this.txtMiddleInitial.Text))
-                    {
-                        patientFolder = patientFolder + " " + this.txtMiddleInitial.Text;
-                    }
+                        patientFolder = patientFolder + "," + this.txtGivenName.Text;
+                    }                                        
                     if (!Directory.Exists(patientFolder))
                     {                        
                         Directory.CreateDirectory(patientFolder);                        
@@ -94,13 +165,14 @@ namespace MEIKReport
                         {
                             var fs=File.Create(patientFile);
                             fs.Close();
-                        }                        
-                        OperateIniFile.WriteIniData("Personal data", "surname", this.txtLastName.Text, patientFile);
-                        OperateIniFile.WriteIniData("Personal data", "given name", this.txtFirstName.Text, patientFile);
-                        OperateIniFile.WriteIniData("Personal data", "other name", this.txtMiddleInitial.Text, patientFile);
+                        }
+                        OperateIniFile.WriteIniData("Personal data", "surname", this.txtSurName.Text, patientFile);
+                        OperateIniFile.WriteIniData("Personal data", "given name", this.txtGivenName.Text, patientFile);                        
+                        OperateIniFile.WriteIniData("Personal data", "clientID", this.txtClientID.Text, patientFile);
                         OperateIniFile.WriteIniData("Personal data", "birth date", this.txtBirthDate.Text, patientFile);
                         OperateIniFile.WriteIniData("Personal data", "birth month", this.txtBirthMonth.Text, patientFile);
                         OperateIniFile.WriteIniData("Personal data", "birth year", this.txtBirthYear.Text, patientFile);
+                        OperateIniFile.WriteIniData("Personal data", "mobile", this.txtMobile.Text, patientFile);
 
                         OperateIniFile.WriteIniData("Personal data", "registration date", DateTime.Now.Day.ToString(), patientFile);
                         OperateIniFile.WriteIniData("Personal data", "registration month", DateTime.Now.Month.ToString(), patientFile);

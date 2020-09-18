@@ -16,6 +16,14 @@ namespace MEIKReport.Model
             get { return dataClientNum; }
             set { dataClientNum = value; }
         }
+        //身份證號
+        private string dataClientID;
+
+        public string DataClientID
+        {
+            get { return dataClientID; }
+            set { dataClientID = value; }
+        }
 
         private string dataScreenDate;
 
@@ -44,6 +52,14 @@ namespace MEIKReport.Model
         {
             get { return dataName; }
             set { dataName = value; }
+        }
+
+
+        private string dataGender;
+        public string DataGender
+        {
+            get { return dataGender; }
+            set { dataGender = value; }
         }
         private string dataAge;
 
@@ -76,6 +92,78 @@ namespace MEIKReport.Model
             get { return dataEmail; }
             set { dataEmail = value; }
         }
+
+        //国内报告新加字段
+        private string dataOutPatientNumber;
+        public string DataOutPatientNumber
+        {
+            get { return dataOutPatientNumber; }
+            set { dataOutPatientNumber = value; }
+        }
+
+        private string dataHospitalNumber;
+        public string DataHospitalNumber
+        {
+            get { return dataHospitalNumber; }
+            set { dataHospitalNumber = value; }
+        }
+
+        private string dataHospitalBedNumber;
+        public string DataHospitalBedNumber
+        {
+            get { return dataHospitalBedNumber; }
+            set { dataHospitalBedNumber = value; }
+        }
+
+        private string dataDepartment;
+        public string DataDepartment
+        {
+            get { return dataDepartment; }
+            set { dataDepartment = value; }
+        }
+
+        //新報告添加的字段
+        private string dataFamilyCancerDesc;
+        public string DataFamilyCancerDesc
+        {
+            get { return dataFamilyCancerDesc; }
+            set { dataFamilyCancerDesc = value; }
+        }
+
+        private string dataOtherDesc;
+        public string DataOtherDesc
+        {
+            get { return dataOtherDesc; }
+            set { dataOtherDesc = value; }
+        }
+
+        private string dataPostmenopauseDesc;
+        public string DataPostmenopauseDesc
+        {
+            get { return dataPostmenopauseDesc; }
+            set { dataPostmenopauseDesc = value; }
+        }
+
+        private string dataObstetricDesc;
+        public string DataObstetricDesc
+        {
+            get { return dataObstetricDesc; }
+            set { dataObstetricDesc = value; }
+        }
+
+        private string dataGynecologicOtherDesc;
+        public string DataGynecologicOtherDesc
+        {
+            get { return dataGynecologicOtherDesc; }
+            set { dataGynecologicOtherDesc = value; }
+        }
+
+        private string dataExaminationsOtherDesc;
+        public string DataExaminationsOtherDesc
+        {
+            get { return dataExaminationsOtherDesc; }
+            set { dataExaminationsOtherDesc = value; }
+        }       
 
 
         private string dataLeftFinding;

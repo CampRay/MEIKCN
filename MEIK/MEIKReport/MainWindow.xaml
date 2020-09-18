@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
         xmlns:wf ="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"      
-        Icon="/MEIK;component/Images/App_Icon.png"
+        Icon="/MEIKReport;component/Images/App_Icon.png"
         Title="MEIK CN" Height="1" Width="1" WindowStyle="None"  ResizeMode="NoResize" Background="{x:Null}" Foreground="{x:Null}" Loaded="Window_Loaded" 
         WindowStartupLocation="CenterScreen" ShowInTaskbar="False" MouseLeftButtonDown="Window_MouseLeftButtonDown" Closed="Window_Closed" Visibility="Collapsed">
     <!--<Window.TaskbarItemInfo>

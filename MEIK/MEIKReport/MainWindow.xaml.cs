@@ -119,7 +119,7 @@ namespace MEIKReport
 
         private void StartMeikReport()
         {            
-            string meikPath = App.meikReportFolder + System.IO.Path.DirectorySeparatorChar + "MEIK.exe";            
+            string meikPath = App.meikReportFolder + System.IO.Path.DirectorySeparatorChar + "MEIKMD.exe";            
             bool meikExists = File.Exists(meikPath);            
             if (meikExists)
             {
@@ -162,7 +162,7 @@ namespace MEIKReport
             }
             else
             {
-                MessageBox.Show("Failed to run MEIK Diagnostics program, file is missing or corrupt.");
+                MessageBox.Show(App.Current.FindResource("Message_91").ToString());
             }
         }
 
@@ -376,6 +376,7 @@ namespace MEIKReport
                 IntPtr winHandle = Win32Api.GetParent(exitButtonHandle);                
                 if (Win32Api.GetParent(winHandle) == AppProc.MainWindowHandle)
                 {                    
+                    //如果鼠标点击了EXIT按钮
                     StringBuilder winText = new StringBuilder(512);
                     Win32Api.GetWindowText(exitButtonHandle, winText, winText.Capacity);
                     if (App.strExit.Equals(winText.ToString(), StringComparison.OrdinalIgnoreCase))

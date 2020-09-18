@@ -1,0 +1,304 @@
+﻿<FixedPage xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:sys="clr-namespace:System;assembly=mscorlib"
+           xmlns:io="clr-namespace:System.IO;assembly=mscorlib"
+               Height="1122" Width="794">
+    <Grid Width="794" Height="1122">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3.5*"/>
+                <RowDefinition Height="19*"/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1.3*"/>
+                    <RowDefinition Height="1.3*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Name="companyName" Text="" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="SimSun" FontSize="22"/>
+                <TextBlock Text="{StaticResource ChinaReportTitle}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontFamily="SimSun" FontSize="20"/>
+            </Grid>
+            <Border Grid.Row="1" BorderBrush="#FF000000" BorderThickness="0,1,0,0">
+                <Grid Margin="10,5,10,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>                    
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,10,0">
+                        <TextBlock Text="{StaticResource ReportContext_179}" VerticalAlignment="Center" Margin="0,0,2,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock x:Name="dataName" Text="{Binding DataName}" VerticalAlignment="Center" Width="100"  FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ReportContext_3}" VerticalAlignment="Center" Margin="0,0,2,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataGender" Text="{Binding DataGender}" VerticalAlignment="Center" Width="80" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ReportContext_10}" VerticalAlignment="Center" Margin="0,0,2,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataAge" Text="{Binding DataAge}" VerticalAlignment="Center" Width="80" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ReportContext_203}" Margin="0,0,5,0" VerticalAlignment="Center" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataHeight" Text="{Binding DataHeight}" VerticalAlignment="Center" Width="80" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ReportContext_11}" Margin="0,0,5,0" VerticalAlignment="Center" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataWeight" Text="{Binding DataWeight}" VerticalAlignment="Center" Width="80" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,10,0">
+                        <TextBlock Text="{StaticResource ChinaReportOutpatientNumber}" VerticalAlignment="Center" Margin="0,0,5,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataOutpatientNumber" Text="{Binding DataOutPatientNumber}" Width="80" Margin="0,0,5,0" VerticalAlignment="Center" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportHospitalNumber}" VerticalAlignment="Center" Margin="0,0,5,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataHospitalNumber" Text="{Binding DataHospitalNumber}" Width="80" Margin="0,0,5,0" VerticalAlignment="Center" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportBedNumber}" VerticalAlignment="Center" Margin="0,0,5,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataBedNumber" Text="{Binding DataHospitalBedNumber}" Width="80" Margin="0,0,5,0" VerticalAlignment="Center" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportDepartment}" VerticalAlignment="Center" Margin="0,0,5,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataDepartment" Text="{Binding DataDepartment}" Width="80" Margin="0,0,5,0" VerticalAlignment="Center" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="10,0,10,0">
+                        <TextBlock Text="{StaticResource ChinaReportCode}" Margin="0,5,0,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataUserCode" Text="{Binding DataUserCode}" Margin="0,5,0,0" Width="120" TextWrapping="Wrap" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportDevice}" Margin="0,5,0,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataDevice" Text="{Binding DataDevice}" Margin="0,5,0,0" Width="150" TextWrapping="Wrap" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ReportContext_177}" Margin="0,5,0,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataScreenDate" Text="{Binding DataScreenDate}" Margin="0,5,0,0" Width="180" TextWrapping="Wrap" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="2" BorderBrush="#FF000000" BorderThickness="0,1,0,0">
+                <Grid Margin="10,5,10,10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="26"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,5,0">
+                        <TextBlock Text="{StaticResource ChinaReportProject}" Margin="0,5,0,0" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="" Margin="0,5,0,0" Width="610" TextWrapping="Wrap" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" Text="{StaticResource ChinaReportImage}" Margin="0,5,0,0" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20,0,20,0">
+                        <Image Name="dataScreenShotImg" Height="330" Width="660"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="3" BorderBrush="#FF000000" BorderThickness="0,1,0,0">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.5*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,0,5,0">
+                        <TextBlock Text="{StaticResource ChinaReportMeanElectrical}" Margin="0,5,0,0" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="7" HorizontalAlignment="Center" Width="400">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.1*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border  Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1,1,1,1" Background="#FF71A4E0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="{StaticResource ChinaReportAge}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="0,1,1,1" Background="#FF71A4E0">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="{StaticResource ChinaReportRange}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="12"/>
+                            </StackPanel>
+                        </Border>
+                        <Border  Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,1,1" VerticalAlignment="Center">
+                            <Label Content="&lt;29" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,1" VerticalAlignment="Center">
+                            <Label Content="0.18 - 0.44" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="2" Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,1,1">
+                            <Label Content="30-39" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="2" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,1">
+                            <Label Content="0.16 - 0.53" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="3" Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,1,1">
+                            <Label Content="40-49" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="3" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,1">
+                            <Label Content="0.22 - 0.63" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="4" Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,1,1">
+                            <Label Content="50-59" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="4" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,1">
+                            <Label Content="0.32 - 0.72" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="5" Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,1,1">
+                            <Label Content="60-69" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="5" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,1">
+                            <Label Content="0.43 - 0.78" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="6" Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,1,1">
+                            <Label Content="&gt;70" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                        <Border  Grid.Row="6" Grid.Column="1" BorderBrush="Black" BorderThickness="0,0,1,1">
+                            <Label Content="0.50 - 0.64" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                        </Border>
+                    </Grid>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,5,0">
+                        <TextBlock Text="{StaticResource ReportContext_41}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataLeftMeanECOfLesion" Text="{Binding DataLeftMeanECOfLesion}" Width="100" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,5,0">
+                        <TextBlock Text="{StaticResource ReportContext_42}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataRightMeanECOfLesion" Text="{Binding DataRightMeanECOfLesion}" Width="100" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="4" BorderBrush="#FF000000" BorderThickness="0,1,0,0">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportFocalChanges}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
+                        <TextBlock Text="{StaticResource ReportContext_42}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportSegment}" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataRightSegment" Text="{Binding DataRightSegment}" Width="250" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportNumber}" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataRightNumber" Text="{Binding DataRightNumber}" Width="250" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        
+                    </StackPanel>
+                    <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportSize}" FontFamily="SimSun" FontSize="14"/>
+                        <WrapPanel Width="250"  Margin="5,0,0,0">
+                            <TextBlock Name="dataRightSize" Text="{Binding DataRightSize}" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataRightSize2" Text="{Binding DataRightSize2}" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataRightSize3" Text="{Binding DataRightSize3}" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        </WrapPanel>
+                        <TextBlock Text="{StaticResource ChinaReportShape}" FontFamily="SimSun" FontSize="14"/>
+                        <WrapPanel Width="250"  Margin="5,0,0,0">
+                            <TextBlock Name="dataRightShape" Text="{Binding DataRightShape}" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataRightShape2" Text="{Binding DataRightShape2}" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataRightShape3" Text="{Binding DataRightShape3}" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        </WrapPanel>                        
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Left" Margin="20,0,0,0">
+                        <TextBlock Text="{StaticResource ReportContext_41}"  FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportSegment}" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataLeftSegment" Text="{Binding DataLeftSegment}" Width="250" Margin="10,0,0,0"  FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportNumber}" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataLeftNumber" Text="{Binding DataLeftNumber}" Width="250" Margin="10,0,0,0"  FontFamily="SimSun" FontSize="14"/>
+                        
+                    </StackPanel>
+                    <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportSize}" FontFamily="SimSun" FontSize="14"/>                        
+                        <WrapPanel Width="250"  Margin="5,0,0,0">
+                            <TextBlock Name="dataLeftSize" Text="{Binding DataLeftSize}" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataLeftSize2" Text="{Binding DataLeftSize2}" Margin="10,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataLeftSize3" Text="{Binding DataLeftSize3}" Margin="10,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        </WrapPanel>
+                        <TextBlock Text="{StaticResource ChinaReportShape}" FontFamily="SimSun" FontSize="14"/>
+                        <WrapPanel Width="250"  Margin="5,0,0,0">
+                            <TextBlock Name="dataLeftShape" Text="{Binding DataLeftShape}" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataLeftShape2" Text="{Binding DataLeftShape2}" Margin="10,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                            <TextBlock Name="dataLeftShape3" Text="{Binding DataLeftShape3}" Margin="10,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        </WrapPanel>                        
+                    </StackPanel>                    
+                </Grid>
+            </Border>
+            <Border Grid.Row="5" BorderBrush="#FF000000" BorderThickness="0,1,0,0">
+                <Grid Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.3*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.3*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>                        
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportBIEIM}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock x:Name="dataTotalPts" Text="{Binding DataTotalPts}" Margin="5,0,0,0" Width="200" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Text="{StaticResource ChinaReportBIRADS}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock x:Name="dataBiRadsCategory" Text="{Binding DataPoint}" Margin="5,0,0,0" Width="300" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportAnalysis}" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataConclusion" Text="{Binding DataConclusion}" Margin="5,0,0,0" Width="200" FontFamily="SimSun" FontSize="14"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="4"  Orientation="Horizontal" HorizontalAlignment="Left">
+                        <TextBlock Text="{StaticResource ChinaReportSuggestion}" FontWeight="Bold" Width="60" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataRecommendation" Text="{Binding DataRecommendation}" Margin="5,0,0,0" Width="630" TextWrapping="Wrap" FontFamily="SimSun" FontSize="14"/>                        
+                    </StackPanel>
+                    <StackPanel Grid.Row="5" Grid.RowSpan="2"  Orientation="Horizontal" HorizontalAlignment="Left" Margin="65,0,0,0">
+                        <TextBlock Name="dataComments" Text="{Binding DataComments}" Width="630" TextWrapping="Wrap" FontFamily="SimSun" FontSize="14"/>                        
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border Grid.Row="6" BorderBrush="#FF000000" BorderThickness="0,1,0,0">
+                <Grid Margin="10,5,10,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.3*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Text="{StaticResource ChinaReportRemark}" Foreground="Red" FontFamily="SimSun" FontSize="12"/>
+                    <StackPanel Grid.Row="1" Grid.Column="1"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,5,0">
+                        <TextBlock Text="{StaticResource ChinaReportTechnician}" VerticalAlignment="Center" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataMeikTech" Text="{Binding DataMeikTech}" VerticalAlignment="Center"  Width="120"  FontSize="14" FontFamily="SimSun" Margin="5,0,0,0"/>                        
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="2"  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,5,0">
+                        <TextBlock Text="{StaticResource ChinaReportDoctor}" VerticalAlignment="Center" FontWeight="Bold" FontFamily="SimSun" FontSize="14"/>
+                        <Image Name="dataSignImg" Height="34"  Width="150"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</FixedPage>
+

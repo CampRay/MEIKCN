@@ -184,7 +184,7 @@ namespace MEIKReport.Common
             {
                 return null;
             }
-
+            
             Stream responseStream = response.GetResponseStream();
             string downloadFilePath = path + System.IO.Path.DirectorySeparatorChar + filename;
             if (filename.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))

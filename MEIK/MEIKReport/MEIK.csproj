@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MEIK</RootNamespace>
-    <AssemblyName>MEIK</AssemblyName>
+    <AssemblyName>MEIKReport</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -102,7 +102,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Common\BarcodeScanerHook.cs" />
     <Compile Include="Common\ComputerInfoTools.cs" />
+    <Compile Include="Common\Constant.cs" />
     <Compile Include="Common\DelegateHelper.cs" />
     <Compile Include="Common\EmailHelper.cs" />
     <Compile Include="Common\EnumBooleanConverter.cs" />
@@ -127,6 +129,7 @@
     <Compile Include="Common\WindowListen.cs" />
     <Compile Include="Common\XmlTools.cs" />
     <Compile Include="Common\ZipTools.cs" />
+    <Compile Include="Model\Logo.cs" />
     <Compile Include="PrintPreviewWindow.xaml.cs">
       <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,9 @@
     </Compile>
     <Compile Include="Views\AddEmailPage.xaml.cs">
       <DependentUpon>AddEmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddLogoPage.xaml.cs">
+      <DependentUpon>AddLogoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddNamePage.xaml.cs">
       <DependentUpon>AddNamePage.xaml</DependentUpon>
@@ -162,6 +168,12 @@
     </Compile>
     <Compile Include="Views\ScreenCapture.xaml.cs">
       <DependentUpon>ScreenCapture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScreenResultReport.xaml.cs">
+      <DependentUpon>ScreenResultReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchClient.xaml.cs">
+      <DependentUpon>SearchClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectTechnicianPage.xaml.cs">
       <DependentUpon>SelectTechnicianPage.xaml</DependentUpon>
@@ -192,8 +204,8 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\StringResource.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\StringResource.zh-CN.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -219,6 +231,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddLogoPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AddNamePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -239,11 +255,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\GoodUnionReportFlow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\LicensePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NewReportFlow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -267,6 +291,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ScreenResultReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\SearchClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\SelectTechnicianPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -280,6 +312,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\SummaryReportFlow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ChinaReportDocument.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -330,13 +366,7 @@
     <None Include="MEIKMA\MEIKMA.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MEIK\Language.CHN">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MEIK\MEIK.chm">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MEIK\MEIK.ini">
+    <None Include="MEIKMD\MEIKMD.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Properties\app.manifest" />
@@ -363,21 +393,22 @@
     <Resource Include="Images\sort_asc.png" />
     <Resource Include="Images\sort_desc.png" />
     <Resource Include="Images\sort_normal.png" />
-    <None Include="MEIK\DELZIP179.DLL">
+    <None Include="MEIKMD\DELZIP179.DLL">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MEIK\ftd2xx.dll">
+    <None Include="MEIKMD\ftd2xx.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MEIK\MEIK.exe">
+    <None Include="MEIKMD\mingwm10.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MEIK\mingwm10.dll">
+    <None Include="MEIKMD\reit.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="MEIK\reit.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\search_hover.png" />
+    <Resource Include="Images\result.png" />
+    <Resource Include="Images\result_hover.png" />
     <Content Include="MEIKMA\CDM v2.10.00 WHQL Certified.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -394,6 +425,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MEIKMA\reit.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\Region.xml" />
+    <Content Include="MEIKMD\MEIKMD.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Xceed.Wpf.Toolkit.dll" />
@@ -443,7 +478,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

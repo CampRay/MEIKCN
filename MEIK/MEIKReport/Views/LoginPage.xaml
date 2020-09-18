@@ -1,7 +1,7 @@
 ﻿<Window x:Class="MEIKReport.LoginPage"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Icon="/MEIK;component/Images/App_Icon.png"
+        Icon="/MEIKReport;component/Images/App_Icon.png"
         Title="Sign In" Height="145" Width="350" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow">    
     <Grid>
         <Grid.Background>

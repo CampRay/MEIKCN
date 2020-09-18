@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MEIK.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -251,12 +252,27 @@ namespace MEIKReport.Model
             get { return defaultLogo; }
             set { defaultLogo = value; }
         }
+		
+		private ObservableCollection<Logo> deciceLogo = new ObservableCollection<Logo>();
+
+        public ObservableCollection<Logo> DeciceLogo
+        {
+            get { return deciceLogo; }
+            set { deciceLogo = value; OnPropertyChanged("DeciceLogo"); }
+        }
 
         private string companyAddress;
         public string CompanyAddress
         {
             get { return companyAddress; }
             set { companyAddress = value; OnPropertyChanged("CompanyAddress"); }
+        }
+
+        private string companyName;
+        public string CompanyName
+        {
+            get { return companyName; }
+            set { companyName = value; OnPropertyChanged("CompanyName"); }
         }
     }
 }

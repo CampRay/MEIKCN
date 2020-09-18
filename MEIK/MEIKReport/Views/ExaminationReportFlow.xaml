@@ -837,12 +837,7 @@
                     </Paragraph>
                 </TableCell>
             </TableRow>
-            
-            <TableRow>
-                <TableCell LineStackingStrategy="BlockLineHeight">
-                    <Paragraph  LineHeight="40"/>
-                </TableCell>
-            </TableRow>
+                        
         </TableRowGroup>
     </Table>
     

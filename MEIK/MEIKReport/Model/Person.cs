@@ -3,13 +3,21 @@ namespace MEIKReport.Model
 {
     public class Person : ViewModelBase
     {
+        //客户号码ClientNumber是客户在云服务上的登录帐号,Admin表中的admin_id字段,user表中的cid字段
         private string clientNumber;
         public string ClientNumber
         {
             get { return clientNumber; }
             set { clientNumber = value; OnPropertyChanged("ClientNumber"); }
         }
-
+        //身份证号
+		private string clientID;
+        public string ClientID
+        {
+            get { return clientID; }
+            set { clientID = value; OnPropertyChanged("ClientID"); }
+        }        
+        //客户编号(自定义的客户编号，可用于云服务端用户表ID，暂时没用)
         private string cid;
         public string Cid
         {
@@ -19,8 +27,13 @@ namespace MEIKReport.Model
         private string archiveFolder;
         private string crdFilePath;
         private string iniFilePath;
+        /// <summary>
+        /// 档案状态：NC: New Client; SR: Screened; DS: Data Sent，DR，RD, RS 
+        /// </summary>
         private string status;
         private string statusText;
+        //状态显示标签（主要为了可切换中英文显示）
+        private string statusTag;
         private bool poorImages;
         private int id;        
         private string code;
@@ -28,7 +41,7 @@ namespace MEIKReport.Model
         private string givenName;
         private string otherName;
 
-        private string gender;
+        private int gender;
         private int age;
         private string height;
         private string weight;
@@ -44,6 +57,13 @@ namespace MEIKReport.Model
         private string birthDate;
         private string birthMonth;
         private string birthYear;
+
+        private string outPatientNumber;
+        private string hospitalNumber;
+        private string hospitalBedNumber;
+        private string department;
+
+
         //true: is English, false: isnot English
         private bool reportLanguage=true;
         private bool showTechSignature = true;
@@ -66,48 +86,7 @@ namespace MEIKReport.Model
 
         private string icon = "/Images/id_card.png";
         private string uploaded;
-        private string emailTo;
-        public string Uploaded
-        {
-            get { return uploaded; }
-            set { uploaded = value; OnPropertyChanged("Uploaded"); }
-        }
-
-        public string IniFilePath
-        {
-            get { return iniFilePath; }
-            set { iniFilePath = value; }
-        }
-
-        public string Status
-        {
-            get { return status; }
-            set { status = value; OnPropertyChanged("Status"); }
-        }
-
-        public string StatusText
-        {
-            get { return statusText; }
-            set { statusText = value; OnPropertyChanged("StatusText"); }
-        }        
-
-        public bool PoorImages
-        {
-            get { return poorImages; }
-            set { poorImages = value;  }
-        }
-
-        public bool Free
-        {
-            get { return free; }
-            set { free = value; OnPropertyChanged("Free"); }
-        }
-
-        public string ArchiveFolder
-        {
-            get { return archiveFolder; }
-            set { archiveFolder = value; }
-        }
+        private string emailTo;        
 
         #region Public Members
         public int Id { 
@@ -177,7 +156,7 @@ namespace MEIKReport.Model
             }
         }
 
-        public string Gender
+        public int Gender
         {
             get { return this.gender; }
             set
@@ -330,6 +309,47 @@ namespace MEIKReport.Model
                 OnPropertyChanged("BirthYear");
             }
         }
+
+        public string OutPatientNumber
+        {
+            get { return this.outPatientNumber; }
+            set
+            {
+                this.outPatientNumber = value;
+                OnPropertyChanged("OutPatientNumber");
+            }
+        }
+        public string HospitalNumber
+        {
+            get { return this.hospitalNumber; }
+            set
+            {
+                this.hospitalNumber = value;
+                OnPropertyChanged("HospitalNumber");
+            }
+        }
+        public string HospitalBedNumber
+        {
+            get { return this.hospitalBedNumber; }
+            set
+            {
+                this.hospitalBedNumber = value;
+                OnPropertyChanged("HospitalBedNumber");
+            }
+        }
+        public string Department
+        {
+            get { return this.department; }
+            set
+            {
+                this.department = value;
+                OnPropertyChanged("Department");
+            }
+        }
+
+
+
+
         public string RegDate
         {
             get { return this.regDate; }
@@ -377,6 +397,47 @@ namespace MEIKReport.Model
             }
         }
 
+        public string Uploaded
+        {
+            get { return uploaded; }
+            set { uploaded = value; OnPropertyChanged("Uploaded"); }
+        }
+
+        public string IniFilePath
+        {
+            get { return iniFilePath; }
+            set { iniFilePath = value; }
+        }
+
+        public string Status
+        {
+            get { return status; }
+            set { status = value; OnPropertyChanged("Status"); }
+        }
+
+        public string StatusText
+        {
+            get { return statusText; }
+            set { statusText = value; OnPropertyChanged("StatusText"); }
+        }
+        public string StatusTag
+        {
+            get { return statusTag; }
+            set { statusTag = value; OnPropertyChanged("StatusTag"); }
+        }
+
+        public bool PoorImages
+        {
+            get { return poorImages; }
+            set { poorImages = value; }
+        }
+
+        public bool Free
+        {
+            get { return free; }
+            set { free = value; OnPropertyChanged("Free"); }
+        }
+
         public int Result
         {
             get { return result; }
@@ -393,6 +454,52 @@ namespace MEIKReport.Model
             get { return rightResult; }
             set { rightResult = value; }
         }
+
+        public string ArchiveFolder
+        {
+            get { return archiveFolder; }
+            set { archiveFolder = value; }
+        }
+
+
+        public string TechName
+        {
+            get { return techName; }
+            set { techName = value; }
+        }
+
+        public string TechLicense
+        {
+            get { return techLicense; }
+            set { techLicense = value; }
+        }
+
+
+        public string DoctorName
+        {
+            get { return doctorName; }
+            set { doctorName = value; }
+        }
+
+        public string DoctorLicense
+        {
+            get { return doctorLicense; }
+            set { doctorLicense = value; }
+        }
+
+
+        public string ScreenVenue
+        {
+            get { return screenVenue; }
+            set { screenVenue = value; OnPropertyChanged("ScreenVenue"); }
+        }
+
+        public string CrdFilePath
+        {
+            get { return crdFilePath; }
+            set { crdFilePath = value; }
+        }
+
         public string Remark
         {
             get { return this.remark; }
@@ -1022,42 +1129,8 @@ namespace MEIKReport.Model
             get { return examinationsOtherDesc; }
             set { examinationsOtherDesc = value; OnPropertyChanged("ExaminationsOtherDesc"); }
         }
-        
-        public string TechName
-        {
-            get { return techName; }
-            set { techName = value; }
-        }
-       
-        public string TechLicense
-        {
-            get { return techLicense; }
-            set { techLicense = value; }
-        }
-        
-        public string DoctorName
-        {
-            get { return doctorName; }
-            set { doctorName = value; }
-        }        
-        public string DoctorLicense
-        {
-            get { return doctorLicense; }
-            set { doctorLicense = value; }
-        }
 
         
-        public string ScreenVenue
-        {
-            get { return screenVenue; }
-            set { screenVenue = value; OnPropertyChanged("ScreenVenue"); }
-        }
-
-        public string CrdFilePath
-        {
-            get { return crdFilePath; }
-            set { crdFilePath = value; }
-        }
 
         #endregion
 
@@ -1389,12 +1462,88 @@ namespace MEIKReport.Model
             set { ultrasoundYear = value; OnPropertyChanged("UltrasoundYear"); }
         }
 
+        private bool ultrasoundL1;
+        public bool UltrasoundL1
+        {
+            get { return ultrasoundL1; }
+            set { ultrasoundL1 = value; OnPropertyChanged("UltrasoundL1"); }
+        }
+        private bool ultrasoundL2;
+        public bool UltrasoundL2
+        {
+            get { return ultrasoundL2; }
+            set { ultrasoundL2 = value; OnPropertyChanged("UltrasoundL2"); }
+        }
+        private bool ultrasoundL3;
+        public bool UltrasoundL3
+        {
+            get { return ultrasoundL3; }
+            set { ultrasoundL3 = value; OnPropertyChanged("UltrasoundL3"); }
+        }
+        private bool ultrasoundL0;
+        public bool UltrasoundL0
+        {
+            get { return ultrasoundL0; }
+            set { ultrasoundL0 = value; OnPropertyChanged("UltrasoundL0"); }
+        }
+        private bool ultrasoundL4;
+        public bool UltrasoundL4
+        {
+            get { return ultrasoundL4; }
+            set { ultrasoundL4 = value; OnPropertyChanged("UltrasoundL4"); }
+        }
+        private bool ultrasoundL5;
+        public bool UltrasoundL5
+        {
+            get { return ultrasoundL5; }
+            set { ultrasoundL5 = value; OnPropertyChanged("UltrasoundL5"); }
+        }
+
+
         private string mammographyYear;
         public string MammographyYear
         {
             get { return mammographyYear; }
             set { mammographyYear = value; OnPropertyChanged("MammographyYear"); }
         }
+
+        private bool mammographyL1;
+        public bool MammographyL1
+        {
+            get { return mammographyL1; }
+            set { mammographyL1 = value; OnPropertyChanged("MammographyL1"); }
+        }
+        private bool mammographyL2;
+        public bool MammographyL2
+        {
+            get { return mammographyL2; }
+            set { mammographyL2 = value; OnPropertyChanged("MammographyL2"); }
+        }
+        private bool mammographyL3;
+        public bool MammographyL3
+        {
+            get { return mammographyL3; }
+            set { mammographyL3 = value; OnPropertyChanged("MammographyL3"); }
+        }
+        private bool mammographyL0;
+        public bool MammographyL0
+        {
+            get { return mammographyL0; }
+            set { mammographyL0 = value; OnPropertyChanged("MammographyL0"); }
+        }
+        private bool mammographyL4;
+        public bool MammographyL4
+        {
+            get { return mammographyL4; }
+            set { mammographyL4 = value; OnPropertyChanged("MammographyL4"); }
+        }
+        private bool mammographyL5;
+        public bool MammographyL5
+        {
+            get { return mammographyL5; }
+            set { mammographyL5 = value; OnPropertyChanged("MammographyL5"); }
+        }
+
 
         private string biopsyYear;
         public string BiopsyYear
@@ -1429,6 +1578,42 @@ namespace MEIKReport.Model
             set { meikScreenDesc = value; OnPropertyChanged("MeikScreenDesc"); }
         }
 
+        private bool meikL1;
+        public bool MeikL1
+        {
+            get { return meikL1; }
+            set { meikL1 = value; OnPropertyChanged("MeikL1"); }
+        }
+        private bool meikL2;
+        public bool MeikL2
+        {
+            get { return meikL2; }
+            set { meikL2 = value; OnPropertyChanged("MeikL2"); }
+        }
+        private bool meikL3;
+        public bool MeikL3
+        {
+            get { return meikL3; }
+            set { mammographyL3 = value; OnPropertyChanged("MeikL3"); }
+        }
+        private bool meikL0;
+        public bool MeikL0
+        {
+            get { return meikL0; }
+            set { meikL0 = value; OnPropertyChanged("MeikL0"); }
+        }
+        private bool meikL4;
+        public bool MeikL4
+        {
+            get { return meikL4; }
+            set { meikL4 = value; OnPropertyChanged("MeikL4"); }
+        }
+        private bool meikL5;
+        public bool MeikL5
+        {
+            get { return meikL5; }
+            set { meikL5 = value; OnPropertyChanged("MeikL5"); }
+        }
 
 
         private bool redSwollen;

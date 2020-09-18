@@ -2,11 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        Icon="/MEIK;component/Images/App_Icon.png"
-        Title="Choose Archive Folder" Height="360" Width="500" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
+        Icon="/MEIKReport;component/Images/App_Icon.png"
+        Title="Choose Archive Folder" Height="430" Width="500" ShowInTaskbar="False" ResizeMode="NoResize" Topmost="True" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow">
     <Grid Background="#FFEAF3FF">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>            
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="26"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
@@ -15,12 +18,53 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-
-        <Grid Grid.Row="1" Grid.Column="1" Width="480" Height="300" HorizontalAlignment="Center"  Background="White">
-            <TreeView Name="treeView" Width="460" Height="260" Loaded="treeView_Loaded" VerticalAlignment="Top"/>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>                
+            </Grid.ColumnDefinitions>
+            <WrapPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock Width="80" VerticalAlignment="Center" TextAlignment="Right" Text="{DynamicResource  Dialog2}"></TextBlock>
+                <TextBox Name="txtSurName" Width="150" ></TextBox>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Width="80" VerticalAlignment="Center" TextAlignment="Right" Text="{DynamicResource  Dialog3}"></TextBlock>
+                <TextBox Name="txtGivenName" Width="150" ></TextBox>
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock Width="80" VerticalAlignment="Center" TextAlignment="Right" Text="{DynamicResource  Dialog12}"></TextBlock>
+                <TextBox Name="txtIDNumber" Width="150" ></TextBox>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" Grid.Column="1">
+                <TextBlock Width="80" VerticalAlignment="Center" TextAlignment="Right" Text="{DynamicResource  Dialog9}"></TextBlock>
+                <TextBox Name="txtMobile" Width="150" ></TextBox>
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <WrapPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock Width="80" VerticalAlignment="Center" TextAlignment="Right" Text="{DynamicResource  Dialog5}"></TextBlock>
+                <TextBox Name="txtCode" Width="150" ></TextBox>
+            </WrapPanel>
+            <WrapPanel Orientation="Horizontal" Grid.Column="1" Margin="60,0,0,0">
+                <Button Name="btnSearch" Width="80" Height="22" Click="btnSearch_Click" Content="{DynamicResource  CommonSearch}"></Button>
+                <Button Name="btnReset" Width="80" Height="22" Click="btnReset_Click" Margin="10,0,0,0" Content="{DynamicResource  CommonReset}"></Button>
+            </WrapPanel>
+        </Grid>
+        <Grid Grid.Row="4" Grid.Column="1" Width="480" Height="266" HorizontalAlignment="Center"  Background="White">
+            <TreeView Name="treeView" Width="460" Height="256" Loaded="treeView_Loaded" VerticalAlignment="Center"/>
         </Grid>
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>                

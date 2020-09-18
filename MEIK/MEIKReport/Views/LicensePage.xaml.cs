@@ -57,9 +57,9 @@ namespace MEIKReport
                         OperateIniFile.WriteIniData("Base", "License", this.txtLicense.Text, System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
                         string filePath = System.AppDomain.CurrentDomain.BaseDirectory + "license.dat";
                         SecurityTools.EncryptTextToFile(App.reportSettingModel.License + ComputerInfoTools.GetCPUId(), filePath);
-                        MessageBox.Show(this, App.Current.FindResource("Message_73").ToString());
+                        //MessageBox.Show(this, App.Current.FindResource("Message_73").ToString());
                         this.DialogResult = (bool?)true;
-                        this.Close();
+                        //this.Close();
                     }
                     else
                     {

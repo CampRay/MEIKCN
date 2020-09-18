@@ -11,6 +11,7 @@
     <sys:String x:Key="MainWinDeviceNo">Device Number: </sys:String>
     <sys:String x:Key="MainWinMenuReceive">Receive Data</sys:String>
     <sys:String x:Key="MainWinMenuReceiveReport">Receive Report</sys:String>
+    <sys:String x:Key="MainWinMenuReceiveClient">Search Client</sys:String>
 
     <sys:String x:Key="CommonExitBtn">Exit</sys:String>
     <sys:String x:Key="CommonPreviewBtn">Preview</sys:String>
@@ -32,15 +33,32 @@
     <sys:String x:Key="CommonExportNuvoMedBtn">NuvoTEK PDF</sys:String>
     <sys:String x:Key="CommonExportGoodUnionBtn">GoodUnino PDF</sys:String>
     <sys:String x:Key="CommonAnalysisBtn">Analysis</sys:String>
+    <sys:String x:Key="CommonStatusScreen">Screened</sys:String>
+    <sys:String x:Key="CommonStatusNew">New Client</sys:String>
+    <sys:String x:Key="CommonStatusDataSent">Data Sent</sys:String>
+    <sys:String x:Key="CommonStatusReport">Received Report</sys:String>
     <sys:String x:Key="CommonStatusReceived">Data Received</sys:String>    
     <sys:String x:Key="CommonStatusReportSent">Report Sent</sys:String>
     <sys:String x:Key="CommonStatusReportDone">Report Done</sys:String>
     <sys:String x:Key="CommonPreviewSelect">Preview Report</sys:String>
-    <sys:String x:Key="CommonPreviewLF">Long Form Report</sys:String>
-    <sys:String x:Key="CommonPreviewSFI">Short Form Report</sys:String>
+    <sys:String x:Key="CommonPreviewLF">GoodUnion Report</sys:String>
+    <sys:String x:Key="CommonPreviewSFI">Summary Report</sys:String>
+    <sys:String x:Key="CommonPreviewNew">New Report</sys:String>
+    <sys:String x:Key="CommonPreviewChina">China Report</sys:String>    
     <sys:String x:Key="CommonMRN">Medical Record No.(MRN)</sys:String>
     <sys:String x:Key="CommonLicenseLab">License Key</sys:String>
+    <sys:String x:Key="CommonAdminPwdLab">Administrator Password</sys:String>
+    <sys:String x:Key="CommonResultNormal">Normal</sys:String>
+    <sys:String x:Key="CommonResultBenign">Benign</sys:String>
+    <sys:String x:Key="CommonResultSuspicious">Suspicious</sys:String>
+    <sys:String x:Key="CommonResultSubmit">Upload Screen Report</sys:String>
 
+    <sys:String x:Key="StatusNC">NC</sys:String>
+    <sys:String x:Key="StatusSR">SR</sys:String>
+    <sys:String x:Key="StatusDS">DS</sys:String>
+    <sys:String x:Key="StatusDR">DR</sys:String>
+    <sys:String x:Key="StatusRD">RD</sys:String>
+    <sys:String x:Key="StatusRS">RS</sys:String>
 
     <sys:String x:Key="RecordsWin1" xml:space="preserve">Client Count: </sys:String>
     <sys:String x:Key="RecordsWin2" xml:space="preserve">Total # of Screening Sessions: </sys:String>
@@ -53,28 +71,30 @@
     <sys:String x:Key="Excel3">Description</sys:String>
     <sys:String x:Key="Excel4">Time Stamp</sys:String>
     <sys:String x:Key="Excel5">Client Archive Folder</sys:String>
-    <sys:String x:Key="Excel6">Screening Date Time</sys:String>
+    <sys:String x:Key="Excel6">Screening Date</sys:String>
     <sys:String x:Key="Excel7">Client No.</sys:String>    
     <sys:String x:Key="Excel8">Mobile</sys:String>
     <sys:String x:Key="Excel9">Email</sys:String>
     <sys:String x:Key="Excel10">Birthday</sys:String>
     <sys:String x:Key="Excel11">Download</sys:String>
+    <sys:String x:Key="Excel12">ID Card</sys:String>
+    <sys:String x:Key="Excel13">Status</sys:String>
+    <sys:String x:Key="Excel14">Screening Venue</sys:String>
     
     <sys:String x:Key="MailSubject">Screening Records</sys:String>
     
     <sys:String x:Key="Dialog1">Please input client's name</sys:String>
-    <sys:String x:Key="Dialog2">Last Name:</sys:String>
-    <sys:String x:Key="Dialog3">First Name:</sys:String>
+    <sys:String x:Key="Dialog2">Surname:</sys:String>
+    <sys:String x:Key="Dialog3">Given Name:</sys:String>
     <sys:String x:Key="Dialog4">Middle Name:</sys:String>
     <sys:String x:Key="Dialog5">Screen Code:</sys:String>
     <sys:String x:Key="Dialog6">Create</sys:String>
     <sys:String x:Key="Dialog7">Cancel</sys:String>
     <sys:String x:Key="Dialog8">Technician:</sys:String>
-    <sys:String x:Key="Dialog9">Mobile:</sys:String>
-    <sys:String x:Key="Dialog10">Email:</sys:String>
-    <sys:String x:Key="Dialog11">Client Number.</sys:String>
-    <sys:String x:Key="Dialog12">Search Client</sys:String>
-    <sys:String x:Key="Dialog13">Reset</sys:String>
+    <sys:String x:Key="Dialog9">Phone Code:</sys:String>
+    <sys:String x:Key="Dialog10">E-mail:</sys:String>
+    <sys:String x:Key="Dialog11">Screen Date:</sys:String>
+    <sys:String x:Key="Dialog12">ID Number:</sys:String>    
     <sys:String x:Key="Dialog14">Left Breast:</sys:String>
     <sys:String x:Key="Dialog15">Right Breast:</sys:String>
     
@@ -96,7 +116,7 @@
     <sys:String x:Key="Message_14">Saved the report setting successfully.</sys:String>
     <sys:String x:Key="Message_15">You did't configure the mail account or configured the mail account incorrectly.</sys:String>
     <sys:String x:Key="Message_16">The user's report has not been created, please fill and save the report first.</sys:String>
-    <sys:String x:Key="Message_17">Are you sure to send out all of the screen data?</sys:String>
+    <sys:String x:Key="Message_17">Are you sure to send all of the data to Data Center?</sys:String>
     <sys:String x:Key="Message_18">Sent the data successfully.</sys:String>
     <sys:String x:Key="Message_19">Failed to send email, Exception:</sys:String>
     <sys:String x:Key="Message_20">Failed to load the report setting. Exception:</sys:String>
@@ -171,6 +191,7 @@
     <sys:String x:Key="Message_88">Result analysis for the MEIK Screening</sys:String>
     <sys:String x:Key="Message_89">Result analysis: {0}</sys:String>
     <sys:String x:Key="Message_90">Lack mammograph screenshots</sys:String>
+    <sys:String x:Key="Message_91">Failed to run MEIK Diagnostics program, file is missing or corrupt.</sys:String>
 
     <sys:String x:Key="UserListWinBrowerLab">Selection of archive</sys:String>
     <sys:String x:Key="UserListWinBrowerBtn">Browse...</sys:String>
@@ -233,13 +254,14 @@
     <sys:String x:Key="SettingScreenVenue">Screen Venue</sys:String>
     <sys:String x:Key="SettingDeviceId">Device Number</sys:String>
     <sys:String x:Key="SettingImageTitle">Report Logo</sys:String>
-    <sys:String x:Key="SettingUploadLogo">Report Logo</sys:String>
+    <sys:String x:Key="SettingUploadLogo">Company Logo</sys:String>
     <sys:String x:Key="SettingSealIcon">Company Seal</sys:String>
-    <sys:String x:Key="SettingCompanyInfo">Report Footer Info</sys:String>
+    <sys:String x:Key="SettingCompanyInfo">Company Address</sys:String>
     <sys:String x:Key="SettingLogoSelect">Browse...</sys:String>
     <sys:String x:Key="SettingLogoDefault">Default</sys:String>
-    <sys:String x:Key="SettingCompanyTitle">Report Footer</sys:String>
+    <sys:String x:Key="SettingCompanyTitle">Company Info</sys:String>
     <sys:String x:Key="SettingUploadIcon">Company info for devices</sys:String>
+    <sys:String x:Key="SettingCompanyName">Company Name</sys:String>
 
     <sys:String x:Key="UserDataPersonalTab">Personal Data</sys:String>
     <sys:String x:Key="UserDataPersonal1">Last name:</sys:String>
@@ -247,7 +269,7 @@
     <sys:String x:Key="UserDataPersonal3">Middle name:</sys:String>
     <sys:String x:Key="UserDataPersonal4">Date of Birth:</sys:String>
     <sys:String x:Key="UserDataPersonal5">Date of screening:</sys:String>
-    <sys:String x:Key="UserDataPersonal6">Address Line 1:</sys:String>
+    <sys:String x:Key="UserDataPersonal6">Address Line:</sys:String>
     <sys:String x:Key="UserDataPersonal7">day</sys:String>
     <sys:String x:Key="UserDataPersonal8">month</sys:String>
     <sys:String x:Key="UserDataPersonal9">year</sys:String>
@@ -268,6 +290,14 @@
     <sys:String x:Key="UserDataPersona34">Zip Code:</sys:String>
     <sys:String x:Key="UserDataPersona35">Country:</sys:String>
     <sys:String x:Key="UserDataPersona36">Free/Demo</sys:String>
+    <sys:String x:Key="UserDataPersona37">ID Card Number:</sys:String>
+    <sys:String x:Key="UserDataPersona38">Out-patient Number:</sys:String>
+    <sys:String x:Key="UserDataPersona39">Hospital Number:</sys:String>
+    <sys:String x:Key="UserDataPersona40">Hospital-bed Number:</sys:String>
+    <sys:String x:Key="UserDataPersona41">Department:</sys:String>
+    <sys:String x:Key="UserDataPersona42">Gender:</sys:String>
+    <sys:String x:Key="UserDataPersona43">Female</sys:String>
+    <sys:String x:Key="UserDataPersona44">Male</sys:String>
 
     <sys:String x:Key="UserDataFamilyTab">Family History</sys:String>
     <sys:String x:Key="UserDataFamily1">Breast Cancer:</sys:String>
@@ -374,6 +404,12 @@
     <sys:String x:Key="UserDataExaminations20">Diagnosis:</sys:String>
     <sys:String x:Key="UserDataExaminations21">EIM Point:</sys:String>
     <sys:String x:Key="UserDataExaminations22">MEIK Screening</sys:String>
+    <sys:String x:Key="UserDataExaminations23">L1</sys:String>
+    <sys:String x:Key="UserDataExaminations24">L2</sys:String>
+    <sys:String x:Key="UserDataExaminations25">L3</sys:String>
+    <sys:String x:Key="UserDataExaminations26">L0</sys:String>
+    <sys:String x:Key="UserDataExaminations27">L4</sys:String>
+    <sys:String x:Key="UserDataExaminations28">L5</sys:String>
 
     <sys:String x:Key="UserDataVisualTab">Visual</sys:String>
     <sys:String x:Key="UserDataVisual1">Red and swollen:</sys:String>
@@ -641,6 +677,34 @@
     <sys:String x:Key="ReportContext_252">Screen Image</sys:String>
     <sys:String x:Key="ReportContext_253">Result Analysis</sys:String>
 
+    <sys:String x:Key="ChinaReportTitle">MEIK Biology Electrical Impedance Tomography Breast Scan Report</sys:String>
+    <sys:String x:Key="ChinaReportDevice">Device Number: </sys:String>
+    <sys:String x:Key="ChinaReportHeight">Height: </sys:String>
+    <sys:String x:Key="ChinaReportWeight">Weight: </sys:String>
+    <sys:String x:Key="ChinaReportOutpatientNumber">Patient No:</sys:String>
+    <sys:String x:Key="ChinaReportHospitalNumber">Hospital No:</sys:String>
+    <sys:String x:Key="ChinaReportBedNumber">Bed No:</sys:String>
+    <sys:String x:Key="ChinaReportDepartment">Department:</sys:String>
+    <sys:String x:Key="ChinaReportCode">Screen Code: </sys:String>
+    <sys:String x:Key="ChinaReportProject">Inspection Item: </sys:String>
+    <sys:String x:Key="ChinaReportImage">Screen Image: </sys:String>
+    <sys:String x:Key="ChinaReportMeanElectrical">Mean Electrical Conductivity: </sys:String>
+    <sys:String x:Key="ChinaReportAge">Age</sys:String>
+    <sys:String x:Key="ChinaReportRange">Mean Electrical Conductivity Normal Range</sys:String>
+    <sys:String x:Key="ChinaReportFocalChanges">Description of Focal Changes:</sys:String>
+    <sys:String x:Key="ChinaReportSegment">Segment:</sys:String>
+    <sys:String x:Key="ChinaReportNumber">Number:</sys:String>
+    <sys:String x:Key="ChinaReportSize">Size:</sys:String>
+    <sys:String x:Key="ChinaReportShape">Shape:</sys:String>
+    <sys:String x:Key="ChinaReportBIEIM">BI-EIM Total Pts:</sys:String>
+    <sys:String x:Key="ChinaReportBIRADS">BI-RADS Category:</sys:String>
+    <sys:String x:Key="ChinaReportAnalysis">Result Analysis:</sys:String>
+    <sys:String x:Key="ChinaReportSuggestion">Suggestion:</sys:String>
+
+    <sys:String x:Key="ChinaReportTechnician">Technician/Doctor: </sys:String>
+    <sys:String x:Key="ChinaReportDoctor">Diagnostician:</sys:String>
+    <sys:String x:Key="ChinaReportRemark">This report is for clinicians' reference only</sys:String>    
+
     <sys:String x:Key="API_MSG_1">The license is required.</sys:String>
     <sys:String x:Key="API_MSG_2">The license is invalid.</sys:String>
     <sys:String x:Key="API_MSG_3">The license is disabled.</sys:String>
@@ -654,7 +718,7 @@
     <sys:String x:Key="API_MSG_11">Failed to upload data.</sys:String>
     <sys:String x:Key="API_MSG_12">Report already uploaded.</sys:String>
     <sys:String x:Key="API_MSG_13">Failed to upload file.</sys:String>
-    <sys:String x:Key="API_MSG_14">There is no new screen data on servier.</sys:String>
-    <sys:String x:Key="API_MSG_15">Do not get any client data on server.</sys:String>
+    <sys:String x:Key="API_MSG_14">No screen data found on servier.</sys:String>
+    <sys:String x:Key="API_MSG_15">No user data found on server.</sys:String>
 
 </ResourceDictionary>

@@ -18,7 +18,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="5*"/>
                 <RowDefinition Height=".3*"/>
                 <RowDefinition Height=".2*"/>
                 <RowDefinition Height="*"/>
@@ -54,13 +54,15 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>
-                    <RowDefinition Height="*"/>                                      
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>                    
                 </Grid.RowDefinitions>
                 <Image Name="imgTitleLog" Source="/Images/Title.png" Grid.Row="0" Grid.Column="1"></Image>
                 <!--<Image Source="/logo.png" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"></Image>-->
                 <!--<TextBlock Text="PATIENT'S MEIK RESULT" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
-                <TextBlock Text="MEIK v.5.6 - Digital Mammograph Summary Report" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>-->                
-                <TextBlock Text="{StaticResource ReportContext_197}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"/>
+                <TextBlock Text="MEIK v.5.6 - Digital Mammograph Summary Report" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>-->
+                <TextBlock Text="{StaticResource ReportContext_196}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" VerticalAlignment="Bottom"/>
+                <TextBlock Text="{StaticResource ReportContext_197}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" FontWeight="Bold" FontSize="20" VerticalAlignment="Center"/>
             </Grid>
             <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,2"></Border>
             <StackPanel Grid.Row="2" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
@@ -171,7 +173,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Name="dataSignDate" Text="{Binding DataSignDate}" VerticalAlignment="Bottom" Height="26" Width="140" FontSize="18"/>
                         <Border Grid.Row="1" Grid.Column="0" Width="200" BorderBrush="Black" BorderThickness="0,1,0,0"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0" Text="{StaticResource ReportContext_190}" Width="34" FontSize="16"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="{StaticResource ReportContext_190}" Width="134" FontSize="16"/>
                     </Grid>
                     <Grid Grid.Column="1" Name="doctorSignGrid">
                         <Grid.RowDefinitions>

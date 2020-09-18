@@ -38,7 +38,7 @@
                                 <RowDefinition Height="150"/>
                                 <RowDefinition Height="38"/>
                                 <RowDefinition Height="38"/>
-                                <RowDefinition Height="75"/>
+                                <RowDefinition Height="75"/>				                
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
@@ -116,7 +116,7 @@
                                     </StackPanel>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Grid.Row="2" Margin="10" Header="{StaticResource SettingReportPrintGroupHeader}" BorderBrush="#FF3E6E8F" Foreground="#FF3E6E8F" Visibility="Collapsed">
+                            <GroupBox Grid.Row="4" Margin="10" Header="{StaticResource SettingReportPrintGroupHeader}" BorderBrush="#FF3E6E8F" Foreground="#FF3E6E8F" Visibility="Collapsed">
                                 <Grid>                                    
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
@@ -222,7 +222,33 @@
                             </StackPanel>
                         </Grid>
                     </TabItem>
-                    <TabItem Name="tabImage"  Header="{StaticResource SettingImageTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White" Visibility="Collapsed">
+                    <TabItem Name="tabImage"  Header="{StaticResource SettingCompanyTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition Height="200"/>                                
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="510"/>                                
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{StaticResource SettingCompanyName}" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" Foreground="#FF3E6E8F"></Label>
+                            <WrapPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBox Name="txtCompanyName" Text="{Binding CompanyName}" Grid.Row="1"  Grid.Column="1" Width="450" BorderBrush="#FF3E6E8F"></TextBox>
+                            </WrapPanel>
+                            <Label Content="{StaticResource SettingUploadLogo}" Grid.Row="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" Foreground="#FF3E6E8F"></Label>
+                            <WrapPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBox Name="txtLogoPath" Width="250" BorderBrush="#FF3E6E8F"></TextBox>
+                                <Button Name="logoSelectBtn" Height="26" Width="100" Style="{StaticResource NewButtonStyle}" Content="{StaticResource SettingLogoSelect}" Click="logoSelectBtn_Click" ></Button>
+                                <Button Name="logoDefaultBtn" Height="26" Width="100" Style="{StaticResource NewButtonStyle}" Content="{StaticResource SettingLogoDefault}" Click="logoDefaultBtn_Click" ></Button>
+                            </WrapPanel>
+                            <Image Name="logoImg" Grid.Row="3"  Grid.ColumnSpan="2" Source="/Images/title.png" Margin="10"></Image>                            
+                        </Grid>
+                    </TabItem>
+                    <TabItem Visibility="Collapsed" Name="tabIcon"  Header="{StaticResource SettingCompanyTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="10"/>
@@ -231,31 +257,41 @@
                                 <RowDefinition Height="20"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="510"/>                                
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="460"/>
                             </Grid.ColumnDefinitions>
-                            <Label Content="{StaticResource SettingUploadLogo}" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" Foreground="#FF3E6E8F"></Label>
-                            <WrapPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBox Name="txtLogoPath" Width="250" BorderBrush="#FF3E6E8F"></TextBox>
-                                <Button Name="logoSelectBtn" Height="26" Width="100" Style="{StaticResource NewButtonStyle}" Content="{StaticResource SettingLogoSelect}" Click="logoSelectBtn_Click" ></Button>
-                                <Button Name="logoDefaultBtn" Height="26" Width="100" Style="{StaticResource NewButtonStyle}" Content="{StaticResource SettingLogoDefault}" Click="logoDefaultBtn_Click" ></Button>
+                            <Label Content="{StaticResource SettingUploadIcon}" Grid.Row="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontWeight="Bold" Foreground="#FF3E6E8F"></Label>
+                            <WrapPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center">                               
+                                <ComboBox Name="listDeciceNo" Style="{StaticResource NewComboBoxStyle}" Grid.Row="0" Grid.Column="0" Height="26" Width="190" VerticalAlignment="Center" IsSynchronizedWithCurrentItem="True" FontSize="14" ItemsSource="{Binding DeciceLogo}" Background="White" BorderBrush="#FF3E6E8F" SelectionChanged="listDeciceNo_SelectionChanged">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" >
+                                                <TextBlock Text="{Binding Path=Device}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ComboBox>
+                                <Button Name="btnAddDeviceLogo" Width="70" Height="28" Margin="5,0,0,0" VerticalAlignment="Center" Click="btnAddDeviceLogo_Click" Content="{StaticResource CommonAddBtn}"></Button>
+                                <Button Name="btnDelDeviceLogo" Width="70" Height="28" Margin="5,0,0,0" VerticalAlignment="Center" Click="btnDelDeviceLogo_Click" Content="{StaticResource CommonDeleteBtn}"></Button>
                             </WrapPanel>
-                            <Image Name="logoImg" Grid.Row="2"  Grid.ColumnSpan="2" Source="/Images/title.png" Margin="10"></Image>
-                            
-                        </Grid>
-                    </TabItem>
-                    <TabItem Name="tabIcon"  Header="{StaticResource SettingCompanyTitle}" Style="{StaticResource NewTabButtonStyle}" FontSize="14" Width="150" Height="26" HorizontalContentAlignment="Center" Background="#FF768795" Foreground="White" Visibility="Collapsed">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="10"/>
-                                <RowDefinition Height="30"/>
-                                <RowDefinition Height="240"/>                                
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="660"/>                                
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Row="1" Content="{StaticResource SettingCompanyInfo}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" FontWeight="Bold" Foreground="#FF3E6E8F"></Label>
-                            <TextBox Grid.Row="2" Grid.Column="0" Height="150" Width="660" Text="{Binding CompanyAddress}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBox>                            
+                            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+                                <Grid.RowDefinitions>                                    
+                                    <RowDefinition Height="30"/>                                    
+                                    <RowDefinition Height="170"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="280"/>
+                                    <ColumnDefinition Width="190"/>
+                                    <ColumnDefinition Width="190"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="{StaticResource SettingCompanyInfo}" Grid.Row="0" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" ></Label>
+                                <Label Content="{StaticResource SettingUploadLogo}" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" ></Label>
+                                <Label Content="{StaticResource SettingSealIcon}" Grid.Column="2" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center" ></Label>
+                                <TextBox Grid.Row="1" Grid.Column="0" Height="168" Width="270" Text="{Binding ElementName=listDeciceNo,Path=SelectedItem.Address}" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBox>
+                                <Image Name="IconImg" Grid.Row="1"  Grid.Column="1" Source="{x:Null}" Margin="10"></Image>
+                                <Image Name="SealImg" Grid.Row="1"  Grid.Column="2" Source="{x:Null}" Margin="10"></Image>
+                            </Grid>
                         </Grid>
                     </TabItem>
 

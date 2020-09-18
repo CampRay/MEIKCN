@@ -1,4 +1,5 @@
-﻿using MEIKReport.Common;
+﻿using MEIK.Model;
+using MEIKReport.Common;
 using MEIKReport.Model;
 using MEIKReport.Views;
 using System;
@@ -26,8 +27,6 @@ namespace MEIKReport
 {    
     public partial class ReportSettingPage : Window
     {
-        private delegate void UpdateProgressBarDelegate(DependencyProperty dp, Object value);
-        private delegate void ProgressBarGridDelegate(DependencyProperty dp, Object value); 
         public ReportSettingPage()
         {
             InitializeComponent();            
@@ -43,6 +42,7 @@ namespace MEIKReport
         private void Window_Closed(object sender, EventArgs e)
         {
             this.Owner.Visibility = Visibility.Visible;
+            this.IconImg.Source = null;
         }
 
         private void btnReportSettingSave_Click(object sender, RoutedEventArgs e)
@@ -87,7 +87,8 @@ namespace MEIKReport
                 OperateIniFile.WriteIniData("Report", "Use Default Logo", App.reportSettingModel.DefaultLogo.ToString(), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
                
 			    OperateIniFile.WriteIniData("Report", "Transfer Mode", App.reportSettingModel.TransferMode.ToString(), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
-                OperateIniFile.WriteIniData("Report", "Company Address", App.reportSettingModel.CompanyAddress, System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");                                            
+                OperateIniFile.WriteIniData("Report", "Company Address", App.reportSettingModel.CompanyAddress, System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
+                OperateIniFile.WriteIniData("Report", "Company Name", App.reportSettingModel.CompanyName, System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");                          
                 
                 OperateIniFile.WriteIniData("Report", "Print Paper", App.reportSettingModel.PrintPaper.ToString(), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
                 OperateIniFile.WriteIniData("Mail", "My Mail Address", App.reportSettingModel.MailAddress, System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
@@ -107,10 +108,18 @@ namespace MEIKReport
                 OperateIniFile.WriteIniData("Mail", "Mail Password", mailPwd, System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
                 OperateIniFile.WriteIniData("Mail", "Mail SSL", App.reportSettingModel.MailSsl.ToString(), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
 
-                OperateIniFile.WriteIniData("Device", "Device No", App.reportSettingModel.DeviceNo.ToString(), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
-
+                OperateIniFile.WriteIniData("Device", "Device No", App.reportSettingModel.DeviceNo.ToString(), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");                
+                
                 var userListWin = this.Owner as UserList;
                 userListWin.labDeviceNo.Content = App.reportSettingModel.DeviceNo;
+                //Logo[] deviceLogos = App.reportSettingModel.DeciceLogo.ToArray<Logo>();
+                //List<string> logoArr = new List<string>();
+                //foreach (var item in deviceLogos)
+                //{
+                //    logoArr.Add(item.Device + "||" + item.Address);
+                //}
+                //OperateIniFile.WriteIniData("Report", "Logo List", string.Join("&&", logoArr.ToArray()), System.AppDomain.CurrentDomain.BaseDirectory + "Config.ini");
+
                 MessageBox.Show(this, App.Current.FindResource("Message_14").ToString());
             }
             catch (Exception ex)
@@ -195,5 +204,74 @@ namespace MEIKReport
                 App.reportSettingModel.TechNames.RemoveAt(this.listTechnicianName.SelectedIndex);
             }
         }
+		
+		private void btnAddDeviceLogo_Click(object sender, RoutedEventArgs e)
+        {
+            AddLogoPage addLogoPage = new AddLogoPage();
+            addLogoPage.ShowDialog();
+        }
+
+        private void btnDelDeviceLogo_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.listDeciceNo.SelectedIndex != -1)
+            {
+                try
+                {
+                    var logo = this.listDeciceNo.SelectedItem as Logo;
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + logo.Device + ".png"))
+                    {
+                        File.Delete(AppDomain.CurrentDomain.BaseDirectory + logo.Device + ".png");
+                    }
+                    if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + logo.Device + "_s.png"))
+                    {
+                        File.Delete(AppDomain.CurrentDomain.BaseDirectory + logo.Device + "_s.png");
+                    }
+                    this.IconImg.Source = null;
+                    this.SealImg.Source = null;
+                    App.reportSettingModel.DeciceLogo.RemoveAt(this.listDeciceNo.SelectedIndex);
+
+                }
+                catch { }
+            }
+        }
+
+        private void listDeciceNo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            if (comboBox.SelectedIndex!=-1)
+            {
+                var logo=comboBox.SelectedItem as Logo;   
+                //解決Image組件綁定圖片後，此圖片不能在其它地方訪問的問題
+                if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + logo.Device + ".png"))
+                {
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = new Uri(AppDomain.CurrentDomain.BaseDirectory + logo.Device + ".png");
+                    image.EndInit();
+                    this.IconImg.Source = image;
+                }
+                else
+                {
+                    this.IconImg.Source = null;
+                }
+                //印章圖片
+                if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + logo.Device + "_s.png"))
+                {
+                    BitmapImage sealImage = new BitmapImage();
+                    sealImage.BeginInit();
+                    sealImage.CacheOption = BitmapCacheOption.OnLoad;
+                    sealImage.UriSource = new Uri(AppDomain.CurrentDomain.BaseDirectory + logo.Device + "_s.png");
+                    sealImage.EndInit();
+                    this.SealImg.Source = sealImage;
+                }
+                else
+                {
+                    this.SealImg.Source = null;
+                }
+            }
+        }        
+        
+                       
     }
 }

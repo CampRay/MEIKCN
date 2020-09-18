@@ -7,7 +7,39 @@
     <Style TargetType="{x:Type TextBlock  }">
         <Setter Property="FontFamily" Value="Arial,Microsoft YaHei" />
     </Style>
-    
+
+    <!-- DataGrid 标题样式 -->
+    <Style x:Key="columnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Height" Value="35" />
+        <Setter Property="Width" Value="auto" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Background" Value="#4E87D4" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>        
+    </Style>
+    <!--DataGrid 单元格样式-->
+    <Style TargetType="DataGridCell">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <TextBlock TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" Height="auto" Padding="2">
+                           <ContentPresenter />
+                    </TextBlock>
+                </ControlTemplate>
+            </Setter.Value>            
+        </Setter>        
+    </Style>
+    <!--设置 DatePicker 的日期时间显示格式-->
+    <Style TargetType="DatePickerTextBox">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <TextBox Text="{Binding Path=SelectedDate, StringFormat='yyyy/MM/dd', RelativeSource={RelativeSource AncestorType=DatePicker}}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--默认的按钮样式-->
     <Style TargetType="{x:Type Button}">
         <Style.Triggers>
@@ -58,13 +90,7 @@
         <Setter Property="Background" Value="#4E87D4" />
     </Style>
 
-    <!-- DataGrid header style -->
-    <Style x:Key="columnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Height" Value="35" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="Background" Value="#4E87D4" />
-        <Setter Property="Foreground" Value="White" />
-    </Style>
+    
 
     <!-- List header text style -->
     <Style x:Key="listHeaderTextStyle" TargetType="{x:Type Label}">
@@ -243,6 +269,52 @@
         </Setter>
     </Style>
 
+    <Style TargetType="{x:Type ComboBox}" x:Key="HomeComboBoxStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid Height="{TemplateBinding Height}">
+                        <!-- ToggleButton 已数据绑定到 ComboBox 本身以切换 IsDropDownOpen -->
+                        <ToggleButton x:Name="ToggleButton" Focusable="false" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"  IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="22" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" />
+                                        <Border Grid.Column="1" Background="{TemplateBinding BorderBrush}" Cursor="Hand"/>
+                                        <Path x:Name="Arrow"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" Margin="4,8,4,8" Stretch="Fill" Fill="White" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <ContentPresenter HorizontalAlignment="Left" Margin="3,2,22,2" x:Name="ContentSite" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False"/>
+                        <!-- 必须将 TextBox 命名为 PART_EditableTextBox，否则 ComboBox 将无法识别它 -->
+                        <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="3,2,22,2" Style="{x:Null}" VerticalAlignment="Center" Focusable="True" Background="Transparent" IsReadOnly="{TemplateBinding IsReadOnly}">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                        <!-- Popup 可显示 ComboBox 中的项列表。IsOpen 已数据绑定到通过 ComboBoxToggleButton 来切换的 IsDropDownOpen -->
+                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide">
+                            <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" SnapsToDevicePixels="True">
+                                <Border x:Name="DropDownBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"/>
+                                <ScrollViewer Margin="4,6,4,6"  SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                    <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="{TemplateBinding Background}"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type ComboBox}" x:Key="NewComboBoxStyle">                
         <Setter Property="Template">
             <Setter.Value>
@@ -288,6 +360,53 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type ComboBox}" x:Key="ReportComboBoxStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid Height="{TemplateBinding Height}">
+                        <!-- ToggleButton 已数据绑定到 ComboBox 本身以切换 IsDropDownOpen -->
+                        <ToggleButton x:Name="ToggleButton" Focusable="false" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"  IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="20" />
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" />
+                                        <Border Grid.Column="1" Background="{TemplateBinding BorderBrush}" Cursor="Hand"/>
+                                        <Path x:Name="Arrow"  Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z" Margin="4,8,4,8" Stretch="Fill" Fill="White" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                        <ContentPresenter HorizontalAlignment="Left" Margin="3,2,20,2" x:Name="ContentSite" VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" IsHitTestVisible="False"/>
+                        <!-- 必须将 TextBox 命名为 PART_EditableTextBox，否则 ComboBox 将无法识别它 -->
+                        <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" HorizontalAlignment="Left" Margin="3,2,20,2" Style="{x:Null}" VerticalAlignment="Center" Focusable="True" Background="Transparent" IsReadOnly="{TemplateBinding IsReadOnly}">
+                            <TextBox.Template>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}" />
+                                </ControlTemplate>
+                            </TextBox.Template>
+                        </TextBox>
+                        <!-- Popup 可显示 ComboBox 中的项列表。IsOpen 已数据绑定到通过 ComboBoxToggleButton 来切换的 IsDropDownOpen -->
+                        <Popup IsOpen="{TemplateBinding IsDropDownOpen}" Placement="Bottom" x:Name="Popup" Focusable="False" AllowsTransparency="True" PopupAnimation="Slide">
+                            <Grid MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{TemplateBinding ActualWidth}" x:Name="DropDown" SnapsToDevicePixels="True">
+                                <Border x:Name="DropDownBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1"/>
+                                <ScrollViewer Margin="4,6,4,6"  SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                    <!-- StackPanel 用于显示子级，方法是将 IsItemsHost 设置为 True -->
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" Background="{TemplateBinding Background}"/>
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 
     <Style TargetType="{x:Type RadioButton}" x:Key="DegreeRadioStyle">
         <Setter Property="Background" Value="white"/>

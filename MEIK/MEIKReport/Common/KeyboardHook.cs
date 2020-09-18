@@ -125,11 +125,8 @@ namespace MEIKReport.Common
                         KeyPressEventArgs e2 = new KeyPressEventArgs(key);
                         KeyPress(this, e2);
                         handled = handled || e.Handled;
-
                     }
-
                 }
-
             }
 
             if (handled)

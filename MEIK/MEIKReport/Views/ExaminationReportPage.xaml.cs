@@ -100,6 +100,7 @@ namespace MEIKReport.Views
                     {
                         shortFormReportModel.DataScreenDate = DateTime.ParseExact("20" + person.Code.Substring(0, 6), "yyyyMMdd", System.Globalization.CultureInfo.CurrentCulture).ToString("yyyy年MM月dd日");
                     }
+                    //ClientNumber是客户在云服务上的登录帐号
                     shortFormReportModel.DataClientNum = person.ClientNumber;
                     shortFormReportModel.DataName = person.SurName + "," + person.GivenName + " " + person.OtherName;
                     shortFormReportModel.DataAge = person.Age + "";
@@ -747,14 +748,13 @@ namespace MEIKReport.Views
             {
                 File.Delete(xpsFile);
             }
-
-            //FixedPage page = (FixedPage)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
-            FixedDocument document = (FixedDocument)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
-
+            
+            FixedPage page = (FixedPage)PrintPreviewWindow.LoadFixedDocumentAndRender(reportTempl, reportModel);
+            
             XpsDocument xpsDocument = new XpsDocument(xpsFile, FileAccess.ReadWrite);
             //将flow document写入基于内存的xps document中去
             XpsDocumentWriter writer = XpsDocument.CreateXpsDocumentWriter(xpsDocument);
-            writer.Write(document);
+            writer.Write(page);
             xpsDocument.Close();
             if (File.Exists(pdfFile))
             {

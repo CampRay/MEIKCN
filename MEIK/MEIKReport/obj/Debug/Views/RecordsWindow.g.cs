@@ -101,7 +101,7 @@ namespace MEIKReport {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/MEIK;component/views/recordswindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/MEIKReport;component/views/recordswindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Views\RecordsWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
