@@ -17,6 +17,7 @@
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("meikma/mingwm10.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("meikma/reit.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("meikmd/meikmd.exe")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("meikmd/unins000.exe")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("xceed.wpf.toolkit.dll")]
 
 

@@ -78,7 +78,6 @@ C:\Project\MEIK\MEIKReport\obj\Debug\Views\UserList.baml
 C:\Project\MEIK\MEIKReport\obj\Debug\MEIK.g.resources
 C:\Project\MEIK\MEIKReport\obj\Debug\MEIK.Properties.Resources.resources
 C:\Project\MEIK\MEIKReport\obj\Debug\MEIK.csproj.GenerateResource.Cache
-D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.exe.config
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\gxpswin32.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\ICSharpCode.SharpZipLib.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMA\CDM v2.10.00 WHQL Certified.exe
@@ -88,14 +87,17 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMA\MEIKMA.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMA\mingwm10.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMA\reit.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\MEIKMD.exe
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\unins000.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\Config.ini
-D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMA\Language.CHN
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMA\MEIKMA.ini
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\MEIK.chm
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\MEIKMD.ini
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\unins000.dat
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\DELZIP179.DLL
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\ftd2xx.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\mingwm10.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKMD\reit.dll
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.exe.config
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.pdb
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\Newtonsoft.Json.dll

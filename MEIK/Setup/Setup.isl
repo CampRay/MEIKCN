@@ -351,6 +351,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{D15B5D0D-E786-4341-9AD2-20105C33B3BE}</td><td>MEIKMA</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ISX_DEFAULTCOMPONENT4</td><td>{D4F84F66-872A-4279-B296-B46BF7F8245C}</td><td>MEIKMA</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td>{62C38458-21E7-47DC-93FC-DAD5C1B26590}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>MEIK.chm</td><td>{83676664-A8C8-46A0-B5F0-8F65094C330A}</td><td>MEIKMD</td><td>2</td><td/><td>meik.chm</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MEIKMA.exe</td><td>{CA738982-117B-4B7C-9D03-63F4C0AA18C3}</td><td>MEIKMA</td><td>2</td><td/><td>meikma.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MEIKMD.exe</td><td>{3DED00DD-7B1E-4B4B-8AAF-CD9355C48635}</td><td>MEIKMD</td><td>2</td><td/><td>meikmd.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>MEIKReport.exe</td><td>{EBE2574E-63DF-4CC1-BA75-DB92E4F847F0}</td><td>INSTALLDIR</td><td>2</td><td/><td>meikreport.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -363,6 +364,7 @@
 		<row><td>mingwm10.dll1</td><td>{A9D4175E-15B0-49E0-99D1-5124231F5E0C}</td><td>MEIKMD</td><td>2</td><td/><td>mingwm10.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>reit.dll</td><td>{1A13D5AC-1F52-4F86-946A-1322F6D957AA}</td><td>MEIKMA</td><td>2</td><td/><td>reit.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>reit.dll1</td><td>{83415656-D161-41A4-8998-4E28B84FB25D}</td><td>MEIKMD</td><td>2</td><td/><td>reit.dll1</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>unins000.exe</td><td>{3AE5E134-CE11-453F-996C-CB27F5F18B00}</td><td>MEIKMD</td><td>2</td><td/><td>unins000.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1082,6 +1084,7 @@
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>INSTALLDIR</td><td>IS_ININSTALL_SHORTCUT</td></row>
+		<row><td>INSTALLDIR</td><td>MEIK.chm</td></row>
 		<row><td>INSTALLDIR</td><td>MEIKMA.exe</td></row>
 		<row><td>INSTALLDIR</td><td>MEIKMD.exe</td></row>
 		<row><td>INSTALLDIR</td><td>MEIKReport.exe</td></row>
@@ -1094,6 +1097,7 @@
 		<row><td>INSTALLDIR</td><td>mingwm10.dll1</td></row>
 		<row><td>INSTALLDIR</td><td>reit.dll</td></row>
 		<row><td>INSTALLDIR</td><td>reit.dll1</td></row>
+		<row><td>INSTALLDIR</td><td>unins000.exe</td></row>
 		<row><td>MEIKMA</td><td>CDM_v2.10.00_WHQL_Certified.exe</td></row>
 		<row><td>MEIKMA</td><td>DELZIP179.DLL</td></row>
 		<row><td>MEIKMA</td><td>ISX_DEFAULTCOMPONENT3</td></row>
@@ -1105,10 +1109,12 @@
 		<row><td>MEIKMD</td><td>DELZIP179.DLL1</td></row>
 		<row><td>MEIKMD</td><td>ISX_DEFAULTCOMPONENT1</td></row>
 		<row><td>MEIKMD</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>MEIKMD</td><td>MEIK.chm</td></row>
 		<row><td>MEIKMD</td><td>MEIKMD.exe</td></row>
 		<row><td>MEIKMD</td><td>ftd2xx.dll1</td></row>
 		<row><td>MEIKMD</td><td>mingwm10.dll1</td></row>
 		<row><td>MEIKMD</td><td>reit.dll1</td></row>
+		<row><td>MEIKMD</td><td>unins000.exe</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1940,6 +1946,7 @@
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
 		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT4</td></row>
 		<row><td>AlwaysInstall</td><td>IS_ININSTALL_SHORTCUT</td></row>
+		<row><td>AlwaysInstall</td><td>MEIK.chm</td></row>
 		<row><td>AlwaysInstall</td><td>MEIKMA.exe</td></row>
 		<row><td>AlwaysInstall</td><td>MEIKMD.exe</td></row>
 		<row><td>AlwaysInstall</td><td>MEIKReport.exe</td></row>
@@ -1952,6 +1959,7 @@
 		<row><td>AlwaysInstall</td><td>mingwm10.dll1</td></row>
 		<row><td>AlwaysInstall</td><td>reit.dll</td></row>
 		<row><td>AlwaysInstall</td><td>reit.dll1</td></row>
+		<row><td>AlwaysInstall</td><td>unins000.exe</td></row>
 	</table>
 
 	<table name="File">
@@ -1974,7 +1982,7 @@
 		<row><td>ftd2xx.dll1</td><td>ftd2xx.dll1</td><td>ftd2xx.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\ftd2xx.dll</td><td>1</td><td/></row>
 		<row><td>gxpswin32.exe</td><td>gxpswin32.exe</td><td>GXPSWI~1.EXE|gxpswin32.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\gxpswin32.exe</td><td>1</td><td/></row>
 		<row><td>icsharpcode.sharpziplib.dll</td><td>ICSharpCode.SharpZipLib.dll</td><td>ICSHAR~1.DLL|ICSharpCode.SharpZipLib.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\ICSharpCode.SharpZipLib.dll</td><td>1</td><td/></row>
-		<row><td>language.chn</td><td>ISX_DEFAULTCOMPONENT3</td><td>Language.CHN</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\Language.CHN</td><td>1</td><td/></row>
+		<row><td>meik.chm</td><td>MEIK.chm</td><td>MEIK.chm</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\MEIK.chm</td><td>1</td><td/></row>
 		<row><td>meikma.exe</td><td>MEIKMA.exe</td><td>MEIKMA.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\MEIKMA.exe</td><td>1</td><td/></row>
 		<row><td>meikma.ini</td><td>ISX_DEFAULTCOMPONENT3</td><td>MEIKMA.ini</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\MEIKMA.ini</td><td>1</td><td/></row>
 		<row><td>meikmd.exe</td><td>MEIKMD.exe</td><td>MEIKMD.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\MEIKMD.exe</td><td>1</td><td/></row>
@@ -1985,6 +1993,8 @@
 		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
 		<row><td>reit.dll</td><td>reit.dll</td><td>reit.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\reit.dll</td><td>1</td><td/></row>
 		<row><td>reit.dll1</td><td>reit.dll1</td><td>reit.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\reit.dll</td><td>1</td><td/></row>
+		<row><td>unins000.dat</td><td>ISX_DEFAULTCOMPONENT1</td><td>unins000.dat</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\unins000.dat</td><td>1</td><td/></row>
+		<row><td>unins000.exe</td><td>unins000.exe</td><td>unins000.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\unins000.exe</td><td>1</td><td/></row>
 		<row><td>xceed.wpf.toolkit.dll</td><td>Xceed.Wpf.Toolkit.dll</td><td>XCEEDW~1.DLL|Xceed.Wpf.Toolkit.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\Xceed.Wpf.Toolkit.dll</td><td>1</td><td/></row>
 	</table>
 
@@ -2138,6 +2148,7 @@
 		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_A6F39ED8_6E4E_4108_84BE_2821A85CBCEB_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ISX_DEFAULTCOMPONENT4</td><td/><td/><td>_8A8DF1AF_9034_4F4C_A002_21AED6979DBA_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>IS_ININSTALL_SHORTCUT</td><td/><td/><td>_0B91B8B6_2A9D_4C6A_A2C7_94690F647201_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>MEIK.chm</td><td/><td/><td>_F8EADD09_FA64_4861_B91E_76F8077C8735_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MEIKMA.exe</td><td/><td/><td>_E0ED0B47_4FE3_4353_94F3_2BD7806781A3_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MEIKMD.exe</td><td/><td/><td>_DC7C9D37_FCA6_41F9_8793_49863E97A468_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>MEIKReport.exe</td><td/><td/><td>_F45D6F46_14D4_4EE3_92FE_64F2CC575EAB_FILTER</td><td/><td/><td/><td/></row>
@@ -2150,6 +2161,7 @@
 		<row><td>mingwm10.dll1</td><td/><td/><td>_4E365008_D054_4865_8D4E_4A5C2C7DE7BB_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>reit.dll</td><td/><td/><td>_9C8F2897_72AD_4304_BFAF_81AF44B5D4EB_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>reit.dll1</td><td/><td/><td>_CD810BC4_D4D4_4863_AFB9_00C74AAEEC63_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>unins000.exe</td><td/><td/><td>_579F2256_1A47_4B5F_AF57_1D06A05B4F77_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -3595,6 +3607,8 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME32</td><td>2052</td><td>LAUNCH~1.EXE|Launch gxpswin32.exe</td><td>0</td><td/><td>-1935124110</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME33</td><td>1033</td><td/><td>0</td><td/><td>-1935124110</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME33</td><td>2052</td><td>MEIKCN.exe</td><td>0</td><td/><td>-1935091310</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME34</td><td>1033</td><td/><td>0</td><td/><td>-1800891413</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME34</td><td>2052</td><td>LAUNCH~1.EXE|Launch unins000.exe</td><td>0</td><td/><td>-1800891413</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>2052</td><td>Uninstall</td><td>0</td><td/><td>824580274</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME5</td><td>2052</td><td>Uninstall</td><td>0</td><td/><td>824580274</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME6</td><td>2052</td><td>Uninstall</td><td>0</td><td/><td>824580274</td></row>
@@ -4048,6 +4062,7 @@
 		<row><td>MEIKReport.exe_FEC537EC1DC94721A40A49EE27BFAC84.exe</td><td/><td>C:\Users\CampRay\Downloads\2018工作目录\MEIKCN\MEIKReport\MEIKReport\bin\Release\MEIKReport.exe</td><td>0</td></row>
 		<row><td>MEIKReport.vshost._04067EB036ED4E8EB3B187D76EC7D192.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\GenericExe.ico</td><td>0</td></row>
 		<row><td>NewShortcut1_E20612DF554C4A55A29D2CB107E576CE.exe</td><td/><td>C:\Program Files (x86)\InstallShield\2015LE\Redist\Language Independent\OS Independent\uninstall.ico</td><td>0</td></row>
+		<row><td>unins000.exe_1FF19525A4BB46599031DE3837071D29.exe</td><td/><td>D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\unins000.exe</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4644,6 +4659,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="i2">InstallMode</col>
 		<row><td>MEIKReport.exe</td><td>MEIKReport.exe</td><td/><td>meikcn</td><td>2</td></row>
 		<row><td>NewShortcut1</td><td>ISX_DEFAULTCOMPONENT</td><td/><td>meikcn</td><td>2</td></row>
+		<row><td>unins000.exe</td><td>unins000.exe</td><td/><td>meikcn</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4732,6 +4748,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>MEIKReport.exe</td><td>meikcn</td><td>##IDS_SHORTCUT_DISPLAY_NAME33##</td><td>MEIKReport.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>MEIKReport.exe_91222B6633194CE0852B82591735C245.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>MEIKReport.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME33##</td><td>MEIKReport.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>MEIKReport.exe1_39EE8473CF944980AF7CF45702D8A0AF.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 		<row><td>NewShortcut1</td><td>meikcn</td><td>##ID_STRING19##</td><td>ISX_DEFAULTCOMPONENT</td><td>[SystemFolder]MsiExec.exe</td><td>/x [ProductCode]</td><td/><td/><td>NewShortcut1_E20612DF554C4A55A29D2CB107E576CE.exe</td><td>0</td><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>unins000.exe</td><td>meikcn</td><td>##IDS_SHORTCUT_DISPLAY_NAME34##</td><td>unins000.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>unins000.exe_1FF19525A4BB46599031DE3837071D29.exe</td><td>1</td><td>1</td><td>MEIKMD</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

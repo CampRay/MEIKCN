@@ -87,10 +87,12 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\MEIKMA.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\mingwm10.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\reit.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\MEIKMD.exe
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\unins000.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\Config.ini
-D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\Language.CHN
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMA\MEIKMA.ini
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\MEIK.chm
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\MEIKMD.ini
+D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\unins000.dat
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\DELZIP179.DLL
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\ftd2xx.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKMD\mingwm10.dll
@@ -165,3 +167,4 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIK.Properties.Resources.resources
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIK.csproj.GenerateResource.Cache
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIKReport.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIKReport.pdb
+D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIK.csprojResolveAssemblyReference.cache
