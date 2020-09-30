@@ -2051,18 +2051,7 @@ namespace MEIKReport
                 MessageBox.Show(this, "System Exception: " + ex.Message);                
             }
         }
-
-        /// <summary>
-        /// 统计按钮点击处理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnRecords_Click(object sender, RoutedEventArgs e)
-        {
-            RecordsWindow recordsWindow = new RecordsWindow();
-            recordsWindow.Owner = this;
-            recordsWindow.ShowDialog();
-        }
+        
 
         /// <summary>
         /// 系统设置按钮点击处理

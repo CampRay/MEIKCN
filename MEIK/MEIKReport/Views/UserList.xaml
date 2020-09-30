@@ -1,9 +1,8 @@
 ﻿<Window x:Class="MEIKReport.UserList"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:cvt="clr-namespace:MEIKReport.Common"
-        xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-        Title="MEIK Application V3.1.0" Height="768" Width="1084"
+        xmlns:cvt="clr-namespace:MEIKReport.Common"        
+        Title="MEIK Application V3.1.1" Height="768" Width="1084"
         Icon="/MEIKReport;component/Images/App_Icon.png"
         ShowInTaskbar="True" ResizeMode="CanResize"  Closed="Window_Closed" WindowStartupLocation="CenterScreen" WindowState="Maximized" Loaded="Window_Loaded">
     <!--<Window.TaskbarItemInfo>
@@ -69,24 +68,7 @@
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Button.Template>
-                </Button>
-                <Button Name="btnRecords" Visibility="Collapsed" Content="{DynamicResource  MainWinMenuRecords}" Height="85" Width="110" FontFamily="Arial,Microsoft YaHei" FontSize="15" FontWeight="Bold" Click="btnRecords_Click" Foreground="White" Cursor="Hand">
-                    <Button.Template>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <StackPanel Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" HorizontalAlignment="Center" VerticalAlignment="Top" OpacityMask="#FFE81717">
-                                <Image Name="btnBG" Source="/Images/records.png" Stretch="None" Width="auto" Height="auto" HorizontalAlignment="Center"/>
-                                <!--<ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Content="{TemplateBinding Content}"></ContentPresenter>-->
-                                <Label Name="btnTxt" Content="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"></Label>
-                            </StackPanel>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="Button.IsMouseOver" Value="True">
-                                    <Setter Property="Source" Value="/Images/records_hover.png" TargetName="btnBG"/>
-                                    <Setter Property="Foreground" Value="#40c4e4" TargetName="btnTxt"/>
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                </Button>                
                 <Button Name="btnSetup" Content="{DynamicResource  MainWinMenuPerferences}" Height="85" Width="120"  FontFamily="Arial,Microsoft YaHei" FontSize="15" FontWeight="Bold" Click="btnSetup_Click" Foreground="White" Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
@@ -1559,8 +1541,7 @@
                                             <ComboBoxItem IsSelected="True" Content="am"></ComboBoxItem>
                                             <ComboBoxItem Content="pm"></ComboBoxItem>
                                         </ComboBox>
-                                        <TextBlock Text="{DynamicResource ReportContext_42}" Margin="5,0,0,0" VerticalAlignment="Center"/>
-                                        <!--<extToolkit:DateTimePicker Name="dataRightBreast" Text="{Binding DataRightBreast}" Height="18" Width="80" AllowSpin="False" CultureInfo="en-US" Format="Custom" FormatString="HH:mm" ShowButtonSpinner="False" TimePickerAllowSpin="True" TimePickerShowButtonSpinner="True" TimePickerVisibility="Visible" TextAlignment="Left" FontSize="10"/>-->
+                                        <TextBlock Text="{DynamicResource ReportContext_42}" Margin="5,0,0,0" VerticalAlignment="Center"/>                                        
                                         <TextBox Name="dataRightBreastH" Text="{Binding DataRightBreastH}" Width="30" Height="18" BorderBrush="Gray" Background="{x:Null}" FontSize="10" PreviewTextInput="Hour_PreviewTextInput"></TextBox>
                                         <TextBlock VerticalAlignment="Center" Text=":"></TextBlock>
                                         <TextBox Name="dataRightBreastM" Text="{Binding DataRightBreastM}" Width="30" Height="18" BorderBrush="Gray" Background="{x:Null}" FontSize="10" PreviewTextInput="Minute_PreviewTextInput"></TextBox>

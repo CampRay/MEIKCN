@@ -205,21 +205,21 @@ namespace MEIKReport
                 {
                     if (!String.IsNullOrWhiteSpace(this.txtSurName.Text))
                     {
-                        if (!strArr[0].EndsWith("-" + this.txtSurName.Text))
+                        if (!strArr[0].EndsWith("-" + this.txtSurName.Text.Trim()))
                         {
                             return null;
                         }
                     }
                     if (!String.IsNullOrWhiteSpace(this.txtGivenName.Text))
                     {
-                        if (!strArr[1].StartsWith(this.txtGivenName.Text))
+                        if (!strArr[1].StartsWith(this.txtGivenName.Text.Trim()))
                         {
                             return null;
                         }
                     }
                     if (!String.IsNullOrWhiteSpace(this.txtCode.Text))
                     {
-                        if (!strArr[0].StartsWith(this.txtCode.Text))
+                        if (!strArr[0].StartsWith(this.txtCode.Text.Trim()))
                         {
                             return null;
                         }
@@ -233,7 +233,7 @@ namespace MEIKReport
                             if (!String.IsNullOrWhiteSpace(this.txtIDNumber.Text))
                             {
                                 var clientID = OperateIniFile.ReadIniData("Personal data", "clientID", "", fileInfo.FullName);
-                                if (!clientID.StartsWith(this.txtIDNumber.Text))
+                                if (!clientID.Trim().StartsWith(this.txtIDNumber.Text.Trim()) && !clientID.Trim().Equals(this.txtIDNumber.Text.Trim(),StringComparison.OrdinalIgnoreCase))
                                 {
                                     return null;
                                 }
@@ -241,7 +241,7 @@ namespace MEIKReport
                             if (!String.IsNullOrWhiteSpace(this.txtMobile.Text))
                             {
                                 var mobile = OperateIniFile.ReadIniData("Personal data", "mobile", "", fileInfo.FullName);
-                                if (!this.txtMobile.Text.Equals(mobile))
+                                if (!this.txtMobile.Text.Trim().Equals(mobile.Trim()))
                                 {
                                     return null;
                                 }

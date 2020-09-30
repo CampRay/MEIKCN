@@ -101,7 +101,6 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.exe.config
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\MEIKReport.pdb
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\Newtonsoft.Json.dll
-D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Debug\Xceed.Wpf.Toolkit.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\MainWindow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\PrintPreviewWindow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Resources\StringResource.baml
@@ -123,7 +122,6 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\LoginPage.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\NewReportFlow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\OpenFolderPage.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\PasswordPage.baml
-D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\RecordsWindow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\ScreenCapture.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\ScreenResultReport.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\SearchClient.baml
@@ -146,7 +144,6 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\LicensePage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\LoginPage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\OpenFolderPage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\PasswordPage.g.cs
-D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\RecordsWindow.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\ReportSettingPage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\ScreenCapture.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Debug\Views\ScreenResultReport.g.cs

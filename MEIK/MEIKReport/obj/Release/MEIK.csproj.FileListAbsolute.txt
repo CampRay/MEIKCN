@@ -101,7 +101,6 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKReport.exe.config
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKReport.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\MEIKReport.pdb
 D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\Newtonsoft.Json.dll
-D:\NewGit\MEIKCN\MEIK\MEIKReport\bin\Release\Xceed.Wpf.Toolkit.dll
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MainWindow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\PrintPreviewWindow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Resources\StringResource.baml
@@ -123,7 +122,6 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\LoginPage.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\NewReportFlow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\OpenFolderPage.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\PasswordPage.baml
-D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\RecordsWindow.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\ScreenCapture.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\ScreenResultReport.baml
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\SearchClient.baml
@@ -146,7 +144,6 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\LicensePage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\LoginPage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\OpenFolderPage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\PasswordPage.g.cs
-D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\RecordsWindow.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\ReportSettingPage.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\ScreenCapture.g.cs
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\Views\ScreenResultReport.g.cs
@@ -167,4 +164,3 @@ D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIK.Properties.Resources.resources
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIK.csproj.GenerateResource.Cache
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIKReport.exe
 D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIKReport.pdb
-D:\NewGit\MEIKCN\MEIK\MEIKReport\obj\Release\MEIK.csprojResolveAssemblyReference.cache

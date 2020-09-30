@@ -92,10 +92,6 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="Xceed.Wpf.Toolkit, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -159,9 +155,6 @@
     </Compile>
     <Compile Include="Views\PasswordPage.xaml.cs">
       <DependentUpon>PasswordPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RecordsWindow.xaml.cs">
-      <DependentUpon>RecordsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportSettingPage.xaml.cs">
       <DependentUpon>ReportSettingPage.xaml</DependentUpon>
@@ -276,10 +269,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PasswordPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\RecordsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
