@@ -271,6 +271,7 @@ namespace MEIKReport
                         var dialogRes = licensePage.ShowDialog();
                         if (dialogRes.HasValue && dialogRes.Value)
                         {
+                            isChecked = true;
                             licensePage.Close();
                             MessageBox.Show(this, App.Current.FindResource("Message_73").ToString());
                         }
@@ -1534,424 +1535,25 @@ namespace MEIKReport
                     foreach (Person item in selectItems)
                     {
                         item.Icon = "/Images/id_card_ok.png";
-                    }
-                    var selectItem = e.AddedItems[0] as Person;
-                    //如果档案状态不是新建档案，则需显示上传数据按钮
-                    if (selectItem.Status.Equals("NC"))
-                    {
-                        this.sendDataButton.Visibility = Visibility.Collapsed;
-                        this.sendReportButton.Visibility = Visibility.Collapsed;
-                    }
-                    else
-                    {
-                        this.sendDataButton.Visibility = Visibility.Visible;
-                        
-                        //如果档案状态是报告完成或报告归档状态，则需显示报告归档按钮
-                        if (selectItem.Status.Equals("RD") || selectItem.Status.Equals("RS"))
+                        try
                         {
-                            this.sendReportButton.Visibility = Visibility.Visible;
+                            if (string.IsNullOrEmpty(item.Status) || item.Status.Equals("NC"))
+                            {
+                                //遍历指定文件夹下所有文件
+                                DirectoryInfo theFolder = new DirectoryInfo(item.ArchiveFolder);
+                                FileInfo[] fileInfo = theFolder.GetFiles("*.tdb");
+                                if (fileInfo != null && fileInfo.Length > 0)
+                                {
+                                    item.Status = "SR";
+                                    item.StatusTag = App.Current.FindResource("StatusSR").ToString();
+                                    item.StatusText = App.Current.FindResource("CommonStatusScreen").ToString();
+                                    OperateIniFile.WriteIniData("Report", "Status", "SR", item.IniFilePath);
+                                }
+                            }
                         }
-                        else
-                        {
-                            this.sendReportButton.Visibility = Visibility.Collapsed;
-                        }
+                        catch { }
                     }
-
                     
-                    //string meikiniFile = App.meikFolder + System.IO.Path.DirectorySeparatorChar + "MEIK.ini";
-                    //OperateIniFile.WriteIniData("Base", "Patients base", selectItem.ArchiveFolder, meikiniFile);
-                    
-                    if (selectItem.PalpableLumps)
-                    {
-                        leftClock1.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock1.Tag)) > 0 ? 1 : 0;
-                        leftClock2.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock2.Tag)) > 0 ? 1 : 0;
-                        leftClock3.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock3.Tag)) > 0 ? 1 : 0;
-                        leftClock4.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock4.Tag)) > 0 ? 1 : 0;
-                        leftClock5.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock5.Tag)) > 0 ? 1 : 0;
-                        leftClock6.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock6.Tag)) > 0 ? 1 : 0;
-                        leftClock7.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock7.Tag)) > 0 ? 1 : 0;
-                        leftClock8.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock8.Tag)) > 0 ? 1 : 0;
-                        leftClock9.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock9.Tag)) > 0 ? 1 : 0;
-                        leftClock10.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock10.Tag)) > 0 ? 1 : 0;
-                        leftClock11.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock11.Tag)) > 0 ? 1 : 0;
-                        leftClock12.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock12.Tag)) > 0 ? 1 : 0;
-
-                        rightClock1.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock1.Tag)) > 0 ? 1 : 0;
-                        rightClock2.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock2.Tag)) > 0 ? 1 : 0;
-                        rightClock3.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock3.Tag)) > 0 ? 1 : 0;
-                        rightClock4.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock4.Tag)) > 0 ? 1 : 0;
-                        rightClock5.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock5.Tag)) > 0 ? 1 : 0;
-                        rightClock6.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock6.Tag)) > 0 ? 1 : 0;
-                        rightClock7.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock7.Tag)) > 0 ? 1 : 0;
-                        rightClock8.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock8.Tag)) > 0 ? 1 : 0;
-                        rightClock9.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock9.Tag)) > 0 ? 1 : 0;
-                        rightClock10.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock10.Tag)) > 0 ? 1 : 0;
-                        rightClock11.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock11.Tag)) > 0 ? 1 : 0;
-                        rightClock12.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock12.Tag)) > 0 ? 1 : 0;
-
-                    }
-                    else
-                    {
-                        leftClock1.Opacity = 0;
-                        leftClock2.Opacity = 0;
-                        leftClock3.Opacity = 0;
-                        leftClock4.Opacity = 0;
-                        leftClock5.Opacity = 0;
-                        leftClock6.Opacity = 0;
-                        leftClock7.Opacity = 0;
-                        leftClock8.Opacity = 0;
-                        leftClock9.Opacity = 0;                        
-                        leftClock10.Opacity = 0;
-                        leftClock11.Opacity = 0;
-                        leftClock12.Opacity = 0;
-
-                        rightClock1.Opacity = 0;
-                        rightClock2.Opacity = 0;
-                        rightClock3.Opacity = 0;
-                        rightClock4.Opacity = 0;
-                        rightClock5.Opacity = 0;
-                        rightClock6.Opacity = 0;
-                        rightClock7.Opacity = 0;
-                        rightClock8.Opacity = 0;
-                        rightClock9.Opacity = 0;
-                        rightClock10.Opacity = 0;
-                        rightClock11.Opacity = 0;
-                        rightClock12.Opacity = 0;
-                    }
-
-                    if (selectItem.Pain)
-                    {
-                        degree1.IsChecked = (selectItem.Degree == Convert.ToInt32(degree1.Tag)) ? true : false;
-                        degree2.IsChecked = (selectItem.Degree == Convert.ToInt32(degree2.Tag)) ? true : false;
-                        degree3.IsChecked = (selectItem.Degree == Convert.ToInt32(degree3.Tag)) ? true : false;
-                        degree4.IsChecked = (selectItem.Degree == Convert.ToInt32(degree4.Tag)) ? true : false;
-                        degree5.IsChecked = (selectItem.Degree == Convert.ToInt32(degree5.Tag)) ? true : false;
-                        degree6.IsChecked = (selectItem.Degree == Convert.ToInt32(degree6.Tag)) ? true : false;
-                        degree7.IsChecked = (selectItem.Degree == Convert.ToInt32(degree7.Tag)) ? true : false;
-                        degree8.IsChecked = (selectItem.Degree == Convert.ToInt32(degree8.Tag)) ? true : false;
-                        degree9.IsChecked = (selectItem.Degree == Convert.ToInt32(degree9.Tag)) ? true : false;
-                        degree10.IsChecked = (selectItem.Degree == Convert.ToInt32(degree10.Tag)) ? true : false;
-                        degree1.IsEnabled = true;
-                        degree2.IsEnabled = true;
-                        degree3.IsEnabled = true;
-                        degree4.IsEnabled = true;
-                        degree5.IsEnabled = true;
-                        degree6.IsEnabled = true;
-                        degree7.IsEnabled = true;
-                        degree8.IsEnabled = true;
-                        degree9.IsEnabled = true;
-                        degree10.IsEnabled = true;
-                    }
-                    else
-                    {
-                        degree1.IsChecked = false;
-                        degree2.IsChecked = false;
-                        degree3.IsChecked = false;
-                        degree4.IsChecked = false;
-                        degree5.IsChecked = false;
-                        degree6.IsChecked = false;
-                        degree7.IsChecked = false;
-                        degree8.IsChecked = false;
-                        degree9.IsChecked = false;
-                        degree10.IsChecked = false;
-                    }
-
-                    if (selectItem.RedSwollen)
-                    {
-                        //redSwollenLeft.IsEnabled=true;
-                        //redSwollenRight.IsEnabled = true;
-                        leftClockRedSwollen1.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen1.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen2.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen2.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen3.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen3.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen4.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen4.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen5.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen5.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen6.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen6.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen7.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen7.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen8.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen8.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen9.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen9.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen10.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen10.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen11.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen11.Tag)) > 0 ? 1 : 0;
-                        leftClockRedSwollen12.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen12.Tag)) > 0 ? 1 : 0;
-
-                        rightClockRedSwollen1.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen1.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen2.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen2.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen3.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen3.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen4.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen4.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen5.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen5.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen6.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen6.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen7.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen7.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen8.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen8.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen9.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen9.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen10.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen10.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen11.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen11.Tag)) > 0 ? 1 : 0;
-                        rightClockRedSwollen12.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen12.Tag)) > 0 ? 1 : 0;
-                    }
-                    else
-                    {
-                        //redSwollenLeft.IsEnabled = false;
-                        //redSwollenRight.IsEnabled = false;
-                        leftClockRedSwollen1.Opacity = 0;
-                        leftClockRedSwollen2.Opacity = 0;
-                        leftClockRedSwollen3.Opacity = 0;
-                        leftClockRedSwollen4.Opacity = 0;
-                        leftClockRedSwollen5.Opacity = 0;
-                        leftClockRedSwollen6.Opacity = 0;
-                        leftClockRedSwollen7.Opacity = 0;
-                        leftClockRedSwollen8.Opacity = 0;
-                        leftClockRedSwollen9.Opacity = 0;
-                        leftClockRedSwollen10.Opacity = 0;
-                        leftClockRedSwollen11.Opacity = 0;
-                        leftClockRedSwollen12.Opacity = 0;
-
-                        rightClockRedSwollen1.Opacity = 0;
-                        rightClockRedSwollen2.Opacity = 0;
-                        rightClockRedSwollen3.Opacity = 0;
-                        rightClockRedSwollen4.Opacity = 0;
-                        rightClockRedSwollen5.Opacity = 0;
-                        rightClockRedSwollen6.Opacity = 0;
-                        rightClockRedSwollen7.Opacity = 0;
-                        rightClockRedSwollen8.Opacity = 0;
-                        rightClockRedSwollen9.Opacity = 0;
-                        rightClockRedSwollen10.Opacity = 0;
-                        rightClockRedSwollen11.Opacity = 0;
-                        rightClockRedSwollen12.Opacity = 0;
-                    }
-
-                    if (selectItem.Palpable)
-                    {
-                        //palpableLeft.IsEnabled = true;
-                        //palpableRight.IsEnabled = true;
-                        leftClockPalpable1.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable1.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable2.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable2.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable3.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable3.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable4.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable4.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable5.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable5.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable6.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable6.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable7.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable7.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable8.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable8.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable9.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable9.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable10.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable10.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable11.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable11.Tag)) > 0 ? 1 : 0;
-                        leftClockPalpable12.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable12.Tag)) > 0 ? 1 : 0;
-
-                        rightClockPalpable1.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable1.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable2.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable2.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable3.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable3.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable4.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable4.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable5.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable5.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable6.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable6.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable7.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable7.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable8.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable8.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable9.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable9.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable10.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable10.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable11.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable11.Tag)) > 0 ? 1 : 0;
-                        rightClockPalpable12.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable12.Tag)) > 0 ? 1 : 0;
-                    }
-                    else
-                    {
-                        leftClockPalpable1.Opacity = 0;
-                        leftClockPalpable2.Opacity = 0;
-                        leftClockPalpable3.Opacity = 0;
-                        leftClockPalpable4.Opacity = 0;
-                        leftClockPalpable5.Opacity = 0;
-                        leftClockPalpable6.Opacity = 0;
-                        leftClockPalpable7.Opacity = 0;
-                        leftClockPalpable8.Opacity = 0;
-                        leftClockPalpable9.Opacity = 0;
-                        leftClockPalpable10.Opacity = 0;
-                        leftClockPalpable11.Opacity = 0;
-                        leftClockPalpable12.Opacity = 0;
-
-                        rightClockPalpable1.Opacity = 0;
-                        rightClockPalpable2.Opacity = 0;
-                        rightClockPalpable3.Opacity = 0;
-                        rightClockPalpable4.Opacity = 0;
-                        rightClockPalpable5.Opacity = 0;
-                        rightClockPalpable6.Opacity = 0;
-                        rightClockPalpable7.Opacity = 0;
-                        rightClockPalpable8.Opacity = 0;
-                        rightClockPalpable9.Opacity = 0;
-                        rightClockPalpable10.Opacity = 0;
-                        rightClockPalpable11.Opacity = 0;
-                        rightClockPalpable12.Opacity = 0;
-                    }
-
-                    if (selectItem.Serous)
-                    {
-                        //serousLeft.IsEnabled = true;
-                        //serousRight.IsEnabled = true;
-                        leftClockSerious1.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious1.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious2.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious2.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious3.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious3.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious4.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious4.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious5.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious5.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious6.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious6.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious7.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious7.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious8.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious8.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious9.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious9.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious10.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious10.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious11.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious11.Tag)) > 0 ? 1 : 0;
-                        leftClockSerious12.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious12.Tag)) > 0 ? 1 : 0;
-
-                        rightClockSerious1.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious1.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious2.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious2.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious3.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious3.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious4.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious4.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious5.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious5.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious6.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious6.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious7.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious7.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious8.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious8.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious9.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious9.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious10.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious10.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious11.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious11.Tag)) > 0 ? 1 : 0;
-                        rightClockSerious12.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious12.Tag)) > 0 ? 1 : 0;
-                    }
-                    else
-                    {
-                        leftClockSerious1.Opacity = 0;
-                        leftClockSerious2.Opacity = 0;
-                        leftClockSerious3.Opacity = 0;
-                        leftClockSerious4.Opacity = 0;
-                        leftClockSerious5.Opacity = 0;
-                        leftClockSerious6.Opacity = 0;
-                        leftClockSerious7.Opacity = 0;
-                        leftClockSerious8.Opacity = 0;
-                        leftClockSerious9.Opacity = 0;
-                        leftClockSerious10.Opacity = 0;
-                        leftClockSerious11.Opacity = 0;
-                        leftClockSerious12.Opacity = 0;
-
-                        rightClockSerious1.Opacity = 0;
-                        rightClockSerious2.Opacity = 0;
-                        rightClockSerious3.Opacity = 0;
-                        rightClockSerious4.Opacity = 0;
-                        rightClockSerious5.Opacity = 0;
-                        rightClockSerious6.Opacity = 0;
-                        rightClockSerious7.Opacity = 0;
-                        rightClockSerious8.Opacity = 0;
-                        rightClockSerious9.Opacity = 0;
-                        rightClockSerious10.Opacity = 0;
-                        rightClockSerious11.Opacity = 0;
-                        rightClockSerious12.Opacity = 0;
-                    }
-
-                    if (selectItem.Wounds)
-                    {
-                        //woundsLeft.IsEnabled = true;
-                        //woundsRight.IsEnabled = true;
-                        leftClockWounds1.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds1.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds2.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds2.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds3.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds3.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds4.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds4.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds5.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds5.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds6.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds6.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds7.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds7.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds8.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds8.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds9.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds9.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds10.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds10.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds11.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds11.Tag)) > 0 ? 1 : 0;
-                        leftClockWounds12.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds12.Tag)) > 0 ? 1 : 0;
-
-                        rightClockWounds1.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds1.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds2.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds2.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds3.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds3.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds4.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds4.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds5.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds5.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds6.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds6.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds7.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds7.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds8.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds8.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds9.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds9.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds10.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds10.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds11.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds11.Tag)) > 0 ? 1 : 0;
-                        rightClockWounds12.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds12.Tag)) > 0 ? 1 : 0;
-                    }
-                    else
-                    {
-                        leftClockWounds1.Opacity = 0;
-                        leftClockWounds2.Opacity = 0;
-                        leftClockWounds3.Opacity = 0;
-                        leftClockWounds4.Opacity = 0;
-                        leftClockWounds5.Opacity = 0;
-                        leftClockWounds6.Opacity = 0;
-                        leftClockWounds7.Opacity = 0;
-                        leftClockWounds8.Opacity = 0;
-                        leftClockWounds9.Opacity = 0;
-                        leftClockWounds10.Opacity = 0;
-                        leftClockWounds11.Opacity = 0;
-                        leftClockWounds12.Opacity = 0;
-
-                        rightClockWounds1.Opacity = 0;
-                        rightClockWounds2.Opacity = 0;
-                        rightClockWounds3.Opacity = 0;
-                        rightClockWounds4.Opacity = 0;
-                        rightClockWounds5.Opacity = 0;
-                        rightClockWounds6.Opacity = 0;
-                        rightClockWounds7.Opacity = 0;
-                        rightClockWounds8.Opacity = 0;
-                        rightClockWounds9.Opacity = 0;
-                        rightClockWounds10.Opacity = 0;
-                        rightClockWounds11.Opacity = 0;
-                        rightClockWounds12.Opacity = 0;
-                    }
-
-                    if (selectItem.Scars)
-                    {
-                        //scarsLeft.IsEnabled = true;
-                        //scarsRight.IsEnabled = true;
-                        leftClockScars1.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars1.Tag)) > 0 ? 1 : 0;
-                        leftClockScars2.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars2.Tag)) > 0 ? 1 : 0;
-                        leftClockScars3.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars3.Tag)) > 0 ? 1 : 0;
-                        leftClockScars4.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars4.Tag)) > 0 ? 1 : 0;
-                        leftClockScars5.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars5.Tag)) > 0 ? 1 : 0;
-                        leftClockScars6.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars6.Tag)) > 0 ? 1 : 0;
-                        leftClockScars7.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars7.Tag)) > 0 ? 1 : 0;
-                        leftClockScars8.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars8.Tag)) > 0 ? 1 : 0;
-                        leftClockScars9.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars9.Tag)) > 0 ? 1 : 0;
-                        leftClockScars10.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars10.Tag)) > 0 ? 1 : 0;
-                        leftClockScars11.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars11.Tag)) > 0 ? 1 : 0;
-                        leftClockScars12.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars12.Tag)) > 0 ? 1 : 0;
-
-                        rightClockScars1.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars1.Tag)) > 0 ? 1 : 0;
-                        rightClockScars2.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars2.Tag)) > 0 ? 1 : 0;
-                        rightClockScars3.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars3.Tag)) > 0 ? 1 : 0;
-                        rightClockScars4.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars4.Tag)) > 0 ? 1 : 0;
-                        rightClockScars5.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars5.Tag)) > 0 ? 1 : 0;
-                        rightClockScars6.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars6.Tag)) > 0 ? 1 : 0;
-                        rightClockScars7.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars7.Tag)) > 0 ? 1 : 0;
-                        rightClockScars8.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars8.Tag)) > 0 ? 1 : 0;
-                        rightClockScars9.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars9.Tag)) > 0 ? 1 : 0;
-                        rightClockScars10.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars10.Tag)) > 0 ? 1 : 0;
-                        rightClockScars11.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars11.Tag)) > 0 ? 1 : 0;
-                        rightClockScars12.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars12.Tag)) > 0 ? 1 : 0;
-                    }
-                    else
-                    {
-                        leftClockScars1.Opacity = 0;
-                        leftClockScars2.Opacity = 0;
-                        leftClockScars3.Opacity = 0;
-                        leftClockScars4.Opacity = 0;
-                        leftClockScars5.Opacity = 0;
-                        leftClockScars6.Opacity = 0;
-                        leftClockScars7.Opacity = 0;
-                        leftClockScars8.Opacity = 0;
-                        leftClockScars9.Opacity = 0;
-                        leftClockScars10.Opacity = 0;
-                        leftClockScars11.Opacity = 0;
-                        leftClockScars12.Opacity = 0;
-
-                        rightClockScars1.Opacity = 0;
-                        rightClockScars2.Opacity = 0;
-                        rightClockScars3.Opacity = 0;
-                        rightClockScars4.Opacity = 0;
-                        rightClockScars5.Opacity = 0;
-                        rightClockScars6.Opacity = 0;
-                        rightClockScars7.Opacity = 0;
-                        rightClockScars8.Opacity = 0;
-                        rightClockScars9.Opacity = 0;
-                        rightClockScars10.Opacity = 0;
-                        rightClockScars11.Opacity = 0;
-                        rightClockScars12.Opacity = 0;
-                    }
                 }
                 if (e.RemovedItems.Count > 0)
                 {
@@ -1965,9 +1567,440 @@ namespace MEIKReport
             catch { }
             #endregion
 
-            //加载报表表单数据
-            loadReportData();
-        }               
+            if (this.tabGroup.Visibility == Visibility.Visible)
+            {
+                loadSelectedUserInfo();
+            }
+            //如果编辑报告Tab是可见的，则加载报告数据
+            if (this.reportGroup.Visibility == Visibility.Visible)
+            {
+                //加载报表表单数据
+                loadReportData();
+            }
+        }
+
+        //当选择一个用户档案时，加载用户档案栏位信息
+        private void loadSelectedUserInfo()
+        {
+            var selectItem = this.CodeListBox.SelectedItem as Person;
+            if (selectItem == null) return;
+            //如果档案状态不是新建档案，则需显示上传数据按钮
+            if (selectItem.Status.Equals("NC"))
+            {
+                this.sendDataButton.Visibility = Visibility.Collapsed;
+                this.sendReportButton.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.sendDataButton.Visibility = Visibility.Visible;
+
+                //如果档案状态是报告完成或报告归档状态，则需显示报告归档按钮
+                if (selectItem.Status.Equals("RD") || selectItem.Status.Equals("RS"))
+                {
+                    this.sendReportButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    this.sendReportButton.Visibility = Visibility.Collapsed;
+                }
+            }
+
+
+            //string meikiniFile = App.meikFolder + System.IO.Path.DirectorySeparatorChar + "MEIK.ini";
+            //OperateIniFile.WriteIniData("Base", "Patients base", selectItem.ArchiveFolder, meikiniFile);
+
+            if (selectItem.PalpableLumps)
+            {
+                leftClock1.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock1.Tag)) > 0 ? 1 : 0;
+                leftClock2.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock2.Tag)) > 0 ? 1 : 0;
+                leftClock3.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock3.Tag)) > 0 ? 1 : 0;
+                leftClock4.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock4.Tag)) > 0 ? 1 : 0;
+                leftClock5.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock5.Tag)) > 0 ? 1 : 0;
+                leftClock6.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock6.Tag)) > 0 ? 1 : 0;
+                leftClock7.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock7.Tag)) > 0 ? 1 : 0;
+                leftClock8.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock8.Tag)) > 0 ? 1 : 0;
+                leftClock9.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock9.Tag)) > 0 ? 1 : 0;
+                leftClock10.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock10.Tag)) > 0 ? 1 : 0;
+                leftClock11.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock11.Tag)) > 0 ? 1 : 0;
+                leftClock12.Opacity = (selectItem.LeftPosition & Convert.ToInt32(leftClock12.Tag)) > 0 ? 1 : 0;
+
+                rightClock1.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock1.Tag)) > 0 ? 1 : 0;
+                rightClock2.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock2.Tag)) > 0 ? 1 : 0;
+                rightClock3.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock3.Tag)) > 0 ? 1 : 0;
+                rightClock4.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock4.Tag)) > 0 ? 1 : 0;
+                rightClock5.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock5.Tag)) > 0 ? 1 : 0;
+                rightClock6.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock6.Tag)) > 0 ? 1 : 0;
+                rightClock7.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock7.Tag)) > 0 ? 1 : 0;
+                rightClock8.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock8.Tag)) > 0 ? 1 : 0;
+                rightClock9.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock9.Tag)) > 0 ? 1 : 0;
+                rightClock10.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock10.Tag)) > 0 ? 1 : 0;
+                rightClock11.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock11.Tag)) > 0 ? 1 : 0;
+                rightClock12.Opacity = (selectItem.RightPosition & Convert.ToInt32(rightClock12.Tag)) > 0 ? 1 : 0;
+
+            }
+            else
+            {
+                leftClock1.Opacity = 0;
+                leftClock2.Opacity = 0;
+                leftClock3.Opacity = 0;
+                leftClock4.Opacity = 0;
+                leftClock5.Opacity = 0;
+                leftClock6.Opacity = 0;
+                leftClock7.Opacity = 0;
+                leftClock8.Opacity = 0;
+                leftClock9.Opacity = 0;
+                leftClock10.Opacity = 0;
+                leftClock11.Opacity = 0;
+                leftClock12.Opacity = 0;
+
+                rightClock1.Opacity = 0;
+                rightClock2.Opacity = 0;
+                rightClock3.Opacity = 0;
+                rightClock4.Opacity = 0;
+                rightClock5.Opacity = 0;
+                rightClock6.Opacity = 0;
+                rightClock7.Opacity = 0;
+                rightClock8.Opacity = 0;
+                rightClock9.Opacity = 0;
+                rightClock10.Opacity = 0;
+                rightClock11.Opacity = 0;
+                rightClock12.Opacity = 0;
+            }
+
+            if (selectItem.Pain)
+            {
+                degree1.IsChecked = (selectItem.Degree == Convert.ToInt32(degree1.Tag)) ? true : false;
+                degree2.IsChecked = (selectItem.Degree == Convert.ToInt32(degree2.Tag)) ? true : false;
+                degree3.IsChecked = (selectItem.Degree == Convert.ToInt32(degree3.Tag)) ? true : false;
+                degree4.IsChecked = (selectItem.Degree == Convert.ToInt32(degree4.Tag)) ? true : false;
+                degree5.IsChecked = (selectItem.Degree == Convert.ToInt32(degree5.Tag)) ? true : false;
+                degree6.IsChecked = (selectItem.Degree == Convert.ToInt32(degree6.Tag)) ? true : false;
+                degree7.IsChecked = (selectItem.Degree == Convert.ToInt32(degree7.Tag)) ? true : false;
+                degree8.IsChecked = (selectItem.Degree == Convert.ToInt32(degree8.Tag)) ? true : false;
+                degree9.IsChecked = (selectItem.Degree == Convert.ToInt32(degree9.Tag)) ? true : false;
+                degree10.IsChecked = (selectItem.Degree == Convert.ToInt32(degree10.Tag)) ? true : false;
+                degree1.IsEnabled = true;
+                degree2.IsEnabled = true;
+                degree3.IsEnabled = true;
+                degree4.IsEnabled = true;
+                degree5.IsEnabled = true;
+                degree6.IsEnabled = true;
+                degree7.IsEnabled = true;
+                degree8.IsEnabled = true;
+                degree9.IsEnabled = true;
+                degree10.IsEnabled = true;
+            }
+            else
+            {
+                degree1.IsChecked = false;
+                degree2.IsChecked = false;
+                degree3.IsChecked = false;
+                degree4.IsChecked = false;
+                degree5.IsChecked = false;
+                degree6.IsChecked = false;
+                degree7.IsChecked = false;
+                degree8.IsChecked = false;
+                degree9.IsChecked = false;
+                degree10.IsChecked = false;
+            }
+
+            if (selectItem.RedSwollen)
+            {
+                //redSwollenLeft.IsEnabled=true;
+                //redSwollenRight.IsEnabled = true;
+                leftClockRedSwollen1.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen1.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen2.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen2.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen3.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen3.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen4.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen4.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen5.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen5.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen6.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen6.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen7.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen7.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen8.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen8.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen9.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen9.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen10.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen10.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen11.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen11.Tag)) > 0 ? 1 : 0;
+                leftClockRedSwollen12.Opacity = (selectItem.RedSwollenLeft & Convert.ToInt32(leftClockRedSwollen12.Tag)) > 0 ? 1 : 0;
+
+                rightClockRedSwollen1.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen1.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen2.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen2.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen3.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen3.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen4.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen4.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen5.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen5.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen6.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen6.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen7.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen7.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen8.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen8.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen9.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen9.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen10.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen10.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen11.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen11.Tag)) > 0 ? 1 : 0;
+                rightClockRedSwollen12.Opacity = (selectItem.RedSwollenRight & Convert.ToInt32(rightClockRedSwollen12.Tag)) > 0 ? 1 : 0;
+            }
+            else
+            {
+                //redSwollenLeft.IsEnabled = false;
+                //redSwollenRight.IsEnabled = false;
+                leftClockRedSwollen1.Opacity = 0;
+                leftClockRedSwollen2.Opacity = 0;
+                leftClockRedSwollen3.Opacity = 0;
+                leftClockRedSwollen4.Opacity = 0;
+                leftClockRedSwollen5.Opacity = 0;
+                leftClockRedSwollen6.Opacity = 0;
+                leftClockRedSwollen7.Opacity = 0;
+                leftClockRedSwollen8.Opacity = 0;
+                leftClockRedSwollen9.Opacity = 0;
+                leftClockRedSwollen10.Opacity = 0;
+                leftClockRedSwollen11.Opacity = 0;
+                leftClockRedSwollen12.Opacity = 0;
+
+                rightClockRedSwollen1.Opacity = 0;
+                rightClockRedSwollen2.Opacity = 0;
+                rightClockRedSwollen3.Opacity = 0;
+                rightClockRedSwollen4.Opacity = 0;
+                rightClockRedSwollen5.Opacity = 0;
+                rightClockRedSwollen6.Opacity = 0;
+                rightClockRedSwollen7.Opacity = 0;
+                rightClockRedSwollen8.Opacity = 0;
+                rightClockRedSwollen9.Opacity = 0;
+                rightClockRedSwollen10.Opacity = 0;
+                rightClockRedSwollen11.Opacity = 0;
+                rightClockRedSwollen12.Opacity = 0;
+            }
+
+            if (selectItem.Palpable)
+            {
+                //palpableLeft.IsEnabled = true;
+                //palpableRight.IsEnabled = true;
+                leftClockPalpable1.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable1.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable2.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable2.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable3.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable3.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable4.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable4.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable5.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable5.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable6.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable6.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable7.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable7.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable8.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable8.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable9.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable9.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable10.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable10.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable11.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable11.Tag)) > 0 ? 1 : 0;
+                leftClockPalpable12.Opacity = (selectItem.PalpableLeft & Convert.ToInt32(leftClockPalpable12.Tag)) > 0 ? 1 : 0;
+
+                rightClockPalpable1.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable1.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable2.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable2.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable3.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable3.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable4.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable4.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable5.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable5.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable6.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable6.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable7.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable7.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable8.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable8.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable9.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable9.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable10.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable10.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable11.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable11.Tag)) > 0 ? 1 : 0;
+                rightClockPalpable12.Opacity = (selectItem.PalpableRight & Convert.ToInt32(rightClockPalpable12.Tag)) > 0 ? 1 : 0;
+            }
+            else
+            {
+                leftClockPalpable1.Opacity = 0;
+                leftClockPalpable2.Opacity = 0;
+                leftClockPalpable3.Opacity = 0;
+                leftClockPalpable4.Opacity = 0;
+                leftClockPalpable5.Opacity = 0;
+                leftClockPalpable6.Opacity = 0;
+                leftClockPalpable7.Opacity = 0;
+                leftClockPalpable8.Opacity = 0;
+                leftClockPalpable9.Opacity = 0;
+                leftClockPalpable10.Opacity = 0;
+                leftClockPalpable11.Opacity = 0;
+                leftClockPalpable12.Opacity = 0;
+
+                rightClockPalpable1.Opacity = 0;
+                rightClockPalpable2.Opacity = 0;
+                rightClockPalpable3.Opacity = 0;
+                rightClockPalpable4.Opacity = 0;
+                rightClockPalpable5.Opacity = 0;
+                rightClockPalpable6.Opacity = 0;
+                rightClockPalpable7.Opacity = 0;
+                rightClockPalpable8.Opacity = 0;
+                rightClockPalpable9.Opacity = 0;
+                rightClockPalpable10.Opacity = 0;
+                rightClockPalpable11.Opacity = 0;
+                rightClockPalpable12.Opacity = 0;
+            }
+
+            if (selectItem.Serous)
+            {
+                //serousLeft.IsEnabled = true;
+                //serousRight.IsEnabled = true;
+                leftClockSerious1.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious1.Tag)) > 0 ? 1 : 0;
+                leftClockSerious2.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious2.Tag)) > 0 ? 1 : 0;
+                leftClockSerious3.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious3.Tag)) > 0 ? 1 : 0;
+                leftClockSerious4.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious4.Tag)) > 0 ? 1 : 0;
+                leftClockSerious5.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious5.Tag)) > 0 ? 1 : 0;
+                leftClockSerious6.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious6.Tag)) > 0 ? 1 : 0;
+                leftClockSerious7.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious7.Tag)) > 0 ? 1 : 0;
+                leftClockSerious8.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious8.Tag)) > 0 ? 1 : 0;
+                leftClockSerious9.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious9.Tag)) > 0 ? 1 : 0;
+                leftClockSerious10.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious10.Tag)) > 0 ? 1 : 0;
+                leftClockSerious11.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious11.Tag)) > 0 ? 1 : 0;
+                leftClockSerious12.Opacity = (selectItem.SerousLeft & Convert.ToInt32(leftClockSerious12.Tag)) > 0 ? 1 : 0;
+
+                rightClockSerious1.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious1.Tag)) > 0 ? 1 : 0;
+                rightClockSerious2.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious2.Tag)) > 0 ? 1 : 0;
+                rightClockSerious3.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious3.Tag)) > 0 ? 1 : 0;
+                rightClockSerious4.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious4.Tag)) > 0 ? 1 : 0;
+                rightClockSerious5.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious5.Tag)) > 0 ? 1 : 0;
+                rightClockSerious6.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious6.Tag)) > 0 ? 1 : 0;
+                rightClockSerious7.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious7.Tag)) > 0 ? 1 : 0;
+                rightClockSerious8.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious8.Tag)) > 0 ? 1 : 0;
+                rightClockSerious9.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious9.Tag)) > 0 ? 1 : 0;
+                rightClockSerious10.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious10.Tag)) > 0 ? 1 : 0;
+                rightClockSerious11.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious11.Tag)) > 0 ? 1 : 0;
+                rightClockSerious12.Opacity = (selectItem.SerousRight & Convert.ToInt32(rightClockSerious12.Tag)) > 0 ? 1 : 0;
+            }
+            else
+            {
+                leftClockSerious1.Opacity = 0;
+                leftClockSerious2.Opacity = 0;
+                leftClockSerious3.Opacity = 0;
+                leftClockSerious4.Opacity = 0;
+                leftClockSerious5.Opacity = 0;
+                leftClockSerious6.Opacity = 0;
+                leftClockSerious7.Opacity = 0;
+                leftClockSerious8.Opacity = 0;
+                leftClockSerious9.Opacity = 0;
+                leftClockSerious10.Opacity = 0;
+                leftClockSerious11.Opacity = 0;
+                leftClockSerious12.Opacity = 0;
+
+                rightClockSerious1.Opacity = 0;
+                rightClockSerious2.Opacity = 0;
+                rightClockSerious3.Opacity = 0;
+                rightClockSerious4.Opacity = 0;
+                rightClockSerious5.Opacity = 0;
+                rightClockSerious6.Opacity = 0;
+                rightClockSerious7.Opacity = 0;
+                rightClockSerious8.Opacity = 0;
+                rightClockSerious9.Opacity = 0;
+                rightClockSerious10.Opacity = 0;
+                rightClockSerious11.Opacity = 0;
+                rightClockSerious12.Opacity = 0;
+            }
+
+            if (selectItem.Wounds)
+            {
+                //woundsLeft.IsEnabled = true;
+                //woundsRight.IsEnabled = true;
+                leftClockWounds1.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds1.Tag)) > 0 ? 1 : 0;
+                leftClockWounds2.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds2.Tag)) > 0 ? 1 : 0;
+                leftClockWounds3.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds3.Tag)) > 0 ? 1 : 0;
+                leftClockWounds4.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds4.Tag)) > 0 ? 1 : 0;
+                leftClockWounds5.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds5.Tag)) > 0 ? 1 : 0;
+                leftClockWounds6.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds6.Tag)) > 0 ? 1 : 0;
+                leftClockWounds7.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds7.Tag)) > 0 ? 1 : 0;
+                leftClockWounds8.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds8.Tag)) > 0 ? 1 : 0;
+                leftClockWounds9.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds9.Tag)) > 0 ? 1 : 0;
+                leftClockWounds10.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds10.Tag)) > 0 ? 1 : 0;
+                leftClockWounds11.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds11.Tag)) > 0 ? 1 : 0;
+                leftClockWounds12.Opacity = (selectItem.WoundsLeft & Convert.ToInt32(leftClockWounds12.Tag)) > 0 ? 1 : 0;
+
+                rightClockWounds1.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds1.Tag)) > 0 ? 1 : 0;
+                rightClockWounds2.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds2.Tag)) > 0 ? 1 : 0;
+                rightClockWounds3.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds3.Tag)) > 0 ? 1 : 0;
+                rightClockWounds4.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds4.Tag)) > 0 ? 1 : 0;
+                rightClockWounds5.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds5.Tag)) > 0 ? 1 : 0;
+                rightClockWounds6.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds6.Tag)) > 0 ? 1 : 0;
+                rightClockWounds7.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds7.Tag)) > 0 ? 1 : 0;
+                rightClockWounds8.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds8.Tag)) > 0 ? 1 : 0;
+                rightClockWounds9.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds9.Tag)) > 0 ? 1 : 0;
+                rightClockWounds10.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds10.Tag)) > 0 ? 1 : 0;
+                rightClockWounds11.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds11.Tag)) > 0 ? 1 : 0;
+                rightClockWounds12.Opacity = (selectItem.WoundsRight & Convert.ToInt32(rightClockWounds12.Tag)) > 0 ? 1 : 0;
+            }
+            else
+            {
+                leftClockWounds1.Opacity = 0;
+                leftClockWounds2.Opacity = 0;
+                leftClockWounds3.Opacity = 0;
+                leftClockWounds4.Opacity = 0;
+                leftClockWounds5.Opacity = 0;
+                leftClockWounds6.Opacity = 0;
+                leftClockWounds7.Opacity = 0;
+                leftClockWounds8.Opacity = 0;
+                leftClockWounds9.Opacity = 0;
+                leftClockWounds10.Opacity = 0;
+                leftClockWounds11.Opacity = 0;
+                leftClockWounds12.Opacity = 0;
+
+                rightClockWounds1.Opacity = 0;
+                rightClockWounds2.Opacity = 0;
+                rightClockWounds3.Opacity = 0;
+                rightClockWounds4.Opacity = 0;
+                rightClockWounds5.Opacity = 0;
+                rightClockWounds6.Opacity = 0;
+                rightClockWounds7.Opacity = 0;
+                rightClockWounds8.Opacity = 0;
+                rightClockWounds9.Opacity = 0;
+                rightClockWounds10.Opacity = 0;
+                rightClockWounds11.Opacity = 0;
+                rightClockWounds12.Opacity = 0;
+            }
+
+            if (selectItem.Scars)
+            {
+                //scarsLeft.IsEnabled = true;
+                //scarsRight.IsEnabled = true;
+                leftClockScars1.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars1.Tag)) > 0 ? 1 : 0;
+                leftClockScars2.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars2.Tag)) > 0 ? 1 : 0;
+                leftClockScars3.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars3.Tag)) > 0 ? 1 : 0;
+                leftClockScars4.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars4.Tag)) > 0 ? 1 : 0;
+                leftClockScars5.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars5.Tag)) > 0 ? 1 : 0;
+                leftClockScars6.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars6.Tag)) > 0 ? 1 : 0;
+                leftClockScars7.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars7.Tag)) > 0 ? 1 : 0;
+                leftClockScars8.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars8.Tag)) > 0 ? 1 : 0;
+                leftClockScars9.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars9.Tag)) > 0 ? 1 : 0;
+                leftClockScars10.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars10.Tag)) > 0 ? 1 : 0;
+                leftClockScars11.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars11.Tag)) > 0 ? 1 : 0;
+                leftClockScars12.Opacity = (selectItem.ScarsLeft & Convert.ToInt32(leftClockScars12.Tag)) > 0 ? 1 : 0;
+
+                rightClockScars1.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars1.Tag)) > 0 ? 1 : 0;
+                rightClockScars2.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars2.Tag)) > 0 ? 1 : 0;
+                rightClockScars3.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars3.Tag)) > 0 ? 1 : 0;
+                rightClockScars4.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars4.Tag)) > 0 ? 1 : 0;
+                rightClockScars5.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars5.Tag)) > 0 ? 1 : 0;
+                rightClockScars6.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars6.Tag)) > 0 ? 1 : 0;
+                rightClockScars7.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars7.Tag)) > 0 ? 1 : 0;
+                rightClockScars8.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars8.Tag)) > 0 ? 1 : 0;
+                rightClockScars9.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars9.Tag)) > 0 ? 1 : 0;
+                rightClockScars10.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars10.Tag)) > 0 ? 1 : 0;
+                rightClockScars11.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars11.Tag)) > 0 ? 1 : 0;
+                rightClockScars12.Opacity = (selectItem.ScarsRight & Convert.ToInt32(rightClockScars12.Tag)) > 0 ? 1 : 0;
+            }
+            else
+            {
+                leftClockScars1.Opacity = 0;
+                leftClockScars2.Opacity = 0;
+                leftClockScars3.Opacity = 0;
+                leftClockScars4.Opacity = 0;
+                leftClockScars5.Opacity = 0;
+                leftClockScars6.Opacity = 0;
+                leftClockScars7.Opacity = 0;
+                leftClockScars8.Opacity = 0;
+                leftClockScars9.Opacity = 0;
+                leftClockScars10.Opacity = 0;
+                leftClockScars11.Opacity = 0;
+                leftClockScars12.Opacity = 0;
+
+                rightClockScars1.Opacity = 0;
+                rightClockScars2.Opacity = 0;
+                rightClockScars3.Opacity = 0;
+                rightClockScars4.Opacity = 0;
+                rightClockScars5.Opacity = 0;
+                rightClockScars6.Opacity = 0;
+                rightClockScars7.Opacity = 0;
+                rightClockScars8.Opacity = 0;
+                rightClockScars9.Opacity = 0;
+                rightClockScars10.Opacity = 0;
+                rightClockScars11.Opacity = 0;
+                rightClockScars12.Opacity = 0;
+            }
+        }
 
         /// <summary>
         /// 点击检查按钮
@@ -2665,6 +2698,8 @@ namespace MEIKReport
             this.tabReportGroup.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x76, 0x87, 0x95));
             this.tabGroup.Visibility = Visibility.Visible;
             this.reportGroup.Visibility = Visibility.Collapsed;
+            //加载用户数据
+            loadSelectedUserInfo();
         }
 
         /// <summary>
@@ -2678,6 +2713,8 @@ namespace MEIKReport
             this.tabReportGroup.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0x32, 0x87, 0x87));
             this.tabGroup.Visibility = Visibility.Collapsed;
             this.reportGroup.Visibility = Visibility.Visible;
+            //加载报表表单数据
+            loadReportData();
         }
 
         #region 用户资料编辑保存事件和方法
@@ -4844,19 +4881,61 @@ namespace MEIKReport
         {
             try
             {
-                LoadDataModel();
-                var reportModel = CloneReportModel();
-                //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ExaminationReportDocument.xaml", true, reportModel);
-                //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/SummaryReportImageDocument.xaml", true, reportModel);                
-                PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ExaminationReportFlow.xaml", false, reportModel);
-                //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/SummaryReportFlow.xaml", false, reportModel);                
-                previewWnd.Owner = this;
-                previewWnd.ShowInTaskbar = false;
-                previewWnd.ShowDialog();
+                var comboBox = this.previewComb as ComboBox;
+                if (comboBox.SelectedIndex == 1)
+                {
+                    LoadDataModel();
+                    var reportModel = CloneReportModel();
+                    //PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ExaminationReportFlow.xaml", false, reportModel);
+                    PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/GoodUnionReportFlow.xaml", false, reportModel);
+                    previewWnd.Owner = this;
+                    previewWnd.ShowInTaskbar = false;
+                    previewWnd.ShowDialog();
+                }
+                else if (comboBox.SelectedIndex == 2)
+                {
+                    LoadDataModel();
+                    var reportModel = CloneClientReportModel();
+                    PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/SummaryReportFlow.xaml", false, reportModel);
+                    previewWnd.Owner = this;
+                    previewWnd.ShowInTaskbar = false;
+                    previewWnd.ShowDialog();
+                }
+                else if (comboBox.SelectedIndex == 3)
+                {
+                    LoadDataModel();
+                    var reportModel = CloneReportModel();
+                    PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/NewReportFlow.xaml", false, reportModel);
+                    previewWnd.Owner = this;
+                    previewWnd.ShowInTaskbar = false;
+                    previewWnd.ShowDialog();
+                }
+                else if (comboBox.SelectedIndex == 4)
+                {
+                    LoadDataModel();
+                    var reportModel = CloneReportModel();
+                    PrintPreviewWindow previewWnd = new PrintPreviewWindow("Views/ChinaReportDocument.xaml", true, reportModel);
+                    previewWnd.Owner = this;
+                    previewWnd.ShowInTaskbar = false;
+                    previewWnd.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_93").ToString());
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                var person = this.CodeListBox.SelectedItem as Person;
+                if (person == null)
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());
+                }
+                else
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
             }
         }
 
@@ -4902,11 +4981,23 @@ namespace MEIKReport
                     previewWnd.ShowInTaskbar = false;
                     previewWnd.ShowDialog();
                 }
+                else
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_93").ToString());
+                }
                 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message);
+                var person = this.CodeListBox.SelectedItem as Person;
+                if (person == null)
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());                    
+                }
+                else
+                {
+                    MessageBox.Show(this, ex.Message);
+                }
             }
         }
 		
@@ -4917,6 +5008,11 @@ namespace MEIKReport
             {
                 var mainWin = this.Owner as MainWindow;                
                 var selectItem = this.CodeListBox.SelectedItem as Person;
+                if (selectItem == null)
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());
+                    return;
+                }
                 //先读取旧的档案目录
                 string archiveFolder = OperateIniFile.ReadIniData("Base", "Patients base", "", App.meikReportIniFilePath);
                 
@@ -4974,7 +5070,12 @@ namespace MEIKReport
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            var person = this.CodeListBox.SelectedItem as Person; 
+            var person = this.CodeListBox.SelectedItem as Person;
+            if (person == null)
+            {
+                MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());
+                return;
+            }
             //判断是否已经从MEIK生成的DOC文档中导入检查数据，如果之前没有，则查找是否已在本地生成DOC文档，导入数据            
             string docFile = FindMEIKXmlReport(person.ArchiveFolder);
             if (!string.IsNullOrEmpty(docFile) && File.Exists(docFile))
@@ -5229,6 +5330,12 @@ namespace MEIKReport
 
         private void btnAnalysis_Click(object sender, RoutedEventArgs e)
         {
+            var person = this.CodeListBox.SelectedItem as Person;
+            if (person == null)
+            {
+                MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());
+                return;
+            }
             generatePoints();
         }
 
@@ -5363,7 +5470,12 @@ namespace MEIKReport
         {
             try
             {                
-                var person = this.CodeListBox.SelectedItem as Person; 
+                var person = this.CodeListBox.SelectedItem as Person;
+                if (person == null)
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());
+                    return;
+                }
                 //保存到患者档案目录
                 string datafile = null;
                 if (!string.IsNullOrEmpty(otherDataFolder))
@@ -6028,7 +6140,11 @@ namespace MEIKReport
             try
             {
                 var person = this.CodeListBox.SelectedItem as Person;
-
+                if (person == null)
+                {
+                    MessageBox.Show(this, App.Current.FindResource("Message_35").ToString());
+                    return;
+                }
                 if (App.reportSettingModel.ShowDoctorSignature)
                 {
                     if (this.dataDoctor.SelectedIndex==-1)
@@ -6045,54 +6161,42 @@ namespace MEIKReport
                 string folderName = person.ArchiveFolder;
                 string strName = person.SurName + (string.IsNullOrEmpty(person.GivenName) ? "" : "," + person.GivenName) + (string.IsNullOrEmpty(person.OtherName) ? "" : " " + person.OtherName) + ".pdf";
                 string pdfFile = folderName + System.IO.Path.DirectorySeparatorChar + person.Code + " - " + strName;
-                if (previewComb.SelectedIndex == 2)
-                {
-                    string sfReportTempl = "Views/SummaryReportFlow.xaml";
-                    var clientReportModel = CloneClientReportModel();
-                    ExportFlowDocumentPDF(sfReportTempl, pdfFile, clientReportModel, "A4");
+                if (previewComb.SelectedIndex==0){
+                    MessageBox.Show(this, App.Current.FindResource("Message_93").ToString());
                 }
-                else if (previewComb.SelectedIndex == 1)
-                {
-                    string lfReportTempl = "Views/GoodUnionReportFlow.xaml";
-                    ExportFlowDocumentPDF(lfReportTempl, pdfFile, reportModel);
+                else { 
+                    if (previewComb.SelectedIndex == 2)
+                    {
+                        string sfReportTempl = "Views/SummaryReportFlow.xaml";
+                        var clientReportModel = CloneClientReportModel();
+                        ExportFlowDocumentPDF(sfReportTempl, pdfFile, clientReportModel, "A4");
+                    }
+                    else if (previewComb.SelectedIndex == 1)
+                    {
+                        string lfReportTempl = "Views/GoodUnionReportFlow.xaml";
+                        ExportFlowDocumentPDF(lfReportTempl, pdfFile, reportModel);
+                    }
+                    else if (previewComb.SelectedIndex == 3)
+                    {                    
+                        string lfReportTempl = "Views/NewReportFlow.xaml";
+                        ExportFlowDocumentPDF(lfReportTempl, pdfFile, reportModel);
+                    }
+                    else if (previewComb.SelectedIndex == 4)
+                    {
+                        string lfReportTempl = "Views/ChinaReportDocument.xaml";
+                        ExportPDF(lfReportTempl, pdfFile, reportModel);
+                    }
+                    //保存報表完成狀態
+                    person.Status = "RD";
+                    person.StatusTag = App.Current.FindResource("StatusRD").ToString();
+                    person.StatusText = App.Current.FindResource("CommonStatusReportDone").ToString();
+                    OperateIniFile.WriteIniData("Report", "Status", "RD", person.IniFilePath);
+                    //導出到csv文件                
+                    //string csvFile = person.ArchiveFolder + System.IO.Path.DirectorySeparatorChar + person.Code + ".csv ";
+                    //ExportCSV(csvFile, reportModel);
+                    MessageBox.Show(this, App.Current.FindResource("Message_5").ToString());
                 }
-                else if (previewComb.SelectedIndex == 3)
-                {                    
-                    string lfReportTempl = "Views/NewReportFlow.xaml";
-                    ExportFlowDocumentPDF(lfReportTempl, pdfFile, reportModel);
-                }
-                else if (previewComb.SelectedIndex == 4)
-                {
-                    string lfReportTempl = "Views/ChinaReportDocument.xaml";
-                    ExportPDF(lfReportTempl, pdfFile, reportModel);
-                }
-                ////生成Examination报告的PDF文件
-                //string lfPdfFile = folderName + System.IO.Path.DirectorySeparatorChar + person.Code + " LF - " + strName;                
-                //string lfReportTempl = "Views/GoodUnionReportFlow.xaml";
-                //ExportFlowDocumentPDF(lfReportTempl, lfPdfFile, reportModel);
-
-                ////生成Summary报告的PDF文件
-                //string sfPdfFile = folderName + System.IO.Path.DirectorySeparatorChar + person.Code + " SFI - " + strName;                
-                //string sfReportTempl = "Views/SummaryReportFlow.xaml";                
-                //var clientReportModel = CloneClientReportModel();
-                //ExportFlowDocumentPDF(sfReportTempl, sfPdfFile, clientReportModel, "A4");
-
-                //保存報表完成狀態
-                person.Status = "RD";
-                person.StatusTag = App.Current.FindResource("StatusRD").ToString();
-                person.StatusText = App.Current.FindResource("CommonStatusReportDone").ToString();                
-                OperateIniFile.WriteIniData("Report", "Status", "RD", person.IniFilePath);
-
-                ////导出到excel文件
-                //strName = person.SurName + (string.IsNullOrEmpty(person.GivenName) ? "" : "," + person.GivenName) + (string.IsNullOrEmpty(person.OtherName) ? "" : " " + person.OtherName) + ".xls";
-                //string xlsFile = person.ArchiveFolder + System.IO.Path.DirectorySeparatorChar + person.Code + " - " + strName;
-                //ExportExcel(xlsFile, reportModel);
-
-                //導出到csv文件                
-                string csvFile = person.ArchiveFolder + System.IO.Path.DirectorySeparatorChar + person.Code + ".csv ";
-                ExportCSV(csvFile, reportModel);
-
-                MessageBox.Show(this, App.Current.FindResource("Message_5").ToString());
+                                                                
             }
             catch (Exception ex)
             {               

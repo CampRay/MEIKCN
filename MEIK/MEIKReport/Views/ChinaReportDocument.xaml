@@ -200,7 +200,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                         <TextBlock Text="{StaticResource ChinaReportSegment}" FontFamily="SimSun" FontSize="14"/>
-                        <TextBlock Name="dataRightSegment" Text="{Binding DataRightSegment}" Width="250" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataRightLocation" Text="{Binding DataRightLocation}" Width="250" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
                         <TextBlock Text="{StaticResource ChinaReportNumber}" FontFamily="SimSun" FontSize="14"/>
                         <TextBlock Name="dataRightNumber" Text="{Binding DataRightNumber}" Width="250" Margin="5,0,0,0" FontFamily="SimSun" FontSize="14"/>
                         
@@ -224,7 +224,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
                         <TextBlock Text="{StaticResource ChinaReportSegment}" FontFamily="SimSun" FontSize="14"/>
-                        <TextBlock Name="dataLeftSegment" Text="{Binding DataLeftSegment}" Width="250" Margin="10,0,0,0"  FontFamily="SimSun" FontSize="14"/>
+                        <TextBlock Name="dataLeftLocation" Text="{Binding DataLeftLocation}" Width="250" Margin="10,0,0,0"  FontFamily="SimSun" FontSize="14"/>
                         <TextBlock Text="{StaticResource ChinaReportNumber}" FontFamily="SimSun" FontSize="14"/>
                         <TextBlock Name="dataLeftNumber" Text="{Binding DataLeftNumber}" Width="250" Margin="10,0,0,0"  FontFamily="SimSun" FontSize="14"/>
                         

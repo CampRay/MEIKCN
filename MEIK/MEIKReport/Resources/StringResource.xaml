@@ -30,6 +30,7 @@
     <sys:String x:Key="CommonPwdLab">Password</sys:String>
     <sys:String x:Key="CommonOKBtn">OK</sys:String>
     <sys:String x:Key="CommonExportSelectBtn">Select PDF Template</sys:String>
+    <sys:String x:Key="CommonReportSelectBtn">Select Report</sys:String>
     <sys:String x:Key="CommonExportNuvoMedBtn">NuvoTEK PDF</sys:String>
     <sys:String x:Key="CommonExportGoodUnionBtn">GoodUnino PDF</sys:String>
     <sys:String x:Key="CommonAnalysisBtn">Analysis</sys:String>
@@ -192,6 +193,8 @@
     <sys:String x:Key="Message_89">Result analysis: {0}</sys:String>
     <sys:String x:Key="Message_90">Lack mammograph screenshots</sys:String>
     <sys:String x:Key="Message_91">Failed to run MEIK Diagnostics program, file is missing or corrupt.</sys:String>
+    <sys:String x:Key="Message_92">The report of the user {0} has been uploaded，are you sure to upload again？</sys:String>
+    <sys:String x:Key="Message_93">Please select a report template first.</sys:String>
 
     <sys:String x:Key="UserListWinBrowerLab">Selection of archive</sys:String>
     <sys:String x:Key="UserListWinBrowerBtn">Browse...</sys:String>

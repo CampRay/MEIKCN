@@ -14,7 +14,7 @@
     <sys:String x:Key="MainWinMenuReceiveClient">搜索客户</sys:String>
     
     <sys:String x:Key="CommonExitBtn">退出</sys:String>
-    <sys:String x:Key="CommonPreviewBtn">预览</sys:String>
+    <sys:String x:Key="CommonPreviewBtn">预览报告</sys:String>
     <sys:String x:Key="CommonPrintBtn">打印</sys:String>
     <sys:String x:Key="CommonExportBtn">生成报告</sys:String>
     <sys:String x:Key="CommonSaveBtn">保存</sys:String>
@@ -30,6 +30,7 @@
     <sys:String x:Key="CommonPwdLab">密码</sys:String>
     <sys:String x:Key="CommonOKBtn">确定</sys:String>
     <sys:String x:Key="CommonExportSelectBtn">请选择导出的PDF模板</sys:String>
+    <sys:String x:Key="CommonReportSelectBtn">请选择报告模板</sys:String>
     <sys:String x:Key="CommonExportNuvoMedBtn">NuvoTEK PDF</sys:String>
     <sys:String x:Key="CommonExportGoodUnionBtn">GoodUnino PDF</sys:String>
     <sys:String x:Key="CommonAnalysisBtn">分析</sys:String>    
@@ -193,6 +194,7 @@
     <sys:String x:Key="Message_90">缺少乳房造影的屏幕截图</sys:String>
     <sys:String x:Key="Message_91">不能运行MEIK诊断程序，没找到执行文件或文件已损坏。</sys:String>
     <sys:String x:Key="Message_92">档案编号为{0}的用户报告数据已经上传过，您确定要再次上传吗？</sys:String>
+    <sys:String x:Key="Message_93">请先选择要生成的报告模板</sys:String>
 
     <sys:String x:Key="UserListWinBrowerLab">选择客户档案</sys:String>
     <sys:String x:Key="UserListWinBrowerBtn">浏览...</sys:String>

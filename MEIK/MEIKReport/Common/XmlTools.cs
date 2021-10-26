@@ -42,8 +42,8 @@ namespace MEIKReport.Common
                 else if (dataMenstrualCycle.StartsWith("1 phase") || dataMenstrualCycle.StartsWith("phase 1") || dataMenstrualCycle.StartsWith("第一阶段") || dataMenstrualCycle.StartsWith("一期"))
                 {
                     shortFormReport.DataMenstrualCycle = "1";// App.Current.FindResource("ReportContext_15").ToString();
-                    shortFormReport.DataMeanElectricalConductivity3 = "";
-                    shortFormReport.DataComparativeElectricalConductivity3 = "";
+                    shortFormReport.DataMeanElectricalConductivity3 = "0";
+                    shortFormReport.DataComparativeElectricalConductivity3 = "0";
                     shortFormReport.DataDivergenceBetweenHistograms3 = "";
                 }
                 else if (dataMenstrualCycle.StartsWith("2 phase") || dataMenstrualCycle.StartsWith("phase 2") || dataMenstrualCycle.StartsWith("第二阶段") || dataMenstrualCycle.StartsWith("二期"))
@@ -64,30 +64,30 @@ namespace MEIKReport.Common
                 else if (dataMenstrualCycle.StartsWith("missing")|| dataMenstrualCycle.StartsWith("失经"))
                 {
                     shortFormReport.DataMenstrualCycle = "5";// App.Current.FindResource("ReportContext_19").ToString();
-                    //shortFormReport.DataMeanElectricalConductivity3 = "1";
-                    //shortFormReport.DataComparativeElectricalConductivity3 = "1";
-                    //shortFormReport.DataDivergenceBetweenHistograms3 = "1";
+                    shortFormReport.DataMeanElectricalConductivity3 = "1";
+                    shortFormReport.DataComparativeElectricalConductivity3 = "1";
+                    shortFormReport.DataDivergenceBetweenHistograms3 = "1";
                 }
                 else if (dataMenstrualCycle.StartsWith("pregnancy") || dataMenstrualCycle.StartsWith("妊娠") || dataMenstrualCycle.StartsWith("哺乳期"))
                 {
                     shortFormReport.DataMenstrualCycle = "6";// App.Current.FindResource("ReportContext_20").ToString();
-                    //shortFormReport.DataMeanElectricalConductivity3 = "2";
-                    //shortFormReport.DataComparativeElectricalConductivity3 = "2";
-                    //shortFormReport.DataDivergenceBetweenHistograms3 = "2";
+                    shortFormReport.DataMeanElectricalConductivity3 = "2";
+                    shortFormReport.DataComparativeElectricalConductivity3 = "2";
+                    shortFormReport.DataDivergenceBetweenHistograms3 = "2";
                 }
                 else if (dataMenstrualCycle.StartsWith("lactation") || dataMenstrualCycle.StartsWith("哺乳期") || dataMenstrualCycle.StartsWith("乳汁分泌"))
                 {
                     shortFormReport.DataMenstrualCycle = "7";// App.Current.FindResource("ReportContext_21").ToString();
-                    //shortFormReport.DataMeanElectricalConductivity3 = "3";
-                    //shortFormReport.DataComparativeElectricalConductivity3 = "3";
-                    //shortFormReport.DataDivergenceBetweenHistograms3 = "3";
+                    shortFormReport.DataMeanElectricalConductivity3 = "3";
+                    shortFormReport.DataComparativeElectricalConductivity3 = "3";
+                    shortFormReport.DataDivergenceBetweenHistograms3 = "3";
                 }
                 else if (dataMenstrualCycle.StartsWith("postmenopause") || dataMenstrualCycle.StartsWith("postmenopausal") || dataMenstrualCycle.StartsWith("绝经期"))
                 {
                     shortFormReport.DataMenstrualCycle = "8";// App.Current.FindResource("ReportContext_21").ToString();
-                    //shortFormReport.DataMeanElectricalConductivity3 = "1";
-                    //shortFormReport.DataComparativeElectricalConductivity3 = "1";
-                    //shortFormReport.DataDivergenceBetweenHistograms3 = "1";
+                    shortFormReport.DataMeanElectricalConductivity3 = "1";
+                    shortFormReport.DataComparativeElectricalConductivity3 = "1";
+                    shortFormReport.DataDivergenceBetweenHistograms3 = "1";
                 }
                 
                 //shortFormReport.DataMenstrualCycle = doc.FormFields[11].Result;
@@ -651,45 +651,45 @@ namespace MEIKReport.Common
                 
                 nodeList = doc.GetElementsByTagName("VE_L");
                 node = nodeList.Item(nodeList.Count - 1);
-                shortFormReport.DataLeftAgeElectricalConductivity= gb2312.GetString(iso8859.GetBytes(node.InnerText));
-                //string dataLeftAgeElectricalConductivity = gb2312.GetString(iso8859.GetBytes(node.InnerText));
-                //if (string.IsNullOrEmpty(dataLeftAgeElectricalConductivity))
-                //{
-                //    shortFormReport.DataLeftAgeElectricalConductivity = "0";// "";
-                //}
-                //else if (dataLeftAgeElectricalConductivity.StartsWith("<5"))
-                //{
-                //    shortFormReport.DataLeftAgeElectricalConductivity = "1";// App.Current.FindResource("ReportContext_111").ToString();
-                //}
-                //else if (dataLeftAgeElectricalConductivity.StartsWith(">95"))
-                //{
-                //    shortFormReport.DataLeftAgeElectricalConductivity = "3";// App.Current.FindResource("ReportContext_113").ToString();
-                //}
-                //else 
-                //{
-                //    shortFormReport.DataLeftAgeElectricalConductivity = "2";// App.Current.FindResource("ReportContext_112").ToString();
-                //}
+                //shortFormReport.DataLeftAgeElectricalConductivity= gb2312.GetString(iso8859.GetBytes(node.InnerText));
+                string dataLeftAgeElectricalConductivity = gb2312.GetString(iso8859.GetBytes(node.InnerText));
+                if (string.IsNullOrEmpty(dataLeftAgeElectricalConductivity))
+                {
+                    shortFormReport.DataLeftAgeElectricalConductivity = "0";// "";
+                }
+                else if (dataLeftAgeElectricalConductivity.StartsWith("<5"))
+                {
+                    shortFormReport.DataLeftAgeElectricalConductivity = "1";// App.Current.FindResource("ReportContext_111").ToString();
+                }
+                else if (dataLeftAgeElectricalConductivity.StartsWith(">95"))
+                {
+                    shortFormReport.DataLeftAgeElectricalConductivity = "3";// App.Current.FindResource("ReportContext_113").ToString();
+                }
+                else
+                {
+                    shortFormReport.DataLeftAgeElectricalConductivity = "2";// App.Current.FindResource("ReportContext_112").ToString();
+                }
                 ////ShortFormReport.DataLeftAgeElectricalConductivity = doc.FormFields[57].Result;
                 nodeList = doc.GetElementsByTagName("VE_R");
                 node = nodeList.Item(nodeList.Count - 1);
-                shortFormReport.DataRightAgeElectricalConductivity = gb2312.GetString(iso8859.GetBytes(node.InnerText));
-                //string dataRightAgeElectricalConductivity = gb2312.GetString(iso8859.GetBytes(node.InnerText));
-                //if (string.IsNullOrEmpty(dataRightAgeElectricalConductivity))
-                //{
-                //    shortFormReport.DataRightAgeElectricalConductivity = "0";// "";
-                //}
-                //else if (dataRightAgeElectricalConductivity.StartsWith("<5"))
-                //{
-                //    shortFormReport.DataRightAgeElectricalConductivity = "1";// App.Current.FindResource("ReportContext_111").ToString();
-                //}
-                //else if (dataRightAgeElectricalConductivity.StartsWith(">95"))
-                //{
-                //    shortFormReport.DataRightAgeElectricalConductivity = "3";// App.Current.FindResource("ReportContext_113").ToString();
-                //}
-                //else
-                //{
-                //    shortFormReport.DataRightAgeElectricalConductivity = "2";// App.Current.FindResource("ReportContext_112").ToString();
-                //}
+                //shortFormReport.DataRightAgeElectricalConductivity = gb2312.GetString(iso8859.GetBytes(node.InnerText));
+                string dataRightAgeElectricalConductivity = gb2312.GetString(iso8859.GetBytes(node.InnerText));
+                if (string.IsNullOrEmpty(dataRightAgeElectricalConductivity))
+                {
+                    shortFormReport.DataRightAgeElectricalConductivity = "0";// "";
+                }
+                else if (dataRightAgeElectricalConductivity.StartsWith("<5"))
+                {
+                    shortFormReport.DataRightAgeElectricalConductivity = "1";// App.Current.FindResource("ReportContext_111").ToString();
+                }
+                else if (dataRightAgeElectricalConductivity.StartsWith(">95"))
+                {
+                    shortFormReport.DataRightAgeElectricalConductivity = "3";// App.Current.FindResource("ReportContext_113").ToString();
+                }
+                else
+                {
+                    shortFormReport.DataRightAgeElectricalConductivity = "2";// App.Current.FindResource("ReportContext_112").ToString();
+                }
                 ////ShortFormReport.DataRightAgeElectricalConductivity = doc.FormFields[58].Result;
 
                 nodeList = doc.GetElementsByTagName("ZAKL");
@@ -749,10 +749,11 @@ namespace MEIKReport.Common
                     shortFormReport.DataLeftMammaryGland = "1";// App.Current.FindResource("ReportContext_122").ToString();
                 }
                 //ShortFormReport.DataLeftMammaryGland = doc.FormFields[60].Result;
+
                 nodeList = doc.GetElementsByTagName("VE_GRANITSI_L");
                 node = nodeList.Item(nodeList.Count - 1);
                 string dataLeftAgeRelated = gb2312.GetString(iso8859.GetBytes(node.InnerText));
-                shortFormReport.DataLeftAgeElectricalConductivity = node.InnerText;
+                //shortFormReport.DataLeftAgeElectricalConductivity = node.InnerText;
                 if (string.IsNullOrEmpty(dataLeftAgeRelated))
                 {
                     shortFormReport.DataLeftAgeRelated = "0";//"";
@@ -811,7 +812,7 @@ namespace MEIKReport.Common
                 nodeList = doc.GetElementsByTagName("VE_GRANITSI_R");
                 node = nodeList.Item(nodeList.Count - 1);
                 string dataRightAgeRelated = gb2312.GetString(iso8859.GetBytes(node.InnerText));
-                shortFormReport.DataRightAgeElectricalConductivity = node.InnerText;
+                //shortFormReport.DataRightAgeElectricalConductivity = node.InnerText;
                 if (string.IsNullOrEmpty(dataRightAgeRelated))
                 {
                     shortFormReport.DataRightAgeRelated = "0";

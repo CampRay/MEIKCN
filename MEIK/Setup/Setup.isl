@@ -4191,7 +4191,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{30AC2386-B950-4B4C-A9E8-94B4D5BE5109}</td></row>
 		<row><td>ISUSSignature</td><td>{648E1F31-BD7A-4A7E-8CF7-21A1DAB034E4}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewRelease,viewAppFiles,viewShortcuts,viewTextMessages,viewUI,viewRegistry,viewFileExtensions,viewCustomActions,viewSystemSearch,viewUpgradePaths,viewISToday</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewProject,viewRelease,viewAppFiles,viewShortcuts,viewTextMessages,viewUI,viewRegistry,viewFileExtensions,viewCustomActions,viewSystemSearch,viewUpgradePaths,viewISToday,viewUpdateService</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4572,9 +4572,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]MEIKReport.exe</td><td/></row>
-		<row><td>ProductCode</td><td>{F83BB23E-ADD4-4BA9-B723-CB2CC56653DC}</td><td/></row>
+		<row><td>ProductCode</td><td>{A5F0D9C3-91DC-4785-81F4-D5E2AE71509A}</td><td/></row>
 		<row><td>ProductName</td><td>MEIKCN</td><td/></row>
-		<row><td>ProductVersion</td><td>3.1.1</td><td/></row>
+		<row><td>ProductVersion</td><td>3.1.3</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4590,7 +4590,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>SecureCustomProperties</td><td>USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION45FULL;ISACTIONPROP1</td><td/></row>
 		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
-		<row><td>UpgradeCode</td><td>{987C9671-179A-4A4E-B146-DC2C817B9EEF}</td><td/></row>
+		<row><td>UpgradeCode</td><td>{F4928CCE-5FD4-4C13-B19B-49A41B006817}</td><td/></row>
 		<row><td>_IsMaintenance</td><td>Change</td><td/></row>
 		<row><td>_IsSetupTypeMin</td><td>Typical</td><td/></row>
 	</table>
@@ -4862,7 +4862,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">Remove</col>
 		<col def="s72">ActionProperty</col>
 		<col def="S72">ISDisplayName</col>
-		<row><td>{6B318381-C267-4AF8-BD11-0CEA53B1BA91}</td><td>3.0.1</td><td>9.9.9</td><td>2052</td><td>768</td><td/><td>ISACTIONPROP1</td><td>NewUpgradeEntry1</td></row>
+		<row><td>{F4928CCE-5FD4-4C13-B19B-49A41B006817}</td><td>3.1.0</td><td>9.9.0</td><td>2052</td><td>768</td><td/><td>ISACTIONPROP1</td><td>NewUpgradeEntry1</td></row>
 	</table>
 
 	<table name="Verb">
